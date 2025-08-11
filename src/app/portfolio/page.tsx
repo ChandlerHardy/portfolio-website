@@ -11,6 +11,15 @@ import { GitHub, Launch } from "@mui/icons-material";
 const projects = [
   {
     id: 1,
+    title: 'AI Chatbot',
+    description: 'An intelligent conversational AI chatbot built with modern web technologies, featuring natural language processing and real-time responses.',
+    technologies: ['Next.js', 'TypeScript', 'AI/ML', 'OpenAI API', 'React'],
+    image: '/placeholder-project.jpg',
+    github: 'https://github.com/chandlerhardy/ai-chatbot',
+    demo: 'https://ai-chatbot-pearl-psi.vercel.app/',
+  },
+  {
+    id: 2,
     title: 'E-Commerce Platform',
     description: 'A full-stack e-commerce solution built with Next.js, TypeScript, and Stripe integration.',
     technologies: ['Next.js', 'TypeScript', 'Stripe', 'Prisma', 'PostgreSQL'],
@@ -19,7 +28,7 @@ const projects = [
     demo: 'https://ecommerce-demo.vercel.app',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Task Management App',
     description: 'A collaborative task management application with real-time updates and team collaboration features.',
     technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'Express'],
@@ -28,7 +37,7 @@ const projects = [
     demo: 'https://taskmanager-demo.vercel.app',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Weather Dashboard',
     description: 'A responsive weather dashboard that displays current conditions and forecasts for multiple cities.',
     technologies: ['Vue.js', 'TypeScript', 'OpenWeather API', 'Chart.js'],
@@ -37,7 +46,7 @@ const projects = [
     demo: 'https://weather-dashboard-demo.vercel.app',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Social Media Analytics',
     description: 'Analytics dashboard for social media metrics with data visualization and reporting features.',
     technologies: ['React', 'D3.js', 'Python', 'FastAPI', 'Redis'],
