@@ -14,7 +14,7 @@ const skills = [
 
 export default function About() {
   return (
-    <Box sx={{ maxWidth: '1200px', pr: 3 }}>
+    <Box sx={{ maxWidth: 'fit-content', pr: 3 }}>
       <Box sx={{ py: 2 }}>
         <Box sx={{ mb: 4 }}>
           <Typography variant="h3" component="h1" gutterBottom>

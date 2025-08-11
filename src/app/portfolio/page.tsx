@@ -7,6 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { GitHub, Launch } from "@mui/icons-material";
+import Image from "next/image";
 
 const projects = [
   {
@@ -14,7 +15,7 @@ const projects = [
     title: 'AI Chatbot',
     description: 'An intelligent conversational AI chatbot built with modern web technologies, featuring natural language processing and real-time responses.',
     technologies: ['Next.js', 'TypeScript', 'AI/ML', 'OpenAI API', 'React'],
-    image: '/placeholder-project.jpg',
+    image: '/ai-chatbot-screenshot.png',
     github: 'https://github.com/chandlerhardy/ai-chatbot',
     demo: 'https://ai-chatbot-pearl-psi.vercel.app/',
   },
@@ -58,21 +59,26 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <Box sx={{ maxWidth: '1200px', pr: 3 }}>
+    <Box sx={{ width: '100%', pr: 3 }}>
       <Box sx={{ py: 2 }}>
         <Box sx={{ mb: 4 }}>
           <Typography variant="h3" component="h1" gutterBottom>
             My Portfolio
           </Typography>
           <Box sx={{ height: 4, width: 80, bgcolor: 'primary.main', borderRadius: 1, mb: 2 }} />
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 800 }}>
             Here are some of the projects I&apos;ve worked on recently. Each project showcases different technologies and approaches to solving real-world problems.
           </Typography>
         </Box>
 
         <Box sx={{ 
           display: 'grid', 
-          gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+          gridTemplateColumns: { 
+            xs: '1fr', 
+            sm: 'repeat(2, 1fr)', 
+            lg: 'repeat(3, 1fr)', 
+            xl: 'repeat(4, 1fr)' 
+          },
           gap: 3,
         }}>
           {projects.map((project) => (
@@ -91,28 +97,43 @@ export default function Portfolio() {
             >
               <Box sx={{ 
                 height: 200, 
-                bgcolor: 'grey.100', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                color: 'text.secondary'
+                position: 'relative',
+                overflow: 'hidden',
               }}>
-                <Box sx={{ textAlign: 'center' }}>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                  />
+                ) : (
                   <Box sx={{ 
-                    width: 64, 
-                    height: 64, 
-                    bgcolor: 'grey.300', 
-                    borderRadius: 1, 
+                    height: '100%',
+                    bgcolor: 'grey.100', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
-                    mx: 'auto',
-                    mb: 1
+                    color: 'text.secondary'
                   }}>
-                    📱
+                    <Box sx={{ textAlign: 'center' }}>
+                      <Box sx={{ 
+                        width: 64, 
+                        height: 64, 
+                        bgcolor: 'grey.300', 
+                        borderRadius: 1, 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        mx: 'auto',
+                        mb: 1
+                      }}>
+                        📱
+                      </Box>
+                      <Typography variant="body2">Project Image</Typography>
+                    </Box>
                   </Box>
-                  <Typography variant="body2">Project Image</Typography>
-                </Box>
+                )}
               </Box>
               
               <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
