@@ -11,11 +11,15 @@ import { ThemeProvider } from "../../components/ThemeProvider";
 import FloatingParticles from "../../components/FloatingParticles";
 import ScrollProgress from "../../components/ScrollProgress";
 import FloatingShapes from "../../components/FloatingShapes";
+import ThemeTransition from "../../components/ThemeTransition";
 
 export default function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
       <div className="min-h-screen bg-background relative">
+        {/* Theme transition overlay */}
+        <ThemeTransition />
+        
         {/* Background effects */}
         <FloatingParticles />
         <FloatingShapes />

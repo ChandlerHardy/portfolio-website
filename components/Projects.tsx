@@ -13,12 +13,12 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform with advanced filtering, real-time inventory, and seamless checkout experience.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      tags: ["React", "TypeScript", "Stripe", "Tailwind"],
-      liveUrl: "#",
-      githubUrl: "#"
+      title: "AI Chatbot",
+      description: "An intelligent chatbot powered by AI that can engage in natural conversations and provide helpful responses.",
+      image: "/ai-chatbot-screenshot.png",
+      tags: ["React", "AI", "Next.js", "TypeScript"],
+      liveUrl: "https://ai-chatbot-pearl-psi.vercel.app/",
+      githubUrl: "https://github.com/ChandlerHardy/ai-chatbot"
     },
     {
       title: "Task Management App",
@@ -119,11 +119,20 @@ export default function Projects() {
                     </div>
 
                     <div className="flex gap-3">
-                      <EnhancedButton size="sm" className="flex-1">
+                      <EnhancedButton 
+                        size="sm" 
+                        className="flex-1"
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                      >
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Live Demo
                       </EnhancedButton>
-                      <EnhancedButton variant="outline" size="sm" className="flex-1">
+                      <EnhancedButton 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1"
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                      >
                         <Github className="mr-2 h-4 w-4" />
                         Code
                       </EnhancedButton>

@@ -23,6 +23,10 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 222.2 84% 4.9%;
   --radius: 0.5rem;
+
+  /* Theme transition timing */
+  --theme-transition-duration: 400ms;
+  --theme-transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .dark {
@@ -51,10 +55,66 @@
   * {
     border-color: hsl(var(--border));
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+  
   html {
     scroll-behavior: smooth;
+    /* Add smooth theme transitions */
+    transition: 
+      background-color var(--theme-transition-duration) var(--theme-transition-easing),
+      color var(--theme-transition-duration) var(--theme-transition-easing);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Add smooth theme transitions for body */
+    transition: 
+      background-color var(--theme-transition-duration) var(--theme-transition-easing),
+      color var(--theme-transition-duration) var(--theme-transition-easing);
+  }
+
+  /* Add smooth transitions to all elements that use theme colors */
+  * {
+    transition: 
+      background-color var(--theme-transition-duration) var(--theme-transition-easing),
+      color var(--theme-transition-duration) var(--theme-transition-easing),
+      border-color var(--theme-transition-duration) var(--theme-transition-easing),
+      box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+      fill var(--theme-transition-duration) var(--theme-transition-easing),
+      stroke var(--theme-transition-duration) var(--theme-transition-easing);
+  }
+
+  /* Disable transitions for elements that shouldn't animate */
+  .no-theme-transition,
+  .no-theme-transition * {
+    transition: none !important;
+  }
+
+  /* Special handling for images to prevent weird transitions */
+  img {
+    transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
+  }
+}
+
+/* Theme transition overlay for extra smooth effect */
+@layer components {
+  .theme-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.02) 100%);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+  }
+
+  .theme-transition-overlay.active {
+    opacity: 1;
+  }
+
+  .dark .theme-transition-overlay {
+    background: radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.01) 100%);
   }
 }

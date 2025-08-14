@@ -26,12 +26,25 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <h2 className="text-primary">Alex Chen</h2>
+            <button 
+              onClick={scrollToTop}
+              className="text-primary hover:text-primary/80 transition-colors duration-200"
+            >
+              <h2>Alex Chen</h2>
+            </button>
           </div>
           
           {/* Desktop Navigation */}
