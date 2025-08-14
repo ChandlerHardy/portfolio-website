@@ -7,7 +7,7 @@ import { useInView } from "./hooks/useInView";
 
 export default function Contact() {
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
-  const { ref: cardsRef, isInView: cardsInView } = useInView({ threshold: 0.3 });
+  const { ref: cardsRef, isInView: cardsInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
 
   const contactInfo = [
     {
@@ -59,11 +59,11 @@ export default function Contact() {
         >
           <Badge variant="secondary" className="mb-4">Get In Touch</Badge>
           <h2 className="text-3xl md:text-4xl mb-6">
-            Let's work together on your next project
+            Let&apos;s work together on your next project
           </h2>
           <p className="text-lg text-muted-foreground">
-            I'm always interested in new opportunities and collaborations. 
-            Whether you have a project in mind or just want to chat, I'd love to hear from you.
+            I&apos;m always interested in new opportunities and collaborations. 
+            Whether you have a project in mind or just want to chat, I&apos;d love to hear from you.
           </p>
         </motion.div>
 
@@ -111,7 +111,7 @@ export default function Contact() {
             animate={cardsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <h3 className="text-xl">Let's Connect</h3>
+            <h3 className="text-xl">Let&apos;s Connect</h3>
             <p className="text-muted-foreground">
               Feel free to reach out through any of these platforms. I typically respond 
               within 24 hours and would love to discuss how we can work together.
@@ -167,8 +167,8 @@ export default function Contact() {
         >
           <h3 className="text-2xl mb-4">Ready to start your project?</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            I'm currently available for freelance work and would love to hear about 
-            your project. Let's schedule a call to discuss how I can help bring your 
+            I&apos;m currently available for freelance work and would love to hear about 
+            your project. Let&apos;s schedule a call to discuss how I can help bring your 
             vision to life.
           </p>
           <Button size="lg">

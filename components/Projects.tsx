@@ -9,7 +9,7 @@ import MagneticHover from "./MagneticHover";
 
 export default function Projects() {
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.1 });
-  const { ref: projectsRef, isInView: projectsInView } = useInView({ threshold: 0.2 });
+  const { ref: projectsRef, isInView: projectsInView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
   const projects = [
     {
@@ -57,7 +57,7 @@ export default function Projects() {
         >
           <Badge variant="secondary" className="mb-4">Featured Work</Badge>
           <h2 className="text-3xl md:text-4xl mb-6">
-            Recent projects that I'm proud of
+            Recent projects that I&apos;m proud of
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             From concept to deployment, here are some projects that showcase my 

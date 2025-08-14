@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Skills() {
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
-  const { ref: skillsRef, isInView: skillsInView } = useInView({ threshold: 0.3 });
+  const { ref: skillsRef, isInView: skillsInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
   const [animatedValues, setAnimatedValues] = useState<{ [key: string]: number }>({});
 
   const skillCategories = [

@@ -5,7 +5,7 @@ import { useInView } from "./hooks/useInView";
 
 export default function About() {
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
-  const { ref: statsRef, isInView: statsInView } = useInView({ threshold: 0.3 });
+  const { ref: statsRef, isInView: statsInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
 
   const stats = [
     { number: "50+", label: "Projects Completed" },
@@ -50,12 +50,12 @@ export default function About() {
             <h3 className="text-2xl mb-6">My Approach</h3>
             <div className="space-y-6">
               <p className="text-muted-foreground">
-                I believe great design starts with understanding the user's needs and 
+                I believe great design starts with understanding the user&apos;s needs and 
                 business objectives. My process combines strategic thinking with creative 
                 execution to deliver solutions that exceed expectations.
               </p>
               <p className="text-muted-foreground">
-                Whether it's designing a mobile app, building a web platform, or creating 
+                Whether it&apos;s designing a mobile app, building a web platform, or creating 
                 a brand identity, I approach each project with curiosity, empathy, and 
                 attention to detail.
               </p>
