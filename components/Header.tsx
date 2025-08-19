@@ -43,7 +43,7 @@ export default function Header() {
               onClick={scrollToTop}
               className="text-primary hover:text-primary/80 transition-colors duration-200"
             >
-              <h2>Alex Chen</h2>
+              <h2>Chandler Hardy</h2>
             </button>
           </div>
           
