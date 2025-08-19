@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div>
-            <h3 className="text-primary mb-2">Alex Chen</h3>
+            <h3 className="text-primary mb-2">Chandler Hardy</h3>
             <p className="text-sm text-muted-foreground">
               Creative Designer & Developer
             </p>
