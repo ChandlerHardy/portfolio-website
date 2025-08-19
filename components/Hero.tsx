@@ -59,8 +59,9 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
                 I craft digital experiences that bridge the gap between beautiful design 
-                and functional code. Currently building amazing products at a tech startup 
-                in San Francisco.
+                and functional code.
+                Currently helping revolutionize agriculture through innovative technology, 
+                working to build products that feed the future.
               </motion.p>
               
               <motion.div 
@@ -97,7 +98,7 @@ export default function Hero() {
               >
                 <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 to-accent overflow-hidden relative">
                   <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face"
+                    src="/PLA-Headshot.jpg"
                     alt="Alex Chen - Creative Designer & Developer"
                     className="w-full h-full object-cover"
                   />

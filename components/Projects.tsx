@@ -14,7 +14,7 @@ export default function Projects() {
   const projects = [
     {
       title: "AI Chatbot",
-      description: "An intelligent chatbot powered by AI that can engage in natural conversations and provide helpful responses.",
+      description: "An AI-powered chatbot that engages in natural conversations and includes a maps assistant for route planning, helping users find the best stops for gas, food, and more.",
       image: "/ai-chatbot-screenshot.png",
       tags: ["React", "AI", "Next.js", "TypeScript"],
       liveUrl: "https://ai-chatbot-pearl-psi.vercel.app/",
