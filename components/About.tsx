@@ -22,8 +22,8 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 px-6 lg:px-8 bg-muted/30" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4 bg-muted/30" ref={sectionRef}>
+      <div className="max-w-10xl mx-auto">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -41,7 +41,7 @@ export default function About() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 2xl:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={sectionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -83,7 +83,7 @@ export default function About() {
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 xl:gap-6"
             ref={statsRef}
             initial={{ opacity: 0, x: 50 }}
             animate={statsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}

@@ -13,20 +13,20 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "Crypto Portfolio Analyzer",
+      description: "A full-stack cryptocurrency portfolio tracking and analysis application with real-time portfolio management, AI-powered investment advice using GitHub's Llama 3.1 model, user authentication, and a customizable dashboard with glassmorphism UI effects.",
+      image: "/cryptassist-screenshot.png",
+      tags: ["Next.js", "FastAPI", "PostgreSQL", "AI", "Crypto"],
+      liveUrl: "https://cryptassist.chandlerhardy.com",
+      githubUrl: "https://github.com/ChandlerHardy/crypto-assistant"
+    },
+    {
       title: "AI Chatbot",
       description: "An AI-powered chatbot that engages in natural conversations and includes a maps assistant for route planning, helping users find the best stops for gas, food, and more.",
       image: "/ai-chatbot-screenshot.png",
       tags: ["React", "AI", "Next.js", "TypeScript"],
-      liveUrl: "https://ai-chatbot-pearl-psi.vercel.app/",
+      liveUrl: "https://chatbot.chandlerhardy.com",
       githubUrl: "https://github.com/ChandlerHardy/ai-chatbot"
-    },
-    {
-      title: "Task Management App",
-      description: "Collaborative task management tool with real-time updates, team workspaces, and advanced analytics.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      tags: ["Next.js", "Prisma", "PostgreSQL", "WebSocket"],
-      liveUrl: "#",
-      githubUrl: "#"
     },
     {
       title: "Brand Identity System",
@@ -47,8 +47,8 @@ export default function Projects() {
   ];
 
   return (
-    <section id="work" className="py-20 px-6 lg:px-8" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto">
+    <section id="work" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4" ref={sectionRef}>
+      <div className="max-w-10xl mx-auto">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -65,7 +65,7 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8" ref={projectsRef}>
+        <div className="grid md:grid-cols-2 gap-8 xl:gap-10" ref={projectsRef}>
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -78,19 +78,19 @@ export default function Projects() {
               }}
             >
               <MagneticHover intensity={0.03}>
-                <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden">
-                  <div className="aspect-video overflow-hidden rounded-t-lg relative">
+                <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                  <div className="aspect-video overflow-hidden rounded-t-lg relative bg-muted/10">
                     <ImageWithFallback
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Overlay on hover */}
                     <motion.div 
                       className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     />
                   </div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-1">
                     <h3 className="text-xl mb-3 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h3>
@@ -117,6 +117,8 @@ export default function Projects() {
                         </motion.div>
                       ))}
                     </div>
+
+                    <div className="flex-grow"></div>
 
                     <div className="flex gap-3">
                       <EnhancedButton 

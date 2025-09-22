@@ -64,8 +64,8 @@ export default function Skills() {
   }, [skillsInView]);
 
   return (
-    <section id="skills" className="py-20 px-6 lg:px-8 bg-muted/30" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4 bg-muted/30" ref={sectionRef}>
+      <div className="max-w-10xl mx-auto">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -82,7 +82,7 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16" ref={skillsRef}>
+        <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xl:gap-12 mb-16" ref={skillsRef}>
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}

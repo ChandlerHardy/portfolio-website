@@ -17,7 +17,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-32 pb-20 px-6 lg:px-8 overflow-hidden">
+    <section className="relative pt-32 pb-20 px-6 lg:px-8 xl:px-6 2xl:px-4 overflow-hidden">
       {/* Animated gradient background */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/10"
@@ -31,8 +31,8 @@ export default function Hero() {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+      <div className="max-w-10xl mx-auto relative z-10 px-4">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
           <div className="lg:col-span-7">
             <div className="text-center lg:text-left">
               <motion.div
@@ -40,7 +40,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight text-primary mb-6">
+                <h1 className="tracking-tight text-primary mb-6" style={{ fontSize: '3.7rem' }}>
                   Creative Designer &{" "}
                   <span className="text-muted-foreground">
                     <TypewriterText 
@@ -53,7 +53,7 @@ export default function Hero() {
               </motion.div>
               
               <motion.p 
-                className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
+                className="text-lg md:text-xl xl:text-2xl text-muted-foreground mb-8 max-w-4xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
