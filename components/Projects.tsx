@@ -13,12 +13,24 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "Crooked Finger",
+      description: "A crochet and knitting pattern assistant with AI-powered pattern translation and project management. Features multi-model AI integration with smart routing, conversation history, and a comprehensive pattern library for organizing and tracking crafting projects.",
+      image: "/CFC-white-hand-nobg-cropped.png",
+      tags: ["Next.js", "FastAPI", "GraphQL", "AI", "PostgreSQL"],
+      liveUrl: "https://crookedfinger.chandlerhardy.com",
+      githubUrl: "https://github.com/ChandlerHardy/crooked-finger",
+      backgroundColor: "#A47764",
+      imageScale: 0.9
+    },
+    {
       title: "Crypto Portfolio Analyzer",
       description: "A full-stack cryptocurrency portfolio tracking and analysis application with real-time portfolio management, AI-powered investment advice using GitHub's Llama 3.1 model, user authentication, and a customizable dashboard with glassmorphism UI effects.",
-      image: "/cryptassist-screenshot.png",
+      image: "/cryptassist-transparent-bg-white.png",
       tags: ["Next.js", "FastAPI", "PostgreSQL", "AI", "Crypto"],
       liveUrl: "https://cryptassist.chandlerhardy.com",
-      githubUrl: "https://github.com/ChandlerHardy/crypto-assistant"
+      githubUrl: "https://github.com/ChandlerHardy/crypto-assistant",
+      backgroundColor: "#1a1f2e",
+      imageScale: 0.7
     },
     {
       title: "AI Chatbot",
@@ -27,14 +39,6 @@ export default function Projects() {
       tags: ["React", "AI", "Next.js", "TypeScript"],
       liveUrl: "https://chatbot.chandlerhardy.com",
       githubUrl: "https://github.com/ChandlerHardy/ai-chatbot"
-    },
-    {
-      title: "Brand Identity System",
-      description: "Complete brand identity and design system for a sustainable fashion startup, including logo, guidelines, and digital assets.",
-      image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&h=400&fit=crop",
-      tags: ["Figma", "Brand Design", "UI/UX", "Design System"],
-      liveUrl: "#",
-      githubUrl: "#"
     },
     {
       title: "Fitness Tracking App",
@@ -79,11 +83,23 @@ export default function Projects() {
             >
               <MagneticHover intensity={0.03}>
                 <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
-                  <div className="aspect-video overflow-hidden rounded-t-lg relative bg-muted/10">
+                  <div
+                    className="aspect-video overflow-hidden rounded-t-lg relative bg-muted/10"
+                    style={project.backgroundColor ? { backgroundColor: project.backgroundColor } : {}}
+                  >
                     <ImageWithFallback
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      style={project.imageScale ? { transform: `scale(${project.imageScale})` } : {}}
+                      onMouseEnter={(e) => {
+                        const scale = project.imageScale || 1;
+                        e.currentTarget.style.transform = `scale(${scale * 1.05})`;
+                      }}
+                      onMouseLeave={(e) => {
+                        const scale = project.imageScale || 1;
+                        e.currentTarget.style.transform = `scale(${scale})`;
+                      }}
                     />
                     {/* Overlay on hover */}
                     <motion.div 

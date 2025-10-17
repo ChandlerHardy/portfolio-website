@@ -35,15 +35,23 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <header className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50 dark:bg-background/80 dark:backdrop-blur-md">
       <div className="max-w-10xl mx-auto px-6 lg:px-8 xl:px-6 2xl:px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center justify-center">
             <button 
               onClick={scrollToTop}
-              className="text-primary hover:text-primary/80 transition-colors duration-200"
+              className="text-primary hover:text-primary/80 transition-colors duration-200 flex items-center justify-center"
             >
-              <h2>Chandler Hardy</h2>
+              <div className="h-24 w-24 flex items-center justify-center">
+                <img 
+                  src="/CHi_logo.png" 
+                  alt="Chandler Hardy Logo" 
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-contain"
+                />
+              </div>
             </button>
           </div>
           
