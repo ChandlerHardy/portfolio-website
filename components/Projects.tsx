@@ -1,54 +1,18 @@
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 import EnhancedButton from "./EnhancedButton";
 import MagneticHover from "./MagneticHover";
+import { projects } from "@/data/projects";
+import { useRouter } from "next/navigation";
 
 export default function Projects() {
+  const router = useRouter();
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.1 });
   const { ref: projectsRef, isInView: projectsInView } = useInView<HTMLDivElement>({ threshold: 0.2 });
-
-  const projects = [
-    {
-      title: "Crooked Finger",
-      description: "A crochet and knitting pattern assistant with AI-powered pattern translation and project management. Features multi-model AI integration with smart routing, conversation history, and a comprehensive pattern library for organizing and tracking crafting projects.",
-      image: "/CFC-white-hand-nobg-cropped.png",
-      tags: ["Next.js", "FastAPI", "GraphQL", "AI", "PostgreSQL"],
-      liveUrl: "https://crookedfinger.chandlerhardy.com",
-      githubUrl: "https://github.com/ChandlerHardy/crooked-finger",
-      backgroundColor: "#A47764",
-      imageScale: 0.9
-    },
-    {
-      title: "Crypto Portfolio Analyzer",
-      description: "A full-stack cryptocurrency portfolio tracking and analysis application with real-time portfolio management, AI-powered investment advice using GitHub's Llama 3.1 model, user authentication, and a customizable dashboard with glassmorphism UI effects.",
-      image: "/cryptassist-transparent-bg-white.png",
-      tags: ["Next.js", "FastAPI", "PostgreSQL", "AI", "Crypto"],
-      liveUrl: "https://cryptassist.chandlerhardy.com",
-      githubUrl: "https://github.com/ChandlerHardy/crypto-assistant",
-      backgroundColor: "#1a1f2e",
-      imageScale: 0.7
-    },
-    {
-      title: "AI Chatbot",
-      description: "An AI-powered chatbot that engages in natural conversations and includes a maps assistant for route planning, helping users find the best stops for gas, food, and more.",
-      image: "/ai-chatbot-screenshot.png",
-      tags: ["React", "AI", "Next.js", "TypeScript"],
-      liveUrl: "https://chatbot.chandlerhardy.com",
-      githubUrl: "https://github.com/ChandlerHardy/ai-chatbot"
-    },
-    {
-      title: "Fitness Tracking App",
-      description: "Mobile-first fitness app with workout tracking, progress analytics, and social features for motivation.",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-      tags: ["React Native", "Firebase", "Charts", "Mobile"],
-      liveUrl: "#",
-      githubUrl: "#"
-    }
-  ];
 
   return (
     <section id="work" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4" ref={sectionRef}>
@@ -111,19 +75,19 @@ export default function Projects() {
                       {project.title}
                     </h3>
                     <p className="text-muted-foreground mb-4">
-                      {project.description}
+                      {project.shortDescription}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag, tagIndex) => (
                         <motion.div
                           key={tag}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={projectsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                          transition={{ 
-                            duration: 0.3, 
+                          transition={{
+                            duration: 0.3,
                             delay: projectsInView ? (index * 0.2) + (tagIndex * 0.05) + 0.3 : 0,
-                            ease: "easeOut" 
+                            ease: "easeOut"
                           }}
                           whileHover={{ scale: 1.05 }}
                         >
@@ -137,17 +101,26 @@ export default function Projects() {
                     <div className="flex-grow"></div>
 
                     <div className="flex gap-3">
-                      <EnhancedButton 
-                        size="sm" 
+                      <EnhancedButton
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => router.push(`/projects/${project.slug}`)}
+                      >
+                        Details
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </EnhancedButton>
+                      <EnhancedButton
+                        variant="outline"
+                        size="sm"
                         className="flex-1"
                         onClick={() => window.open(project.liveUrl, '_blank')}
                       >
                         <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
+                        Demo
                       </EnhancedButton>
-                      <EnhancedButton 
-                        variant="outline" 
-                        size="sm" 
+                      <EnhancedButton
+                        variant="outline"
+                        size="sm"
                         className="flex-1"
                         onClick={() => window.open(project.githubUrl, '_blank')}
                       >

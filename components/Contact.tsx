@@ -13,19 +13,19 @@ export default function Contact() {
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Email",
-      value: "hello@alexchen.dev",
-      href: "mailto:hello@alexchen.dev"
+      value: "hardych04@gmail.com",
+      href: "mailto:hardych04@gmail.com"
     },
     {
       icon: <Phone className="h-5 w-5" />,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "(256) 530-2883",
+      href: "tel:+12565302883"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Birmingham, AL",
       href: "#"
     }
   ];
@@ -34,17 +34,12 @@ export default function Contact() {
     {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
-      href: "#"
+      href: "https://www.linkedin.com/in/chandler-hardy-80808112b/"
     },
     {
       icon: <Github className="h-5 w-5" />,
       label: "GitHub",
-      href: "#"
-    },
-    {
-      icon: <Twitter className="h-5 w-5" />,
-      label: "Twitter",
-      href: "#"
+      href: "https://github.com/ChandlerHardy"
     }
   ];
 
@@ -128,15 +123,15 @@ export default function Contact() {
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={cardsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ 
-                    duration: 0.4, 
+                  transition={{
+                    duration: 0.4,
                     delay: 0.8 + index * 0.1,
-                    ease: "easeOut" 
+                    ease: "easeOut"
                   }}
                 >
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={social.href} className="flex items-center space-x-2">
-                      {social.icon}
+                  <Button variant="outline" size="lg" className="px-8 py-6 text-lg" asChild>
+                    <a href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3">
+                      <div className="scale-125">{social.icon}</div>
                       <span>{social.label}</span>
                     </a>
                   </Button>
@@ -144,15 +139,17 @@ export default function Contact() {
               ))}
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="pt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={cardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
             >
-              <Button size="lg" className="w-full">
-                <Mail className="mr-2 h-4 w-4" />
-                Send Me an Email
+              <Button size="lg" className="w-full" asChild>
+                <a href="mailto:hardych04@gmail.com">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Send Me an Email
+                </a>
               </Button>
             </motion.div>
           </motion.div>
