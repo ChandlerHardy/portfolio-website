@@ -49,7 +49,11 @@ export default function Projects() {
                 <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                   <div
                     className="aspect-video overflow-hidden rounded-t-lg relative bg-muted/10"
-                    style={project.backgroundColor ? { backgroundColor: project.backgroundColor } : {}}
+                    style={project.backgroundColor ? (
+                      project.backgroundColor.startsWith('linear-gradient')
+                        ? { backgroundImage: project.backgroundColor }
+                        : { backgroundColor: project.backgroundColor }
+                    ) : {}}
                   >
                     <ImageWithFallback
                       src={project.image}

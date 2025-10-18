@@ -9,6 +9,7 @@ export interface Project {
   githubUrl: string;
   backgroundColor?: string;
   imageScale?: number;
+  detailPageImageScale?: number;
 
   // Detailed page data
   overview?: string;
@@ -134,8 +135,9 @@ export const projects: Project[] = [
     tags: ["Next.js", "FastAPI", "PostgreSQL", "AI", "Crypto"],
     liveUrl: "https://cryptassist.chandlerhardy.com",
     githubUrl: "https://github.com/ChandlerHardy/crypto-assistant",
-    backgroundColor: "#1a1f2e",
+    backgroundColor: "linear-gradient(135deg, #1f2937 0%, #1e3a8a 100%)",
     imageScale: 0.7,
+    detailPageImageScale: 1.0,
 
     overview: "CryptAssist provides cryptocurrency investors with powerful tools to track their portfolios in real-time, analyze performance, and receive AI-powered investment advice. The application features a beautiful glassmorphism UI and integrates with multiple cryptocurrency APIs for accurate, up-to-date pricing.",
 

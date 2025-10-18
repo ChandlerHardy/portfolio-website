@@ -44,7 +44,7 @@ export default function Skills() {
 
   const tools = [
     "React", "Next.js", "TypeScript", "Tailwind CSS", "Figma", "Adobe Creative Suite",
-    "Node.js", "PostgreSQL", "MongoDB", "Firebase", "Vercel", "AWS", "Git", "Docker"
+    "Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB", "Vercel", "Git", "Docker"
   ];
 
   // Animate progress bars when in view

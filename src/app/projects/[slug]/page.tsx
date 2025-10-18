@@ -84,42 +84,45 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* Main Image */}
-      <section className="py-12 px-6 lg:px-8 xl:px-6 2xl:px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="rounded-lg overflow-hidden"
-            style={project.backgroundColor ? { backgroundColor: project.backgroundColor } : {}}
-          >
-            <div className="aspect-video flex items-center justify-center p-8">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="max-h-full max-w-full object-contain"
-                style={project.imageScale ? { transform: `scale(${project.imageScale})` } : {}}
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Overview */}
+      {/* Logo and Overview */}
       {project.overview && (
         <section className="py-12 px-6 lg:px-8 xl:px-6 2xl:px-4">
           <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-3xl font-bold mb-6">Overview</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.overview}
-              </p>
-            </motion.div>
+            <div className="grid md:grid-cols-[350px_1fr] gap-8 items-start">
+              {/* Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="rounded-lg overflow-hidden"
+                style={project.backgroundColor ? (
+                  project.backgroundColor.startsWith('linear-gradient')
+                    ? { backgroundImage: project.backgroundColor }
+                    : { backgroundColor: project.backgroundColor }
+                ) : {}}
+              >
+                <div className="aspect-square flex items-center justify-center p-8">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="max-h-full max-w-full object-contain"
+                    style={project.detailPageImageScale ? { transform: `scale(${project.detailPageImageScale})` } : project.imageScale ? { transform: `scale(${project.imageScale})` } : {}}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Overview */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h2 className="text-3xl font-bold mb-6">Overview</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {project.overview}
+                </p>
+              </motion.div>
+            </div>
           </div>
         </section>
       )}
