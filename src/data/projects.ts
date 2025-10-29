@@ -38,7 +38,6 @@ export const projects: Project[] = [
     description: "Chronicle gives your AI assistants a memory. Record complete development sessions, link commits to conversations, and enable AI tools to query your entire development history.",
     image: "/chronicle_tagline.png",
     tags: ["Python", "AI", "MCP", "SQLite", "CLI"],
-    liveUrl: "https://github.com/ChandlerHardy/chronicle",
     githubUrl: "https://github.com/ChandlerHardy/chronicle",
     backgroundColor: "#1E1E2E",
 
