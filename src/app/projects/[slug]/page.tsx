@@ -8,6 +8,7 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -91,9 +92,11 @@ export default function ProjectDetailPage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="mt-8 rounded-lg overflow-hidden bg-muted/20"
               >
-                <img
+                <Image
                   src={project.screenshots[0].url}
                   alt={project.screenshots[0].caption}
+                  width={800}
+                  height={450}
                   className="w-full h-auto"
                 />
                 <div className="p-4 bg-background/80 backdrop-blur-sm">
@@ -125,9 +128,11 @@ export default function ProjectDetailPage() {
                 ) : {}}
               >
                 <div className="aspect-square flex items-center justify-center p-8">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={400}
+                    height={400}
                     className="max-h-full max-w-full object-contain"
                     style={project.detailPageImageScale ? { transform: `scale(${project.detailPageImageScale})` } : project.imageScale ? { transform: `scale(${project.imageScale})` } : {}}
                   />
@@ -187,9 +192,11 @@ export default function ProjectDetailPage() {
 
               {/* Main Screenshot */}
               <div className="mb-8 rounded-lg overflow-hidden bg-muted/20">
-                <img
+                <Image
                   src={project.screenshots[selectedImage].url}
                   alt={project.screenshots[selectedImage].caption}
+                  width={800}
+                  height={450}
                   className="w-full h-auto"
                 />
                 <div className="p-4 bg-background/80 backdrop-blur-sm">
@@ -217,9 +224,11 @@ export default function ProjectDetailPage() {
                           : "border-transparent hover:border-muted-foreground/50"
                       }`}
                     >
-                      <img
+                      <Image
                         src={screenshot.url}
                         alt={screenshot.caption}
+                        width={200}
+                        height={150}
                         className="w-full h-auto"
                       />
                     </button>
@@ -314,9 +323,11 @@ export default function ProjectDetailPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 1.0 }}
                 >
-                  <img
+                  <Image
                     src="/chronicle_quit.png"
                     alt="Chronicle session completion"
+                    width={400}
+                    height={300}
                     className="mx-auto rounded-lg shadow-lg max-w-md"
                   />
                   <p className="text-sm text-muted-foreground mt-4 italic">

@@ -3,6 +3,7 @@
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 
 export default function Header() {
@@ -44,9 +45,9 @@ export default function Header() {
               className="text-primary hover:text-primary/80 transition-colors duration-200 flex items-center justify-center"
             >
               <div className="h-24 w-24 flex items-center justify-center">
-                <img 
-                  src="/CHi_logo.png" 
-                  alt="Chandler Hardy Logo" 
+                <Image
+                  src="/CHi_logo.png"
+                  alt="Chandler Hardy Logo"
                   width={96}
                   height={96}
                   className="h-full w-full object-contain"

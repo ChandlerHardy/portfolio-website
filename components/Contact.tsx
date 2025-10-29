@@ -1,7 +1,7 @@
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Mail, MapPin, Phone, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 
