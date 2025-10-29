@@ -32,6 +32,89 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "chronicle",
+    title: "Chronicle - AI Session Recorder",
+    shortDescription: "Local-first development session recorder with AI-powered search, summarization, and organization. Features 100% local storage, MCP integration, and Claude Skills for intelligent project tracking, milestone management, and persistent memory across all AI sessions.",
+    description: "Chronicle gives your AI assistants a memory. Record complete development sessions, link commits to conversations, and enable AI tools to query your entire development history.",
+    image: "/chronicle_tagline.png",
+    tags: ["Python", "AI", "MCP", "SQLite", "CLI"],
+    githubUrl: "https://github.com/ChandlerHardy/chronicle",
+    backgroundColor: "#1E1E2E",
+
+    overview: "Chronicle is a local-first development memory system that captures everything you do with AI coding assistants. It records complete session transcripts, links them to git commits, and provides AI-powered search so your tools can remember past decisions and implementations across all your projects.",
+
+    features: [
+      "Full session recording for Claude Code, Gemini CLI, and Qwen CLI",
+      "AI-powered search across all development sessions",
+      "MCP server integration - AI assistants can query your Chronicle database directly",
+      "Multi-project organization with automatic repository detection",
+      "Intelligent session summarization with Gemini and Ollama support",
+      "Git commit linking to automatically connect code changes to AI conversations",
+      "100% local storage with SQLite - complete privacy and offline capability",
+      "Project tracking with milestones and next steps managed through the database"
+    ],
+
+    techStack: [
+      {
+        category: "Core",
+        items: ["Python 3.11+", "SQLite", "Click CLI"]
+      },
+      {
+        category: "AI Integration",
+        items: ["Google Gemini API", "OpenRouter", "Ollama", "Claude Code Integration"]
+      },
+      {
+        category: "Protocols",
+        items: ["Model Context Protocol (MCP)", "FastMCP Framework"]
+      },
+      {
+        category: "Git Integration",
+        items: ["GitPython", "Automated commit tracking"]
+      },
+      {
+        category: "Data Processing",
+        items: ["SQLAlchemy ORM", "Rich Terminal Formatting"]
+      }
+    ],
+
+    screenshots: [
+      {
+        url: "/chronicle_paragraph.png",
+        caption: "Chronicle tagline and core value proposition",
+        platform: "web"
+      },
+      {
+        url: "/chronicle_quit.png",
+        caption: "Chronicle session completion screen",
+        platform: "web"
+      }
+    ],
+
+    challenges: [
+      {
+        title: "Cross-Platform Session Recording",
+        description: "Implemented universal session recording using Unix `script` command to capture full terminal transcripts across different AI tools while maintaining compatibility with macOS, Linux, and FreeBSD systems."
+      },
+      {
+        title: "MCP Server Architecture",
+        description: "Built comprehensive MCP server with 21 tools enabling AI assistants to perform full CRUD operations on sessions, milestones, and next steps, creating a two-way conversation between humans and AI tools."
+      },
+      {
+        title: "Performance with Large Datasets",
+        description: "Designed lazy summarization and intelligent caching system to handle thousands of sessions and commits while maintaining instant search performance across massive development histories."
+      }
+    ],
+
+    outcomes: [
+      "Successfully deployed with 25 passing tests covering all core functionality",
+      "Implemented complete local-first architecture with zero cloud dependencies",
+      "Created database-backed project management system that eliminates manual documentation",
+      "Achieved cross-platform compatibility with multiple AI coding assistants",
+      "Built comprehensive MCP integration making Chronicle queryable by any MCP-compatible AI tool"
+    ]
+  },
+
+  {
     slug: "crooked-finger",
     title: "Crooked Finger",
     shortDescription: "A crochet and knitting pattern assistant with AI-powered pattern translation and project management. Features multi-model AI integration with smart routing, conversation history, and a comprehensive pattern library for organizing and tracking crafting projects.",
@@ -136,7 +219,7 @@ export const projects: Project[] = [
     liveUrl: "https://cryptassist.chandlerhardy.com",
     githubUrl: "https://github.com/ChandlerHardy/crypto-assistant",
     backgroundColor: "linear-gradient(135deg, #1f2937 0%, #1e3a8a 100%)",
-    imageScale: 0.7,
+    imageScale: 0.9,
     detailPageImageScale: 1.0,
 
     overview: "CryptAssist provides cryptocurrency investors with powerful tools to track their portfolios in real-time, analyze performance, and receive AI-powered investment advice. The application features a beautiful glassmorphism UI and integrates with multiple cryptocurrency APIs for accurate, up-to-date pricing.",
@@ -168,27 +251,6 @@ export const projects: Project[] = [
         category: "Infrastructure",
         items: ["Oracle Cloud Infrastructure", "Nginx", "Let's Encrypt SSL"]
       }
-    ]
-  },
-
-  {
-    slug: "ai-chatbot",
-    title: "AI Chatbot",
-    shortDescription: "An AI-powered chatbot that engages in natural conversations and includes a maps assistant for route planning, helping users find the best stops for gas, food, and more.",
-    description: "An intelligent chatbot application featuring natural language processing and integrated maps functionality for enhanced trip planning and local discovery.",
-    image: "/ai-chatbot-screenshot.png",
-    tags: ["React", "AI", "Next.js", "TypeScript"],
-    liveUrl: "https://chatbot.chandlerhardy.com",
-    githubUrl: "https://github.com/ChandlerHardy/ai-chatbot",
-
-    overview: "This AI chatbot combines conversational AI with practical utility features like route planning and location-based recommendations to provide users with helpful, context-aware assistance.",
-
-    features: [
-      "Natural language conversations",
-      "Maps integration for route planning",
-      "Location-based recommendations for gas, food, and points of interest",
-      "Context-aware responses",
-      "Clean, modern UI"
     ]
   },
 

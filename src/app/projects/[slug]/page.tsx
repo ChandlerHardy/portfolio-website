@@ -34,7 +34,7 @@ export default function ProjectDetailPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="pt-24 pb-12 px-6 lg:px-8 xl:px-6 2xl:px-4">
+      <section className="pt-12 pb-12 px-6 lg:px-8 xl:px-6 2xl:px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -66,20 +66,43 @@ export default function ProjectDetailPage() {
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <Button onClick={() => window.open(project.liveUrl, "_blank")}>
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Live Demo
-                  </Button>
+                  {project.liveUrl && project.liveUrl !== "#" && (
+                    <Button onClick={() => window.open(project.liveUrl, "_blank")}>
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Live Demo
+                    </Button>
+                  )}
                   <Button
                     variant="outline"
                     onClick={() => window.open(project.githubUrl, "_blank")}
                   >
                     <Github className="mr-2 h-4 w-4" />
-                    View Code
+                    {project.liveUrl ? "View Code" : "Documentation"}
                   </Button>
                 </div>
               </div>
             </div>
+
+            {/* Chronicle header screenshot - only for Chronicle project */}
+            {project.slug === "chronicle" && project.screenshots && project.screenshots[0] && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-8 rounded-lg overflow-hidden bg-muted/20"
+              >
+                <img
+                  src={project.screenshots[0].url}
+                  alt={project.screenshots[0].caption}
+                  className="w-full h-auto"
+                />
+                <div className="p-4 bg-background/80 backdrop-blur-sm">
+                  <p className="text-sm text-muted-foreground">
+                    {project.screenshots[0].caption}
+                  </p>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -282,6 +305,25 @@ export default function ProjectDetailPage() {
                   </li>
                 ))}
               </ul>
+              
+              {/* Chronicle quit screen - only for Chronicle project */}
+              {project.slug === "chronicle" && (
+                <motion.div 
+                  className="mt-12 text-center"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                >
+                  <img
+                    src="/chronicle_quit.png"
+                    alt="Chronicle session completion"
+                    className="mx-auto rounded-lg shadow-lg max-w-md"
+                  />
+                  <p className="text-sm text-muted-foreground mt-4 italic">
+                    Session recorded. Development history preserved.
+                  </p>
+                </motion.div>
+              )}
             </motion.div>
           </div>
         </section>

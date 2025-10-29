@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export default function Skills() {
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
   const { ref: skillsRef, isInView: skillsInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
   const [animatedValues, setAnimatedValues] = useState<{ [key: string]: number }>({});
 
-  const skillCategories = [
+  const skillCategories = useMemo(() => [
     {
       title: "Frontend Development",
       skills: [
@@ -23,28 +23,29 @@ export default function Skills() {
       ]
     },
     {
-      title: "Design & UX",
+      title: "AI & Development Tools",
       skills: [
-        { name: "Figma", level: 95 },
-        { name: "UI/UX Design", level: 90 },
-        { name: "Prototyping", level: 85 },
-        { name: "Design Systems", level: 90 }
+        { name: "AI Coding Assistants", level: 95 },
+        { name: "Prompt Engineering", level: 90 },
+        { name: "MCP Integration", level: 85 },
+        { name: "AI Workflow Automation", level: 80 }
       ]
     },
     {
       title: "Backend & Tools",
       skills: [
         { name: "Node.js", level: 80 },
+        { name: "FastAPI", level: 75 },
         { name: "PostgreSQL", level: 75 },
-        { name: "Git/GitHub", level: 90 },
         { name: "Docker", level: 70 }
       ]
     }
-  ];
+  ], []);
 
   const tools = [
-    "React", "Next.js", "TypeScript", "Tailwind CSS", "Figma", "Adobe Creative Suite",
-    "Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB", "Vercel", "Git", "Docker"
+    "React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Python", "FastAPI", 
+    "PostgreSQL", "MongoDB", "Vercel", "Git", "Docker", "Claude Code", "GitHub Copilot", 
+    "Cursor", "OpenAI API", "Model Context Protocol", "SQLite"
   ];
 
   // Animate progress bars when in view
@@ -61,7 +62,7 @@ export default function Skills() {
       }, 300);
       return () => clearTimeout(timer);
     }
-  }, [skillsInView]);
+  }, [skillsInView, skillCategories]);
 
   return (
     <section id="skills" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4 bg-muted/30" ref={sectionRef}>

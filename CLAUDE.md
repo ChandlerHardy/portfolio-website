@@ -1,3 +1,91 @@
+## 🚨 CRITICAL: SEARCH CHRONICLE FIRST (MANDATORY)
+
+**BEFORE IMPLEMENTING ANYTHING, YOU MUST SEARCH CHRONICLE:**
+
+```python
+mcp__chronicle__search_sessions(query="relevant keywords", limit=10)
+# Or with bash: chronicle search "relevant keywords"
+```
+
+**WHY THIS IS MANDATORY:**
+- Searching: **1 second**
+- Reinventing: **10-20 minutes**
+- **ROI: 2,700x** (proven from past wasted effort)
+
+**This is not optional. This is not a suggestion. Search first, ALWAYS.**
+
+---
+
+## Chronicle Development Memory
+
+**This project uses Chronicle to track development sessions and maintain institutional knowledge.**
+
+### Core Directives (MANDATORY)
+
+**YOU MUST FOLLOW THESE DIRECTIVES FOR EVERY INTERACTION:**
+
+1. **🔍 SEARCH FIRST (MANDATORY)** - Before implementing ANYTHING:
+   ```python
+   mcp__chronicle__search_sessions(query="relevant keywords", limit=10)
+   ```
+   **This is REQUIRED, not optional.** Past sessions contain solutions to current problems.
+
+2. **📊 CHECK SESSION STATUS (REQUIRED)** - Remind user if not tracking:
+   - Current session NOT tracked unless started with `chronicle start claude`
+   - **YOU MUST suggest exit and restart if meaningful work is happening**
+
+3. **⚡ USE MCP OVER CLI (MANDATORY)** - Always prefer MCP tools:
+   - `mcp__chronicle__*` returns structured JSON (10x faster)
+   - Bash commands are for users, not programmatic access
+   - **Using CLI instead of MCP is considered incorrect**
+
+4. **🗺️ CHECK ROADMAP BEFORE PLANNING (REQUIRED)** - Avoid duplicate work:
+   ```python
+   mcp__chronicle__get_roadmap(days=7)
+   mcp__chronicle__get_next_steps(completed=False)
+   ```
+   **Failure to check roadmap can result in duplicating already-planned work**
+
+5. **🏷️ SUGGEST SESSION ORGANIZATION (REQUIRED)** - After significant work:
+   - YOU MUST propose descriptive title
+   - YOU MUST suggest relevant tags (technologies, features, bugs)
+   - YOU MUST link to related sessions
+
+### Chronicle MCP Tools Reference
+
+```python
+# Search and sessions
+mcp__chronicle__search_sessions(query="feature name", limit=10)
+mcp__chronicle__get_sessions(limit=10, days=7)
+mcp__chronicle__get_session_summary(session_id=5)
+
+# Project management
+mcp__chronicle__get_roadmap(days=7)
+mcp__chronicle__get_next_steps(completed=False, limit=20)
+mcp__chronicle__get_milestones(status="in_progress")
+mcp__chronicle__complete_next_step(step_id=3)
+mcp__chronicle__update_milestone_status(milestone_id=2, new_status="completed")
+
+# Timeline and commits
+mcp__chronicle__get_timeline(days=1)
+mcp__chronicle__get_commits(limit=20, days=7)
+```
+
+### Bash Commands (Fallback)
+
+If MCP is not available:
+
+```bash
+chronicle search "query"
+chronicle sessions
+chronicle session <id>
+chronicle roadmap
+chronicle next-steps
+chronicle timeline today
+```
+
+**This is mandatory. Every single time. No exceptions.**
+
 # Portfolio Website Project Overview
 
 ## Project Description
