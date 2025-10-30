@@ -79,7 +79,17 @@ export default function Hero() {
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </EnhancedButton>
                 
-                <EnhancedButton variant="outline" size="lg" className="group">
+                <EnhancedButton
+                  variant="outline"
+                  size="lg"
+                  className="group"
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/Chandler_Hardy_Resume2025.pdf';
+                    link.download = 'Chandler_Hardy_Resume2025.pdf';
+                    link.click();
+                  }}
+                >
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </EnhancedButton>
