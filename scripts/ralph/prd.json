@@ -39,8 +39,8 @@
         "Verify in browser using Playwright MCP"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Header redesigned: sticky top bar with 1px border-bottom, 'CH' monogram in JetBrains Mono font-mono on the left, nav links (Work, About, Contact) in Inter small uppercase with tracking-widest on the right, ThemeToggle to the right of nav. No backdrop-blur, no gradient — clean solid bg-background/95. Mobile hamburger collapses to vertical drawer. Build and typecheck pass."
     },
     {
       "id": "US-003",
