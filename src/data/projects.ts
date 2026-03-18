@@ -32,111 +32,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "chronicle",
-    title: "Chronicle - AI Session Recorder",
-    shortDescription: "Local-first development session recorder with AI-powered search, summarization, and organization. Features 100% local storage, MCP integration, and Claude Skills for intelligent project tracking, milestone management, and persistent memory across all AI sessions.",
-    description: "Chronicle gives your AI assistants a memory. Record complete development sessions, link commits to conversations, and enable AI tools to query your entire development history.",
-    image: "/chronicle_tagline.png",
-    tags: ["Python", "AI", "MCP", "SQLite", "CLI"],
-    githubUrl: "https://github.com/ChandlerHardy/chronicle",
-    backgroundColor: "#1E1E2E",
-
-    overview: "Chronicle is a local-first development memory system that captures everything you do with AI coding assistants. It records complete session transcripts, links them to git commits, and provides AI-powered search so your tools can remember past decisions and implementations across all your projects.",
-
-    features: [
-      "Full session recording for Claude Code, Gemini CLI, and Qwen CLI",
-      "AI-powered search across all development sessions",
-      "MCP server integration - AI assistants can query your Chronicle database directly",
-      "Multi-project organization with automatic repository detection",
-      "Intelligent session summarization with Gemini and Ollama support",
-      "Git commit linking to automatically connect code changes to AI conversations",
-      "100% local storage with SQLite - complete privacy and offline capability",
-      "Project tracking with milestones and next steps managed through the database"
-    ],
-
-    techStack: [
-      {
-        category: "Core",
-        items: ["Python 3.11+", "SQLite", "Click CLI"]
-      },
-      {
-        category: "AI Integration",
-        items: ["Google Gemini API", "OpenRouter", "Ollama", "Claude Code Integration"]
-      },
-      {
-        category: "Protocols",
-        items: ["Model Context Protocol (MCP)", "FastMCP Framework"]
-      },
-      {
-        category: "Git Integration",
-        items: ["GitPython", "Automated commit tracking"]
-      },
-      {
-        category: "Data Processing",
-        items: ["SQLAlchemy ORM", "Rich Terminal Formatting"]
-      }
-    ],
-
-    screenshots: [
-      {
-        url: "/chronicle_paragraph.png",
-        caption: "Chronicle tagline and core value proposition",
-        platform: "web"
-      },
-      {
-        url: "/chronicle_quit.png",
-        caption: "Chronicle session completion screen",
-        platform: "web"
-      }
-    ],
-
-    challenges: [
-      {
-        title: "Cross-Platform Session Recording",
-        description: "Implemented universal session recording using Unix `script` command to capture full terminal transcripts across different AI tools while maintaining compatibility with macOS, Linux, and FreeBSD systems."
-      },
-      {
-        title: "MCP Server Architecture",
-        description: "Built comprehensive MCP server with 21 tools enabling AI assistants to perform full CRUD operations on sessions, milestones, and next steps, creating a two-way conversation between humans and AI tools."
-      },
-      {
-        title: "Performance with Large Datasets",
-        description: "Designed lazy summarization and intelligent caching system to handle thousands of sessions and commits while maintaining instant search performance across massive development histories."
-      }
-    ],
-
-    outcomes: [
-      "Successfully deployed with 25 passing tests covering all core functionality",
-      "Implemented complete local-first architecture with zero cloud dependencies",
-      "Created database-backed project management system that eliminates manual documentation",
-      "Achieved cross-platform compatibility with multiple AI coding assistants",
-      "Built comprehensive MCP integration making Chronicle queryable by any MCP-compatible AI tool"
-    ]
-  },
-
-  {
     slug: "crooked-finger",
     title: "Crooked Finger",
-    shortDescription: "A crochet and knitting pattern assistant with AI-powered pattern translation and project management. Features multi-model AI integration with smart routing, conversation history, and a comprehensive pattern library for organizing and tracking crafting projects.",
-    description: "Crooked Finger is a full-stack web and iOS application designed to help crochet and knitting enthusiasts translate complex pattern notation, manage their projects, and get AI-powered assistance with their crafting questions.",
-    image: "/CFC-white-hand-nobg-cropped.png",
-    tags: ["Next.js", "FastAPI", "GraphQL", "AI", "PostgreSQL"],
+    shortDescription: "AI-powered crochet pattern translator that converts between pattern formats and generates custom patterns — routes requests across multiple LLM providers to optimize for cost and quality.",
+    description: "Crooked Finger is a deployed full-stack application that helps crochet and knitting enthusiasts translate complex pattern notation, manage their projects, and get AI-powered assistance. End-to-end self-managed deployment on Oracle Cloud with Docker, nginx, and Let's Encrypt SSL.",
+    image: "/projects/crooked-finger/hero.png",
+    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "OCI"],
     liveUrl: "https://crookedfinger.chandlerhardy.com",
     githubUrl: "https://github.com/ChandlerHardy/crooked-finger",
     backgroundColor: "#A47764",
-    imageScale: 0.9,
 
-    overview: "Crooked Finger bridges the gap between traditional craft patterns and modern technology. Whether you're working on a complex crochet project or need help understanding knitting abbreviations, this app provides intelligent assistance powered by multiple AI models including Gemini and OpenRouter's free models.",
+    overview: "Crooked Finger bridges the gap between traditional craft patterns and modern technology. It converts between crochet pattern formats, generates custom patterns on demand, and routes AI requests across Gemini and OpenRouter to balance quality and cost. Fully self-hosted on Oracle Cloud with automated SSL and a GraphQL API.",
 
     features: [
-      "Multi-model AI integration with smart routing between Gemini and OpenRouter models",
-      "Pattern translation - convert abbreviations to readable instructions",
+      "AI-powered pattern translation — converts abbreviations to plain-language instructions",
+      "Custom pattern generation from natural language descriptions",
+      "Multi-model AI routing between Gemini and OpenRouter for cost/quality optimization",
       "Conversation history with cross-platform sync",
       "Comprehensive pattern library for organizing templates and active projects",
       "Project management with image uploads and notes",
       "User authentication with JWT and Argon2 password hashing",
-      "iOS app with feature parity to web application",
-      "Multimodal AI support - upload images for pattern help",
+      "Multimodal AI support — upload images for pattern help"
     ],
 
     techStack: [
@@ -153,116 +69,232 @@ export const projects: Project[] = [
         items: ["Google Gemini API", "OpenRouter API", "Multi-model smart routing"]
       },
       {
-        category: "Mobile",
-        items: ["SwiftUI", "iOS Native", "Custom GraphQL Client"]
-      },
-      {
         category: "Deployment",
-        items: ["Vercel (Frontend)", "Oracle Cloud Infrastructure (Backend)", "Nginx + Let's Encrypt SSL"]
-      }
-    ],
-
-    screenshots: [
-      {
-        url: "/projects/crooked-finger/web-chat.png",
-        caption: "AI-powered chat interface with pattern translation",
-        platform: "web"
-      },
-      {
-        url: "/projects/crooked-finger/web-library.png",
-        caption: "Pattern library for organizing projects",
-        platform: "web"
-      },
-      {
-        url: "/projects/crooked-finger/ios-chat.png",
-        caption: "iOS chat interface with model selection",
-        platform: "ios"
-      },
-      {
-        url: "/projects/crooked-finger/ios-projects.png",
-        caption: "iOS project management view",
-        platform: "ios"
+        items: ["Oracle Cloud Infrastructure", "Docker Compose", "Nginx reverse proxy", "Let's Encrypt SSL"]
       }
     ],
 
     challenges: [
       {
         title: "Multi-Model AI Routing",
-        description: "Implemented intelligent routing between multiple AI providers (Gemini for quality, OpenRouter for unlimited free usage) with configurable fallback order and real-time usage tracking."
+        description: "Implemented intelligent routing between multiple AI providers — Gemini for quality, OpenRouter for cost efficiency — with configurable fallback order and real-time usage tracking to minimize API costs without degrading response quality."
       },
       {
-        title: "Cross-Platform Synchronization",
-        description: "Built a GraphQL backend that seamlessly syncs conversations, projects, and patterns between web and iOS applications with real-time updates."
+        title: "Self-Managed Infrastructure",
+        description: "Handled end-to-end deployment on Oracle Cloud: provisioned the server, configured Docker Compose for the FastAPI backend, set up nginx as a reverse proxy, and automated SSL certificate renewal with Let's Encrypt."
       },
       {
         title: "Pattern Complexity",
-        description: "Designed AI prompts specifically for craft pattern understanding, enabling accurate translation of complex crochet and knitting notation."
+        description: "Designed AI prompts specifically for craft pattern understanding, enabling accurate translation of complex crochet and knitting notation across multiple international format conventions."
       }
     ],
 
     outcomes: [
-      "Deployed full-stack application with web and iOS clients",
-      "Achieved feature parity between web and mobile platforms",
-      "Successfully integrated multiple AI providers with smart routing",
+      "Deployed and live at crookedfinger.chandlerhardy.com with real users",
+      "Achieved full-stack end-to-end ownership: frontend, backend, infrastructure, and AI integration",
+      "Successfully integrated multiple AI providers with smart routing to optimize cost and quality",
       "Built robust authentication system with JWT and secure password hashing",
       "Implemented comprehensive project and pattern management system"
     ]
   },
 
   {
-    slug: "crypto-portfolio-analyzer",
-    title: "Crypto Portfolio Analyzer",
-    shortDescription: "A full-stack cryptocurrency portfolio tracking and analysis application with real-time portfolio management, AI-powered investment advice using GitHub's Llama 3.1 model, user authentication, and a customizable dashboard with glassmorphism UI effects.",
-    description: "CryptAssist is a comprehensive cryptocurrency portfolio management platform that combines real-time tracking with AI-powered investment insights to help users make informed decisions about their crypto investments.",
-    image: "/cryptassist-transparent-bg-white.png",
-    tags: ["Next.js", "FastAPI", "PostgreSQL", "AI", "Crypto"],
-    liveUrl: "https://cryptassist.chandlerhardy.com",
-    githubUrl: "https://github.com/ChandlerHardy/crypto-assistant",
-    backgroundColor: "linear-gradient(135deg, #1f2937 0%, #1e3a8a 100%)",
-    imageScale: 0.9,
-    detailPageImageScale: 1.0,
+    slug: "elucidate-chess",
+    title: "Elucidate Chess",
+    shortDescription: "Chess training tool that turns Stockfish engine analysis into plain-language explanations of why moves are good or bad — solving the gap between 'the engine says +2.3' and 'here's what you should learn from this position'.",
+    description: "Elucidate Chess is a full-stack chess trainer that connects Stockfish engine output to natural language coaching. Built as a Turborepo monorepo on self-managed OCI infrastructure with Docker, nginx, and automated SSL.",
+    image: "/projects/elucidate-chess/hero.png",
+    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Stockfish", "Docker"],
+    githubUrl: "https://github.com/ChandlerHardy/elucidate-chess",
+    backgroundColor: "#2D4A3E",
 
-    overview: "CryptAssist provides cryptocurrency investors with powerful tools to track their portfolios in real-time, analyze performance, and receive AI-powered investment advice. The application features a beautiful glassmorphism UI and integrates with multiple cryptocurrency APIs for accurate, up-to-date pricing.",
+    overview: "Most chess engines tell you what the best move is — not why. Elucidate Chess takes Stockfish's numerical evaluations and translates them into plain-language explanations, helping players understand the strategic and tactical concepts behind each position rather than just memorizing engine lines.",
 
     features: [
-      "Real-time cryptocurrency portfolio tracking",
-      "AI-powered investment advice using Llama 3.1",
-      "Interactive dashboard with glassmorphism design",
-      "User authentication and secure data storage",
-      "Multi-currency support",
-      "Historical performance analytics",
-      "Price alerts and notifications"
+      "Stockfish integration for deep position analysis",
+      "AI-powered plain-language explanations of engine recommendations",
+      "Position analysis with concept tagging (tactics, strategy, endgame)",
+      "Game review mode — analyze full games move by move",
+      "Interactive board for exploring lines and variations",
+      "User accounts with game history and progress tracking",
+      "GraphQL API for flexible data querying"
     ],
 
     techStack: [
       {
         category: "Frontend",
-        items: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+        items: ["Next.js 15", "TypeScript", "Tailwind CSS", "Apollo GraphQL Client"]
       },
       {
         category: "Backend",
-        items: ["FastAPI", "PostgreSQL", "Redis", "Docker"]
+        items: ["FastAPI", "Strawberry GraphQL", "PostgreSQL", "Docker"]
       },
       {
-        category: "AI",
-        items: ["Llama 3.1 (via GitHub Models)"]
+        category: "Chess Engine",
+        items: ["Stockfish", "python-chess", "UCI protocol integration"]
+      },
+      {
+        category: "AI Integration",
+        items: ["LLM-powered move explanation", "Concept extraction from engine analysis"]
       },
       {
         category: "Infrastructure",
-        items: ["Oracle Cloud Infrastructure", "Nginx", "Let's Encrypt SSL"]
+        items: ["Oracle Cloud Infrastructure", "Turborepo monorepo", "Docker Compose", "Nginx + Let's Encrypt"]
       }
+    ],
+
+    challenges: [
+      {
+        title: "Bridging Engine Output and Human Understanding",
+        description: "Stockfish outputs centipawn scores and best moves — not explanations. Built a pipeline that takes the engine's top lines, identifies the key tactical or strategic themes, and generates coaching-quality explanations using an LLM."
+      },
+      {
+        title: "Turborepo Monorepo Architecture",
+        description: "Structured the project as a Turborepo monorepo with shared packages for types, utilities, and UI components, enabling code reuse between the Next.js frontend and FastAPI backend while keeping deployments independent."
+      },
+      {
+        title: "Performance at Analysis Depth",
+        description: "Balancing Stockfish analysis depth against response time — deep analysis is more accurate but slower. Implemented async queuing so users get immediate feedback while deeper analysis runs in the background."
+      }
+    ],
+
+    outcomes: [
+      "Built full-stack application addressing a real gap in chess training tooling",
+      "Demonstrated ability to integrate a complex native engine (Stockfish) into a modern web stack",
+      "Established Turborepo monorepo pattern for future full-stack projects",
+      "Self-managed production infrastructure on Oracle Cloud from scratch"
     ]
   },
 
   {
-    slug: "fitness-tracking-app",
-    title: "Fitness Tracking App",
-    shortDescription: "Mobile-first fitness app with workout tracking, progress analytics, and social features for motivation.",
-    description: "A comprehensive fitness tracking application designed for mobile users to log workouts, track progress, and stay motivated through social features.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-    tags: ["React Native", "Firebase", "Charts", "Mobile"],
-    liveUrl: "#",
-    githubUrl: "#"
+    slug: "greenline",
+    title: "GreenLine",
+    shortDescription: "Complete full-stack lawn care platform built autonomously using the Ralph pipeline — 28 user stories shipped without manual intervention.",
+    description: "GreenLine is a full-stack lawn care business platform built end-to-end by the Ralph autonomous build system. It demonstrates what's possible when a well-designed AI pipeline handles the full development lifecycle.",
+    image: "/projects/greenline/hero.png",
+    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "Autonomous Build"],
+    githubUrl: "https://github.com/ChandlerHardy/greenline",
+    backgroundColor: "#2A5C3F",
+
+    overview: "GreenLine is a complete lawn care business platform — customer management, job scheduling, invoicing, and route optimization — built entirely by Ralph, an autonomous AI build pipeline. The project served as the proof-of-concept that validated Ralph's ability to ship a full product from spec to deployed application without manual coding.",
+
+    features: [
+      "Customer management with service history and contact tracking",
+      "Job scheduling with calendar views and technician assignment",
+      "Invoicing and payment tracking",
+      "Route optimization for service crews",
+      "Client portal for viewing upcoming appointments and invoices",
+      "Admin dashboard with business analytics",
+      "User authentication and role-based access control",
+      "Mobile-responsive design for field use"
+    ],
+
+    techStack: [
+      {
+        category: "Frontend",
+        items: ["Next.js 15", "TypeScript", "Tailwind CSS", "Apollo GraphQL Client"]
+      },
+      {
+        category: "Backend",
+        items: ["FastAPI", "Strawberry GraphQL", "PostgreSQL", "Docker"]
+      },
+      {
+        category: "Build System",
+        items: ["Ralph autonomous pipeline", "Claude Code", "n8n orchestration", "Bash"]
+      },
+      {
+        category: "Infrastructure",
+        items: ["Oracle Cloud Infrastructure", "Docker Compose", "Nginx reverse proxy"]
+      }
+    ],
+
+    challenges: [
+      {
+        title: "Autonomous Story Decomposition",
+        description: "Ralph had to decompose a high-level product spec into 28 individually testable user stories, implement each one, verify acceptance criteria, and move to the next — all without human intervention or manual code review."
+      },
+      {
+        title: "Cross-Machine Orchestration",
+        description: "The build pipeline ran across multiple machines connected via Tailscale mesh network, with n8n monitoring workflows, Discord notifications, and remote SSH execution coordinated from an OCI server."
+      },
+      {
+        title: "Maintaining Coherence Across 28 Stories",
+        description: "Ensuring that code written for story 28 remained consistent with architectural decisions made in story 1 — without a human reviewing every PR — required careful state management in the pipeline."
+      }
+    ],
+
+    outcomes: [
+      "Shipped a complete, functional lawn care platform across 28 user stories with zero manual coding",
+      "Validated the Ralph autonomous build pipeline as capable of end-to-end product development",
+      "Demonstrated that a well-structured spec + autonomous pipeline can replace weeks of manual development",
+      "Produced production-quality code that follows consistent patterns throughout the codebase"
+    ]
+  },
+
+  {
+    slug: "ralph",
+    title: "Ralph",
+    shortDescription: "Autonomous build system that takes a product spec, decomposes it into testable user stories, and implements each one — used to ship a complete 28-story lawn care platform without manual intervention.",
+    description: "Ralph is a reusable autonomous build pipeline that orchestrates Claude Code across machines via Tailscale, with n8n monitoring, Discord notifications, and remote SSH execution. It turns a product spec into a shipped application.",
+    image: "/projects/ralph/hero.png",
+    tags: ["Bash", "n8n", "Claude Code", "Tailscale", "OCI", "Automation"],
+    githubUrl: "https://github.com/ChandlerHardy/ralph",
+    backgroundColor: "#1A1A2E",
+
+    overview: "Ralph solves the 'last mile' problem of AI-assisted development: getting from a product idea to a shipped application without manually writing code. It takes a product spec, uses an LLM to decompose it into testable user stories, then autonomously implements each story — running acceptance criteria, iterating on failures, and moving to the next story only when the current one passes.",
+
+    features: [
+      "Automated product spec to user story decomposition via LLM",
+      "Autonomous story-by-story implementation with acceptance criteria verification",
+      "Cross-machine orchestration via Tailscale mesh network",
+      "n8n workflow monitoring with real-time status tracking",
+      "Discord notifications for build progress and failures",
+      "Remote SSH execution from OCI orchestration server",
+      "Git integration with automatic commits per completed story",
+      "Reusable pipeline — used across multiple projects"
+    ],
+
+    techStack: [
+      {
+        category: "Core",
+        items: ["Bash", "Claude Code (AI engine)", "Git"]
+      },
+      {
+        category: "Orchestration",
+        items: ["n8n workflow automation", "Remote SSH execution", "Tailscale mesh network"]
+      },
+      {
+        category: "Notifications",
+        items: ["Discord webhooks", "Build status reporting"]
+      },
+      {
+        category: "Infrastructure",
+        items: ["Oracle Cloud Infrastructure (OCI)", "Multi-machine coordination"]
+      }
+    ],
+
+    challenges: [
+      {
+        title: "Reliable Cross-Machine Execution",
+        description: "SSH-based remote execution can fail in unexpected ways. Built retry logic, timeout handling, and heartbeat monitoring via n8n so the pipeline recovers from transient failures without human intervention."
+      },
+      {
+        title: "Story Acceptance Criteria Verification",
+        description: "Determining when a user story is 'done' autonomously is hard. Implemented a verification step where Claude Code reviews its own output against the acceptance criteria and either marks it complete or identifies what's missing."
+      },
+      {
+        title: "Pipeline Reusability",
+        description: "Designed Ralph to be project-agnostic — any product spec can be fed in and the pipeline adapts. Used it successfully on GreenLine (lawn care), Elucidate Chess, and internal tooling projects."
+      }
+    ],
+
+    outcomes: [
+      "Successfully shipped GreenLine — a complete 28-story lawn care platform — without manual coding",
+      "Reduced time from product spec to working application from weeks to hours",
+      "Reused the pipeline across multiple projects, validating its generality",
+      "Demonstrated that autonomous AI pipelines can maintain code quality across large feature sets",
+      "Built and deployed on self-managed OCI infrastructure with full observability"
+    ]
   }
 ];
 
