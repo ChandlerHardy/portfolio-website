@@ -32,6 +32,8 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          light: "#E8E8E8",
+          dark: "#1A1A1A",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -44,10 +46,16 @@ const config = {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+          base: "#6B7280",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          green: "#4ADE80",
+        },
+        surface: {
+          dark: "#111111",
+          light: "#FAFAFA",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -57,6 +65,10 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        mono: ["var(--font-jetbrains-mono)", "JetBrains Mono", "monospace"],
+        sans: ["var(--font-inter)", "Inter", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -3,118 +3,75 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222.2 84% 4.9%;
+  /* New design system palette — light theme */
+  --background: 0 0% 98%; /* #FAFAFA */
+  --foreground: 0 0% 10%; /* #1A1A1A */
+  --card: 0 0% 98%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 98%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 0 0% 91%; /* #E8E8E8 */
+  --primary-foreground: 0 0% 10%;
+  --secondary: 0 0% 91%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 0 0% 91%;
+  --muted-foreground: 220 9% 46%; /* #6B7280 */
+  --accent: 142 69% 58%; /* #4ADE80 */
+  --accent-foreground: 0 0% 10%;
   --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89%;
+  --input: 0 0% 89%;
+  --ring: 142 69% 58%;
   --radius: 0.5rem;
 
-  /* Theme transition timing */
-  --theme-transition-duration: 400ms;
-  --theme-transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Design tokens */
+  --color-primary: #E8E8E8;
+  --color-accent: #4ADE80;
+  --color-muted: #6B7280;
+  --color-surface: #FAFAFA;
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
+  /* New design system palette — dark theme */
+  --background: 0 0% 7%; /* #111111 */
+  --foreground: 0 0% 91%; /* #E8E8E8 */
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 91%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 91%;
+  --primary: 0 0% 10%; /* #1A1A1A */
+  --primary-foreground: 0 0% 91%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 91%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 220 9% 46%; /* #6B7280 */
+  --accent: 142 69% 58%; /* #4ADE80 */
+  --accent-foreground: 0 0% 7%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 212.7 26.8% 83.9%;
+  --destructive-foreground: 0 0% 91%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 142 69% 58%;
+
+  /* Design tokens */
+  --color-primary: #1A1A1A;
+  --color-accent: #4ADE80;
+  --color-muted: #6B7280;
+  --color-surface: #111111;
 }
 
 @layer base {
   * {
     border-color: hsl(var(--border));
   }
-  
+
   html {
     scroll-behavior: smooth;
-    /* Add smooth theme transitions */
-    transition: 
-      background-color var(--theme-transition-duration) var(--theme-transition-easing),
-      color var(--theme-transition-duration) var(--theme-transition-easing);
   }
 
   body {
     @apply bg-background text-foreground;
-    /* Add smooth theme transitions for body */
-    transition: 
-      background-color var(--theme-transition-duration) var(--theme-transition-easing),
-      color var(--theme-transition-duration) var(--theme-transition-easing);
-  }
-
-  /* Add smooth transitions to all elements that use theme colors */
-  * {
-    transition: 
-      background-color var(--theme-transition-duration) var(--theme-transition-easing),
-      color var(--theme-transition-duration) var(--theme-transition-easing),
-      border-color var(--theme-transition-duration) var(--theme-transition-easing),
-      box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
-      fill var(--theme-transition-duration) var(--theme-transition-easing),
-      stroke var(--theme-transition-duration) var(--theme-transition-easing);
-  }
-
-  /* Disable transitions for elements that shouldn't animate */
-  .no-theme-transition,
-  .no-theme-transition * {
-    transition: none !important;
-  }
-
-  /* Special handling for images to prevent weird transitions */
-  img {
-    transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
-  }
-}
-
-/* Theme transition overlay for extra smooth effect */
-@layer components {
-  .theme-transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.02) 100%);
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 200ms ease-out;
-  }
-
-  .theme-transition-overlay.active {
-    opacity: 1;
-  }
-
-  .dark .theme-transition-overlay {
-    background: radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.01) 100%);
+    font-family: var(--font-inter), Inter, sans-serif;
   }
 }

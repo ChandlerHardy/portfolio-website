@@ -1,43 +1,172 @@
 {
-  "project": "Portfolio Website - Projects Section Update",
-  "branchName": "ralph/update-projects-section",
-  "description": "Replace outdated projects (Chronicle, Crypto Portfolio Analyzer, Fitness Tracking App) with accurate current projects: Crooked Finger, Elucidate Chess, GreenLine, and Ralph. Update src/data/projects.ts with rich metadata for each project.",
+  "project": "Portfolio Website Redesign",
+  "branchName": "ralph/portfolio-redesign",
+  "description": "Full redesign of chandlerhardy.com — keeping Next.js 15 + Tailwind but replacing the entire design with a distinctive, minimal dark-mode-first aesthetic that highlights real engineering impact (51 MRs, 4k users, 40% US cattle market). Monospace typography accents for code-adjacent content. Not generic AI-gradient. Sections: Hero, About, Experience (Performance Beef), Projects (4 real projects), Skills, Contact.",
   "qualityCheck": "npm run build",
-  "skillHints": [],
+  "skillHints": [
+    "Use Playwright MCP to visually verify each UI section after implementing it"
+  ],
   "userStories": [
     {
       "id": "US-001",
-      "title": "Replace projects data with current projects",
-      "description": "As a portfolio visitor, I want to see Chandler's real current projects so that I can evaluate his actual skills and work.",
+      "title": "Set up design system foundations",
+      "description": "As a developer, I want a coherent design token system so that every component uses consistent colors, typography, and spacing.",
       "acceptanceCriteria": [
-        "src/data/projects.ts exports exactly 4 projects: crooked-finger, elucidate-chess, greenline, ralph",
-        "Chronicle, crypto-portfolio-analyzer, and fitness-tracking-app entries are removed",
-        "Each project has: slug, title, shortDescription, description, image, tags, githubUrl, backgroundColor, overview, features[], techStack[], challenges[], outcomes[]",
-        "Crooked Finger retains liveUrl 'https://crookedfinger.chandlerhardy.com'",
-        "Elucidate Chess has no liveUrl (in progress)",
-        "GreenLine has no liveUrl (complete but not hosted)",
-        "Ralph has no liveUrl (it is a tool, not a SaaS)",
-        "Image paths use /projects/{slug}/hero.png format (files do not need to exist)",
-        "Each project has a distinct backgroundColor that fits its brand",
+        "tailwind.config.ts updated with custom color palette: primary (#E8E8E8 light / #1A1A1A dark), accent (#4ADE80 green), muted (#6B7280), surface (#111111 dark / #FAFAFA light)",
+        "Custom font config added: 'JetBrains Mono' (monospace) for code/accent text, 'Inter' for body — both via next/font/google in layout.tsx",
+        "globals.css updated with CSS custom properties mapping the new palette for both light and dark themes",
+        "Existing FloatingParticles, FloatingShapes, ScrollProgress, ThemeTransition, MagneticHover components removed from page.tsx (design is clean, not effects-heavy)",
+        "ThemeProvider kept, defaultTheme changed to 'dark'",
+        "npm run build passes with no errors",
         "Typecheck passes"
       ],
       "priority": 1,
+      "passes": true,
+      "notes": "Design system foundations implemented. Fixed NODE_ENV=production issue in build script, migrated ThemeProvider to next-themes in layout.tsx, added JetBrains Mono + Inter via next/font/google, updated tailwind.config.js with new color palette, updated globals.css with CSS custom properties for light/dark themes, removed FloatingParticles/FloatingShapes/ScrollProgress/ThemeTransition from page.tsx, added 'use client' directives to components missing them."
+    },
+    {
+      "id": "US-002",
+      "title": "Redesign Header component",
+      "description": "As a site visitor, I want a minimal, clean header so that navigation feels intentional and professional.",
+      "acceptanceCriteria": [
+        "Header is a sticky top bar with subtle border-bottom (1px, muted color)",
+        "Left side: 'CH' monogram in JetBrains Mono font, slightly larger",
+        "Right side: nav links — Work, About, Contact — in Inter, small, uppercase letter-spacing",
+        "Mobile: hamburger menu collapses nav to vertical drawer",
+        "No gradient backgrounds, no blur glass effect — clean solid background with slight opacity",
+        "Dark/light toggle kept but moved to right of nav",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 2,
       "passes": false,
       "notes": ""
     },
     {
-      "id": "US-002",
-      "title": "Verify projects section renders correctly with new data",
-      "description": "As a portfolio visitor, I want the projects section to display all 4 projects without errors so that the site is functional and professional.",
+      "id": "US-003",
+      "title": "Redesign Hero section",
+      "description": "As a hiring manager, I want to immediately understand who Chandler is and what makes him compelling so that I decide to keep reading.",
       "acceptanceCriteria": [
-        "npm run build completes with no errors",
-        "No TypeScript errors in src/data/projects.ts or components/Projects.tsx",
-        "The Projects component still reads from the projects array and renders up to 3 items (projects.slice(0, 3))",
-        "All 4 project slugs are valid for dynamic routing at /projects/[slug]",
-        "getProjectBySlug and getAllProjectSlugs helper functions still work correctly",
-        "Typecheck passes"
+        "Hero section is full viewport height with content vertically centered",
+        "Top label: small monospace text '// full-stack engineer' in accent green, above the name",
+        "Name 'Chandler Hardy' in large (text-5xl md:text-7xl) Inter bold, white",
+        "Tagline below name: 'Building data platforms at national scale. 51 merged MRs. 4,000+ users. Self-taught.' — plain text, muted color, text-xl",
+        "Two CTAs: primary 'View My Work' (links to #projects, accent green border button) and secondary 'Get In Touch' (links to #contact, ghost button)",
+        "No hero image, no avatar, no blob gradient — typography-only hero",
+        "Subtle animated cursor blink after the tagline text (CSS only, no JS library)",
+        "Mobile: text scales down, buttons stack vertically",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
       ],
-      "priority": 2,
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Redesign About section",
+      "description": "As a hiring manager, I want to understand Chandler's background and what drives him so that I can evaluate cultural fit.",
+      "acceptanceCriteria": [
+        "Section ID 'about', two-column layout on desktop (prose left, stats right), single column mobile",
+        "Left column: 2-3 short paragraphs in prose style — self-taught origin, current work at Performance Beef, what he's building on the side",
+        "Right column: 3-4 stat cards with large numbers — '51 MRs merged', '4,000+ users', '2 YOE', '40% US cattle market' — each with a small label below",
+        "Stat numbers in JetBrains Mono, large (text-4xl), accent green color",
+        "Section heading: '// about' in monospace accent style above main heading",
+        "No bullet lists, no skill tags in this section",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Add Experience section (Performance Beef)",
+      "description": "As a hiring manager, I want to see Chandler's professional experience highlighted so that I understand the scope and impact of his work.",
+      "acceptanceCriteria": [
+        "New Experience section component created at components/Experience.tsx",
+        "Section added to page.tsx between About and Projects",
+        "Section ID 'experience', heading pattern '// experience' + 'Where I've Worked'",
+        "Single experience card for Performance Livestock Analytics: role 'Software Engineer', dates 'Feb 2024 – Present'",
+        "Description paragraph about the platform (data platform, 4k producers, 40% US cattle market)",
+        "4-5 bullet points covering key contributions: yard sheet dashboard, nav bar customization, mass animal ID system, protocol management refactor, kill sheet tracking",
+        "Tech stack tags at bottom of card: PHP, jQuery, Go, MongoDB, Highcharts",
+        "Card has subtle left border accent in green",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Redesign Projects section",
+      "description": "As a hiring manager, I want to see Chandler's personal projects with clear tech stacks and context so that I can evaluate his independent engineering skills.",
+      "acceptanceCriteria": [
+        "Section ID 'projects', heading pattern '// work' + 'Selected Projects'",
+        "Grid layout: 2 columns on desktop, 1 column on mobile",
+        "All 4 projects shown (Crooked Finger, Elucidate Chess, GreenLine, Ralph) — remove any slice(0,3) limitation",
+        "Each project card: title, one-line description, tech stack tags (from project.tags), status badge, links (GitHub icon always, Live link if liveUrl exists)",
+        "Cards have dark surface background (#111 dark / #F5F5F5 light), subtle border, hover lifts card with shadow",
+        "No hero images on cards (image files don't exist) — cards are text/tag based",
+        "Status badges: Crooked Finger='Live' (green), Elucidate Chess='In Progress' (yellow), GreenLine='Complete' (blue), Ralph='Tool' (gray)",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Redesign Skills section",
+      "description": "As a hiring manager, I want to see Chandler's skills organized by category so that I can quickly assess fit for my role.",
+      "acceptanceCriteria": [
+        "Section ID 'skills', heading pattern '// stack' + 'Technical Skills'",
+        "Skills organized in a grid of category groups, not a flat tag cloud",
+        "Categories: Languages (TypeScript, Python, Go, PHP, Swift, JavaScript), Frontend (React, Next.js 15, Tailwind CSS, Vue.js), Backend (FastAPI, Node.js, GraphQL, REST APIs), Database (PostgreSQL, MongoDB, MySQL), AI/ML (Claude API, OpenAI, Gemini, OpenRouter, MCP, RAG), Infrastructure (Docker, OCI, Vercel, nginx, n8n, CI/CD)",
+        "Each category has a monospace label and the skills listed as small pill tags below",
+        "Old Skills.tsx component replaced with new implementation",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 7,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Redesign Contact section and Footer",
+      "description": "As a hiring manager, I want a clear way to reach Chandler so that I can start a conversation.",
+      "acceptanceCriteria": [
+        "Contact section ID 'contact', heading '// contact' + 'Get In Touch'",
+        "Simple layout: short paragraph ('Open to remote full-stack roles. Reach out directly.'), then email address as a large clickable link (hardych04@gmail.com), then row of icon links: GitHub, LinkedIn",
+        "No contact form — direct email link only",
+        "Footer: single row, left side '© 2025 Chandler Hardy', right side social links (GitHub, LinkedIn), minimal border-top",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 8,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Final integration, cleanup, and build verification",
+      "description": "As a developer, I want the entire redesigned site to build cleanly and be free of unused code so that it is production-ready for PR review.",
+      "acceptanceCriteria": [
+        "All unused component files removed: FloatingParticles.tsx, FloatingShapes.tsx, ScrollProgress.tsx, ThemeTransition.tsx, MagneticHover.tsx, TypewriterText.tsx, EnhancedButton.tsx (if not used by any active component)",
+        "No TypeScript errors across all components",
+        "npm run build completes successfully with no errors",
+        "page.tsx only imports components that are actually used",
+        "Dark mode is the default theme (ThemeProvider defaultTheme='dark')",
+        "Site is fully mobile-responsive — no horizontal scroll on 375px viewport",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP"
+      ],
+      "priority": 9,
       "passes": false,
       "notes": ""
     }

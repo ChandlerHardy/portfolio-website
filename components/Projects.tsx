@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";

@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, Download } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
