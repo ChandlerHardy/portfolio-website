@@ -1,0 +1,45 @@
+{
+  "project": "Portfolio Website - Projects Section Update",
+  "branchName": "ralph/update-projects-section",
+  "description": "Replace outdated projects (Chronicle, Crypto Portfolio Analyzer, Fitness Tracking App) with accurate current projects: Crooked Finger, Elucidate Chess, GreenLine, and Ralph. Update src/data/projects.ts with rich metadata for each project.",
+  "qualityCheck": "npm run build",
+  "skillHints": [],
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Replace projects data with current projects",
+      "description": "As a portfolio visitor, I want to see Chandler's real current projects so that I can evaluate his actual skills and work.",
+      "acceptanceCriteria": [
+        "src/data/projects.ts exports exactly 4 projects: crooked-finger, elucidate-chess, greenline, ralph",
+        "Chronicle, crypto-portfolio-analyzer, and fitness-tracking-app entries are removed",
+        "Each project has: slug, title, shortDescription, description, image, tags, githubUrl, backgroundColor, overview, features[], techStack[], challenges[], outcomes[]",
+        "Crooked Finger retains liveUrl 'https://crookedfinger.chandlerhardy.com'",
+        "Elucidate Chess has no liveUrl (in progress)",
+        "GreenLine has no liveUrl (complete but not hosted)",
+        "Ralph has no liveUrl (it is a tool, not a SaaS)",
+        "Image paths use /projects/{slug}/hero.png format (files do not need to exist)",
+        "Each project has a distinct backgroundColor that fits its brand",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Verify projects section renders correctly with new data",
+      "description": "As a portfolio visitor, I want the projects section to display all 4 projects without errors so that the site is functional and professional.",
+      "acceptanceCriteria": [
+        "npm run build completes with no errors",
+        "No TypeScript errors in src/data/projects.ts or components/Projects.tsx",
+        "The Projects component still reads from the projects array and renders up to 3 items (projects.slice(0, 3))",
+        "All 4 project slugs are valid for dynamic routing at /projects/[slug]",
+        "getProjectBySlug and getAllProjectSlugs helper functions still work correctly",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
