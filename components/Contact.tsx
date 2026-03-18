@@ -8,7 +8,7 @@ export default function Contact() {
   const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
 
   return (
-    <section id="contact" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4" ref={sectionRef}>
+    <section id="contact" className="py-24 px-6 lg:px-8 xl:px-6 2xl:px-4" ref={sectionRef}>
       <div className="max-w-8xl mx-auto">
         <motion.div
           className="mb-12"

@@ -17,7 +17,7 @@ export default function Projects() {
   const { ref: gridRef, isInView: gridInView } = useInView<HTMLDivElement>({ threshold: 0.1 });
 
   return (
-    <section id="projects" className="py-24 px-6 lg:px-8" ref={sectionRef}>
+    <section id="projects" className="py-24 px-6 lg:px-8 xl:px-6 2xl:px-4" ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <motion.div
@@ -47,8 +47,7 @@ export default function Projects() {
                   delay: gridInView ? index * 0.1 : 0,
                   ease: "easeOut",
                 }}
-                className="group rounded-xl border border-border bg-[#111] dark:bg-[#111] light:bg-[#F5F5F5] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col p-6"
-                style={{}}
+                className="group rounded-xl border border-border bg-[#F5F5F5] dark:bg-[#111] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col p-6"
               >
                 {/* Top row: title + status badge */}
                 <div className="flex items-start justify-between gap-3 mb-3">

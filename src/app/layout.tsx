@@ -17,7 +17,19 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Chandler Hardy - Portfolio",
-  description: "Full Stack Developer Portfolio showcasing modern web applications",
+  description: "Full-stack engineer building web apps with TypeScript, React, Go, and Python. 4,000+ users, 51 merged MRs, open to remote roles.",
+  openGraph: {
+    title: "Chandler Hardy - Portfolio",
+    description: "Full-stack engineer building web apps with TypeScript, React, Go, and Python. 4,000+ users, 51 merged MRs, open to remote roles.",
+    url: "https://chandlerhardy.com",
+    siteName: "Chandler Hardy",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chandler Hardy - Portfolio",
+    description: "Full-stack engineer building web apps with TypeScript, React, Go, and Python.",
+  },
 };
 
 export default function RootLayout({
