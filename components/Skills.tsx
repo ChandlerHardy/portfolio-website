@@ -1,160 +1,81 @@
 "use client";
 
-import { Badge } from "./ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Progress } from "./ui/progress";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
-import { useEffect, useState, useMemo } from "react";
+
+const skillCategories = [
+  {
+    label: "Languages",
+    skills: ["TypeScript", "Python", "Go", "PHP", "Swift", "JavaScript"],
+  },
+  {
+    label: "Frontend",
+    skills: ["React", "Next.js 15", "Tailwind CSS", "Vue.js"],
+  },
+  {
+    label: "Backend",
+    skills: ["FastAPI", "Node.js", "GraphQL", "REST APIs"],
+  },
+  {
+    label: "Database",
+    skills: ["PostgreSQL", "MongoDB", "MySQL"],
+  },
+  {
+    label: "AI/ML",
+    skills: ["Claude API", "OpenAI", "Gemini", "OpenRouter", "MCP", "RAG"],
+  },
+  {
+    label: "Infrastructure",
+    skills: ["Docker", "OCI", "Vercel", "nginx", "n8n", "CI/CD"],
+  },
+];
 
 export default function Skills() {
-  const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
-  const { ref: skillsRef, isInView: skillsInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
-  const [animatedValues, setAnimatedValues] = useState<{ [key: string]: number }>({});
-
-  const skillCategories = useMemo(() => [
-    {
-      title: "Frontend Development",
-      skills: [
-        { name: "React/Next.js", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "JavaScript", level: 90 }
-      ]
-    },
-    {
-      title: "AI & Development Tools",
-      skills: [
-        { name: "AI Coding Assistants", level: 95 },
-        { name: "Prompt Engineering", level: 90 },
-        { name: "MCP Integration", level: 85 },
-        { name: "AI Workflow Automation", level: 80 }
-      ]
-    },
-    {
-      title: "Backend & Tools",
-      skills: [
-        { name: "Node.js", level: 80 },
-        { name: "FastAPI", level: 75 },
-        { name: "PostgreSQL", level: 75 },
-        { name: "Docker", level: 70 }
-      ]
-    }
-  ], []);
-
-  const tools = [
-    "React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Python", "FastAPI", 
-    "PostgreSQL", "MongoDB", "Vercel", "Git", "Docker", "Claude Code", "GitHub Copilot", 
-    "Cursor", "OpenAI API", "Model Context Protocol", "SQLite"
-  ];
-
-  // Animate progress bars when in view
-  useEffect(() => {
-    if (skillsInView) {
-      const timer = setTimeout(() => {
-        const newValues: { [key: string]: number } = {};
-        skillCategories.forEach(category => {
-          category.skills.forEach(skill => {
-            newValues[skill.name] = skill.level;
-          });
-        });
-        setAnimatedValues(newValues);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [skillsInView, skillCategories]);
+  const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.1 });
 
   return (
     <section id="skills" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4 bg-muted/30" ref={sectionRef}>
       <div className="max-w-10xl mx-auto">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <Badge variant="secondary" className="mb-4">Skills & Expertise</Badge>
-          <h2 className="text-3xl md:text-4xl mb-6">
-            Technologies I work with
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            From design to development, here are the tools and technologies I use 
-            to bring ideas to life.
+          <p className="font-mono text-xs text-[#4ADE80] uppercase tracking-wider mb-2">
+            // stack
           </p>
+          <h2 className="text-3xl md:text-4xl font-semibold">Technical Skills</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xl:gap-12 mb-16" ref={skillsRef}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 50 }}
-              animate={skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: categoryIndex * 0.2, 
-                ease: "easeOut" 
+              key={category.label}
+              initial={{ opacity: 0, y: 30 }}
+              animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{
+                duration: 0.5,
+                delay: categoryIndex * 0.1,
+                ease: "easeOut",
               }}
             >
-              <Card>
-                <CardHeader>
-                  <CardTitle>{category.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div 
-                      key={skillIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={skillsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ 
-                        duration: 0.4, 
-                        delay: (categoryIndex * 0.2) + (skillIndex * 0.1) + 0.3,
-                        ease: "easeOut" 
-                      }}
-                    >
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm">{skill.name}</span>
-                        <span className="text-sm text-muted-foreground">
-                          {animatedValues[skill.name] || 0}%
-                        </span>
-                      </div>
-                      <Progress 
-                        value={animatedValues[skill.name] || 0} 
-                        className="h-2 transition-all duration-1000 ease-out" 
-                      />
-                    </motion.div>
-                  ))}
-                </CardContent>
-              </Card>
+              <p className="font-mono text-xs text-[#4ADE80] uppercase tracking-wider mb-3">
+                {category.label}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-xs px-2 py-1 border border-border rounded font-sans text-muted-foreground"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
-
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-        >
-          <h3 className="text-xl mb-6">Tools & Technologies</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {tools.map((tool, index) => (
-              <motion.div
-                key={tool}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={skillsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ 
-                  duration: 0.3, 
-                  delay: 1 + (index * 0.05),
-                  ease: "easeOut" 
-                }}
-              >
-                <Badge variant="outline" className="px-3 py-1">
-                  {tool}
-                </Badge>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
