@@ -77,8 +77,8 @@
         "Verify in browser using Playwright MCP"
       ],
       "priority": 4,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "About section redesigned: section ID 'about', two-column layout (prose left, stat cards right) on desktop, single column mobile. Left: 3 prose paragraphs covering self-taught origin, Performance Livestock Analytics work, and side projects. Right: 4 stat cards with text-4xl font-mono #4ADE80 numbers ('51', '4,000+', '2 YOE', '40%') and small muted labels. Section heading '// about' in monospace accent green above 'Who I Am'. No bullet lists, no skill tags. Build and typecheck pass."
     },
     {
       "id": "US-005",
