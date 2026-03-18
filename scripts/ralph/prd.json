@@ -59,8 +59,8 @@
         "Verify in browser using Playwright MCP"
       ],
       "priority": 3,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Hero redesigned: full-viewport-height section with vertically centered content, '// full-stack engineer' monospace label in #4ADE80, 'Chandler Hardy' in text-5xl md:text-7xl Inter bold, tagline in text-xl muted-foreground with CSS cursor blink animation, two CTAs (View My Work -> #projects green border, Get In Touch -> #contact ghost), no image/avatar/gradient, buttons stack vertically on mobile."
     },
     {
       "id": "US-004",
