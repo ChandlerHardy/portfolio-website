@@ -30,7 +30,7 @@ const STATS = ` ┌──────────────┬─────�
  │ Merged MRs   │ 51                 │
  │ Active Users │ 4,000+             │
  │ Market Share │ 40% US cattle      │
- │ Projects     │ 4 shipped          │
+ │ Projects     │ 3 shipped          │
  │ Experience   │ 2 years            │
  │ Location     │ Birmingham, AL     │
  └──────────────┴────────────────────┘`;
@@ -81,10 +81,6 @@ const PROJECTS: Record<string, { url: string; desc: string }> = {
   greenline: {
     url: "https://github.com/ChandlerHardy/greenline",
     desc: "Lawn care platform — built autonomously by Ralph",
-  },
-  ralph: {
-    url: "https://github.com/ChandlerHardy/ralph",
-    desc: "Autonomous build pipeline — spec to shipped app",
   },
 };
 
