@@ -1,33 +1,14 @@
 import type { Metadata } from "next";
-import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Chandler Hardy — Full-Stack Developer",
+  title: "chandlerOS — Chandler Hardy",
   description:
-    "Full-stack developer building systems that ship. Currently at Performance Beef — 4,000+ users, 40% of the US cattle market.",
+    "Full-stack developer portfolio. 51 merged MRs, 4,000+ users, 40% of the US cattle market. Built with Next.js.",
   openGraph: {
-    title: "Chandler Hardy — Full-Stack Developer",
+    title: "chandlerOS — Chandler Hardy",
     description:
-      "Full-stack developer building systems that ship. Currently at Performance Beef — 4,000+ users, 40% of the US cattle market.",
+      "Full-stack developer portfolio. Currently at Performance Beef.",
     type: "website",
   },
 };
@@ -38,13 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`dark ${syne.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="font-body antialiased">
-        {children}
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

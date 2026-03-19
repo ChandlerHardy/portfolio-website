@@ -1,0 +1,88 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { WindowState, WindowAction } from "./types";
+import StartMenu from "./StartMenu";
+
+interface TaskbarProps {
+  windows: WindowState[];
+  dispatch: React.Dispatch<WindowAction>;
+  onOpenWindow: (id: string) => void;
+}
+
+export default function Taskbar({ windows, dispatch, onOpenWindow }: TaskbarProps) {
+  const [startOpen, setStartOpen] = useState(false);
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+    };
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const openWindows = windows.filter((w) => w.isOpen && w.id !== "project-detail");
+
+  return (
+    <>
+      {startOpen && (
+        <>
+          <div
+            style={{ position: "fixed", inset: 0, zIndex: 9997 }}
+            onClick={() => setStartOpen(false)}
+          />
+          <StartMenu
+            onSelect={(id) => {
+              setStartOpen(false);
+              onOpenWindow(id);
+            }}
+            onClose={() => setStartOpen(false)}
+          />
+        </>
+      )}
+
+      <div className="win95-taskbar">
+        <button
+          className={`win95-start-btn ${startOpen ? "active" : ""}`}
+          onClick={() => setStartOpen(!startOpen)}
+        >
+          <div className="win95-start-logo" />
+          Start
+        </button>
+
+        <div className="win95-taskbar-divider" />
+
+        {openWindows.map((w) => (
+          <button
+            key={w.id}
+            className={`win95-taskbar-btn ${!w.isMinimized ? "active" : ""}`}
+            onClick={() => {
+              if (w.isMinimized) {
+                dispatch({ type: "RESTORE", id: w.id });
+              } else {
+                dispatch({ type: "MINIMIZE", id: w.id });
+              }
+            }}
+          >
+            <span style={{ fontSize: 14 }}>{w.icon}</span>
+            {w.title}
+          </button>
+        ))}
+
+        <div className="win95-systray">
+          <span>🔊</span>
+          <span>{time}</span>
+        </div>
+      </div>
+    </>
+  );
+}

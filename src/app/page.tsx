@@ -1,28 +1,20 @@
 "use client";
 
-import Header from "../../components/Header";
-import Hero from "../../components/Hero";
-import Projects from "../../components/Projects";
-import About from "../../components/About";
-import Skills from "../../components/Skills";
-import Contact from "../../components/Contact";
-import Footer from "../../components/Footer";
+import { useState, useCallback } from "react";
+import BootScreen from "../../components/win95/BootScreen";
+import Desktop from "../../components/win95/Desktop";
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-background relative">
-      {/* Grain texture overlay */}
-      <div className="grain" />
+  const [booted, setBooted] = useState(false);
 
-      <Header />
-      <main>
-        <Hero />
-        <Projects />
-        <About />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+  const handleBootComplete = useCallback(() => {
+    setBooted(true);
+  }, []);
+
+  return (
+    <>
+      {!booted && <BootScreen onComplete={handleBootComplete} />}
+      {booted && <Desktop />}
+    </>
   );
 }

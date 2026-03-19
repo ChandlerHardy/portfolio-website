@@ -2,121 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 240 6% 4%;
-  --foreground: 240 5% 96%;
-  --card: 240 6% 7%;
-  --card-foreground: 240 5% 96%;
-  --popover: 240 6% 7%;
-  --popover-foreground: 240 5% 96%;
-  --primary: 35 35% 64%;
-  --primary-foreground: 240 6% 4%;
-  --secondary: 240 4% 14%;
-  --secondary-foreground: 240 5% 84%;
-  --muted: 240 4% 14%;
-  --muted-foreground: 240 5% 48%;
-  --accent: 35 35% 64%;
-  --accent-foreground: 240 6% 4%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 4% 16%;
-  --input: 240 4% 16%;
-  --ring: 35 35% 64%;
-  --radius: 0.5rem;
+/* Reset for Win95 desktop — no scroll on body */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background: #008080;
 }
 
-@layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted)) transparent;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  ::selection {
-    background: hsl(var(--primary) / 0.3);
-    color: hsl(var(--foreground));
-  }
-}
-
-/* Noise grain overlay */
-@layer components {
-  .grain {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    width: 200%;
-    height: 200%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  }
-
-  .section-label {
-    @apply font-mono text-xs tracking-[0.3em] uppercase;
-    color: hsl(var(--primary));
-  }
-
-  .heading-display {
-    @apply font-display font-bold tracking-tight;
-    line-height: 0.95;
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Subtle horizontal rule */
-  .divider {
-    @apply w-full h-px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--border)) 20%,
-      hsl(var(--border)) 80%,
-      transparent
-    );
-  }
-
-  /* Fade-in animation for scroll reveals */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Custom scrollbar for webkit */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
-}
+/* Import Win95 design system */
+@import "../../components/win95/win95.css";

@@ -2,9 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { getProjectBySlug } from "../../../data/projects";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { motion } from "motion/react";
-import Image from "next/image";
+import "../../../../components/win95/win95.css";
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -14,17 +12,40 @@ export default function ProjectDetailPage() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center">
-          <h1 className="heading-display text-4xl text-foreground mb-6">
-            Not Found
-          </h1>
+      <div
+        style={{
+          background: "#008080",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "'MS Sans Serif', Tahoma, sans-serif",
+        }}
+      >
+        <div
+          style={{
+            background: "#c0c0c0",
+            border: "2px solid",
+            borderColor: "#ffffff #808080 #808080 #ffffff",
+            padding: 24,
+            textAlign: "center",
+          }}
+        >
+          <p style={{ marginBottom: 12, fontWeight: "bold" }}>
+            ❌ Project not found
+          </p>
           <button
-            onClick={() => router.push("/#work")}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-mono"
+            onClick={() => router.push("/")}
+            style={{
+              background: "#c0c0c0",
+              border: "2px solid",
+              borderColor: "#ffffff #808080 #808080 #ffffff",
+              padding: "4px 24px",
+              cursor: "pointer",
+              fontSize: 11,
+            }}
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to projects
+            OK
           </button>
         </div>
       </div>
@@ -32,172 +53,236 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Grain */}
-      <div className="grain" />
-
-      {/* Back nav */}
-      <div className="px-6 md:px-12 lg:px-20 pt-8">
-        <button
-          onClick={() => router.push("/#work")}
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+    <div
+      style={{
+        background: "#008080",
+        minHeight: "100vh",
+        fontFamily: "'MS Sans Serif', Tahoma, sans-serif",
+        fontSize: 12,
+      }}
+    >
+      {/* Full-screen window */}
+      <div
+        style={{
+          background: "#c0c0c0",
+          border: "2px solid",
+          borderColor: "#ffffff #808080 #808080 #ffffff",
+          margin: 0,
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {/* Title bar */}
+        <div
+          style={{
+            height: 28,
+            background: "linear-gradient(90deg, #000080, #1084d0)",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 6px",
+            gap: 6,
+            flexShrink: 0,
+          }}
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          All projects
-        </button>
-      </div>
-
-      {/* Header */}
-      <section className="px-6 md:px-12 lg:px-20 pt-12 pb-16">
-        <div className="max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          <span style={{ fontSize: 16 }}>📁</span>
+          <span
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              fontSize: 12,
+              flex: 1,
+            }}
           >
-            <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-              {project.title}
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl">
-              {project.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[11px] tracking-wider uppercase text-muted-foreground/70 border border-border px-2.5 py-1 rounded-sm"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Links */}
-            <div className="flex gap-4">
-              {project.liveUrl && project.liveUrl !== "#" && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-display font-semibold text-sm tracking-wide hover:bg-primary/90 transition-colors rounded-sm"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Live Site
-                </a>
-              )}
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground font-display font-semibold text-sm tracking-wide hover:border-primary/50 hover:text-primary transition-colors rounded-sm"
-              >
-                <Github className="w-4 h-4" />
-                Source
-              </a>
-            </div>
-          </motion.div>
+            {project.title} — chandlerOS
+          </span>
+          <button
+            onClick={() => router.push("/")}
+            style={{
+              width: 20,
+              height: 18,
+              background: "#c0c0c0",
+              border: "2px solid",
+              borderColor: "#ffffff #808080 #808080 #ffffff",
+              cursor: "pointer",
+              fontSize: 11,
+              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            ×
+          </button>
         </div>
-      </section>
 
-      {/* Hero image */}
-      {project.image && (
-        <motion.section
-          className="px-6 md:px-12 lg:px-20 pb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+        {/* Toolbar */}
+        <div
+          style={{
+            height: 28,
+            background: "#c0c0c0",
+            borderBottom: "1px solid #808080",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 6px",
+            gap: 8,
+            flexShrink: 0,
+          }}
         >
-          <div
-            className="max-w-4xl rounded-sm overflow-hidden"
-            style={
-              project.backgroundColor
-                ? project.backgroundColor.startsWith("linear-gradient")
-                  ? { backgroundImage: project.backgroundColor }
-                  : { backgroundColor: project.backgroundColor }
-                : { backgroundColor: "hsl(var(--card))" }
-            }
+          <button
+            onClick={() => router.push("/")}
+            style={{
+              background: "#c0c0c0",
+              border: "2px solid",
+              borderColor: "#ffffff #808080 #808080 #ffffff",
+              padding: "2px 12px",
+              cursor: "pointer",
+              fontSize: 11,
+            }}
           >
-            <div className="aspect-video flex items-center justify-center p-12">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={800}
-                height={450}
-                className="max-h-full max-w-full object-contain"
-                style={
-                  project.detailPageImageScale
-                    ? { transform: `scale(${project.detailPageImageScale})` }
-                    : project.imageScale
-                      ? { transform: `scale(${project.imageScale})` }
-                      : {}
-                }
-              />
-            </div>
-          </div>
-        </motion.section>
-      )}
+            ← Back to Desktop
+          </button>
+          {project.liveUrl && project.liveUrl !== "#" && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: "#c0c0c0",
+                border: "2px solid",
+                borderColor: "#ffffff #808080 #808080 #ffffff",
+                padding: "2px 12px",
+                cursor: "pointer",
+                fontSize: 11,
+                textDecoration: "none",
+                color: "#000",
+              }}
+            >
+              🌐 Live Site
+            </a>
+          )}
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: "#c0c0c0",
+              border: "2px solid",
+              borderColor: "#ffffff #808080 #808080 #ffffff",
+              padding: "2px 12px",
+              cursor: "pointer",
+              fontSize: 11,
+              textDecoration: "none",
+              color: "#000",
+            }}
+          >
+            📂 Source
+          </a>
+        </div>
 
-      {/* Overview */}
-      {project.overview && (
-        <section className="px-6 md:px-12 lg:px-20 py-16 border-t border-border">
-          <div className="max-w-5xl">
-            <div className="grid md:grid-cols-[200px_1fr] gap-8">
-              <h2 className="font-mono text-xs tracking-[0.15em] uppercase text-primary">
-                Overview
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+        {/* Content */}
+        <div
+          style={{
+            flex: 1,
+            background: "white",
+            margin: 4,
+            border: "1px solid",
+            borderColor: "#808080 #ffffff #ffffff #808080",
+            overflow: "auto",
+            padding: 24,
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 22,
+              fontWeight: "bold",
+              marginBottom: 8,
+              color: "#000",
+            }}
+          >
+            {project.title}
+          </h1>
+          <p style={{ color: "#444", marginBottom: 20, lineHeight: 1.6, maxWidth: 700 }}>
+            {project.description}
+          </p>
+
+          {/* Tags */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 4,
+              marginBottom: 24,
+            }}
+          >
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  background: "#c0c0c0",
+                  border: "1px solid #808080",
+                  padding: "2px 8px",
+                  fontSize: 10,
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Overview */}
+          {project.overview && (
+            <DetailSection title="Overview">
+              <p style={{ lineHeight: 1.7, color: "#222", maxWidth: 700 }}>
                 {project.overview}
               </p>
-            </div>
-          </div>
-        </section>
-      )}
+            </DetailSection>
+          )}
 
-      {/* Features */}
-      {project.features && project.features.length > 0 && (
-        <section className="px-6 md:px-12 lg:px-20 py-16 border-t border-border">
-          <div className="max-w-5xl">
-            <div className="grid md:grid-cols-[200px_1fr] gap-8">
-              <h2 className="font-mono text-xs tracking-[0.15em] uppercase text-primary">
-                Features
-              </h2>
-              <ul className="space-y-3">
-                {project.features.map((feature, i) => (
+          {/* Features */}
+          {project.features && project.features.length > 0 && (
+            <DetailSection title="Key Features">
+              <ul style={{ margin: 0, paddingLeft: 24 }}>
+                {project.features.map((f, i) => (
                   <li
                     key={i}
-                    className="text-muted-foreground flex items-start gap-3"
+                    style={{
+                      marginBottom: 6,
+                      lineHeight: 1.5,
+                      color: "#222",
+                    }}
                   >
-                    <span className="text-primary/50 mt-1.5 text-xs">&mdash;</span>
-                    {feature}
+                    {f}
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-        </section>
-      )}
+            </DetailSection>
+          )}
 
-      {/* Tech Stack */}
-      {project.techStack && project.techStack.length > 0 && (
-        <section className="px-6 md:px-12 lg:px-20 py-16 border-t border-border">
-          <div className="max-w-5xl">
-            <div className="grid md:grid-cols-[200px_1fr] gap-8">
-              <h2 className="font-mono text-xs tracking-[0.15em] uppercase text-primary">
-                Tech Stack
-              </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {project.techStack.map((category, i) => (
+          {/* Tech Stack */}
+          {project.techStack && project.techStack.length > 0 && (
+            <DetailSection title="Tech Stack">
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+                  gap: 16,
+                }}
+              >
+                {project.techStack.map((cat, i) => (
                   <div key={i}>
-                    <h3 className="text-sm font-semibold text-foreground mb-3">
-                      {category.category}
-                    </h3>
-                    <ul className="space-y-1.5">
-                      {category.items.map((item, j) => (
+                    <strong style={{ fontSize: 12, color: "#000080" }}>
+                      {cat.category}
+                    </strong>
+                    <ul style={{ margin: "4px 0 0", paddingLeft: 18 }}>
+                      {cat.items.map((item, j) => (
                         <li
                           key={j}
-                          className="text-sm text-muted-foreground"
+                          style={{
+                            fontSize: 11,
+                            color: "#333",
+                            marginBottom: 2,
+                          }}
                         >
                           {item}
                         </li>
@@ -206,70 +291,92 @@ export default function ProjectDetailPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-      )}
+            </DetailSection>
+          )}
 
-      {/* Challenges */}
-      {project.challenges && project.challenges.length > 0 && (
-        <section className="px-6 md:px-12 lg:px-20 py-16 border-t border-border">
-          <div className="max-w-5xl">
-            <div className="grid md:grid-cols-[200px_1fr] gap-8">
-              <h2 className="font-mono text-xs tracking-[0.15em] uppercase text-primary">
-                Challenges
-              </h2>
-              <div className="space-y-10">
-                {project.challenges.map((challenge, i) => (
-                  <div key={i}>
-                    <h3 className="text-lg font-display font-semibold text-foreground mb-3">
-                      {challenge.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {challenge.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+          {/* Challenges */}
+          {project.challenges && project.challenges.length > 0 && (
+            <DetailSection title="Challenges & Solutions">
+              {project.challenges.map((c, i) => (
+                <div key={i} style={{ marginBottom: 16 }}>
+                  <strong style={{ color: "#000" }}>{c.title}</strong>
+                  <p
+                    style={{
+                      margin: "4px 0 0",
+                      lineHeight: 1.6,
+                      color: "#333",
+                      maxWidth: 700,
+                    }}
+                  >
+                    {c.description}
+                  </p>
+                </div>
+              ))}
+            </DetailSection>
+          )}
 
-      {/* Outcomes */}
-      {project.outcomes && project.outcomes.length > 0 && (
-        <section className="px-6 md:px-12 lg:px-20 py-16 border-t border-border">
-          <div className="max-w-5xl">
-            <div className="grid md:grid-cols-[200px_1fr] gap-8">
-              <h2 className="font-mono text-xs tracking-[0.15em] uppercase text-primary">
-                Outcomes
-              </h2>
-              <ul className="space-y-3">
-                {project.outcomes.map((outcome, i) => (
+          {/* Outcomes */}
+          {project.outcomes && project.outcomes.length > 0 && (
+            <DetailSection title="Outcomes">
+              <ul style={{ margin: 0, paddingLeft: 24 }}>
+                {project.outcomes.map((o, i) => (
                   <li
                     key={i}
-                    className="text-muted-foreground flex items-start gap-3"
+                    style={{
+                      marginBottom: 6,
+                      lineHeight: 1.5,
+                      color: "#222",
+                    }}
                   >
-                    <span className="text-primary mt-0.5 text-sm">&#10003;</span>
-                    {outcome}
+                    {o}
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-        </section>
-      )}
+            </DetailSection>
+          )}
+        </div>
 
-      {/* Back */}
-      <section className="px-6 md:px-12 lg:px-20 py-16 border-t border-border">
-        <button
-          onClick={() => router.push("/#work")}
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
+        {/* Status bar */}
+        <div
+          style={{
+            height: 24,
+            borderTop: "1px solid #ffffff",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 8px",
+            fontSize: 10,
+            flexShrink: 0,
+          }}
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          Back to all projects
-        </button>
-      </section>
+          {project.title} — {project.tags.length} technologies
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DetailSection({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div
+        style={{
+          background: "#c0c0c0",
+          padding: "6px 10px",
+          marginBottom: 10,
+          borderBottom: "1px solid #808080",
+          fontWeight: "bold",
+          fontSize: 13,
+        }}
+      >
+        {title}
+      </div>
+      {children}
     </div>
   );
 }
