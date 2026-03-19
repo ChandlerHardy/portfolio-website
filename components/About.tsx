@@ -1,112 +1,90 @@
-import { Badge } from "./ui/badge";
-import { Card, CardContent } from "./ui/card";
+"use client";
+
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 
 export default function About() {
-  const { ref: sectionRef, isInView: sectionInView } = useInView({ threshold: 0.2 });
-  const { ref: statsRef, isInView: statsInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
+  const { ref, isInView } = useInView({ threshold: 0.2 });
 
   const stats = [
-    { number: "20+", label: "Projects Completed" },
-    { number: "2+", label: "Years Professional Experience" },
-    { number: "5,000+", label: "Happy Subscribers" },
-    { number: "100%", label: "Commitment to Quality" }
-  ];
-
-  const highlights = [
-    "Responsive Web Design",
-    "Modern Full Stack Development",
-    "Clean Code Practices",
-    "Collaborative Problem Solving"
+    { value: "51", label: "Merged MRs at PB", note: "Production code" },
+    { value: "4,000+", label: "Active Users", note: "Performance Beef" },
+    { value: "40%", label: "US Cattle Market", note: "Platform reach" },
+    { value: "4", label: "Shipped Projects", note: "Idea to deploy" },
   ];
 
   return (
-    <section id="about" className="py-20 px-6 lg:px-8 xl:px-6 2xl:px-4 bg-muted/30" ref={sectionRef}>
-      <div className="max-w-10xl mx-auto">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+    <section id="about" className="py-24 md:py-32 px-6 md:px-12 lg:px-20" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <Badge variant="secondary" className="mb-4">About Me</Badge>
-          <h2 className="text-3xl md:text-4xl mb-6">
-            Turning ideas into impactful digital experiences
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            I specialize in creating user-focused, visually engaging, and impactful digital solutions. 
-            My approach combines technical expertise with a passion for crafting seamless, memorable 
-            experiences that deliver real results.
-          </p>
+          <span className="section-label mb-8 block">02 / About</span>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 2xl:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Bio */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={sectionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
           >
-            <h3 className="text-2xl mb-6">My Philosophy</h3>
-            <div className="space-y-6">
-              <p className="text-muted-foreground">
-                I believe that great digital products start with a deep understanding of both 
-                user needs and business goals. By combining creativity with technical expertise, 
-                I aim to deliver solutions that are both functional and inspiring.
+            <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-8">
+              Self-taught developer
+              <br />
+              <span className="text-muted-foreground">who ships real products.</span>
+            </h2>
+
+            <div className="space-y-5 text-muted-foreground leading-relaxed">
+              <p>
+                Two years of professional experience, all of it building production
+                systems people depend on. At Performance Beef, I work across a PHP +
+                Go + MongoDB stack serving 40% of the US cattle market.
               </p>
-              <p className="text-muted-foreground">
-                Whether it&apos;s developing a responsive website, crafting a seamless user interface, 
-                or collaborating on a complex project, I approach every challenge with curiosity, 
-                adaptability, and a commitment to excellence.
+              <p>
+                Outside work, I build full-stack apps from scratch — Next.js frontends,
+                FastAPI backends, PostgreSQL, Docker, self-managed infrastructure on
+                Oracle Cloud. I wrote an autonomous build pipeline that shipped a
+                28-story application without manual intervention.
+              </p>
+              <p>
+                Some college CS coursework (C++, web dev), but mostly learned by
+                building things and breaking them. I care about clean architecture,
+                reliable systems, and writing code that other people can maintain.
               </p>
             </div>
-
-            <motion.div 
-              className="flex flex-wrap gap-2 mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-            >
-              {highlights.map((highlight, index) => (
-                <motion.div
-                  key={highlight}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={sectionInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, delay: 0.8 + index * 0.1, ease: "easeOut" }}
-                >
-                  <Badge variant="outline">
-                    {highlight}
-                  </Badge>
-                </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
 
-          <motion.div 
-            className="grid grid-cols-2 gap-4 xl:gap-6"
-            ref={statsRef}
-            initial={{ opacity: 0, x: 50 }}
-            animate={statsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          {/* Stats */}
+          <motion.div
+            className="grid grid-cols-2 gap-6"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
           >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.1, ease: "easeOut" }}
+            {stats.map((stat, i) => (
+              <div
+                key={i}
+                className="border border-border rounded-sm p-6 bg-card/50"
               >
-                <Card>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-2xl md:text-3xl text-primary mb-2">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <div className="font-display font-bold text-3xl md:text-4xl text-primary mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-foreground mb-1">{stat.label}</div>
+                <div className="font-mono text-xs text-muted-foreground">
+                  {stat.note}
+                </div>
+              </div>
             ))}
           </motion.div>
         </div>

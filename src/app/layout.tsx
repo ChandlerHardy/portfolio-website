@@ -1,9 +1,35 @@
 import type { Metadata } from "next";
+import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Chandler Hardy - Portfolio",
-  description: "Full Stack Developer Portfolio showcasing modern web applications",
+  title: "Chandler Hardy — Full-Stack Developer",
+  description:
+    "Full-stack developer building systems that ship. Currently at Performance Beef — 4,000+ users, 40% of the US cattle market.",
+  openGraph: {
+    title: "Chandler Hardy — Full-Stack Developer",
+    description:
+      "Full-stack developer building systems that ship. Currently at Performance Beef — 4,000+ users, 40% of the US cattle market.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -12,29 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (typeof Storage !== "undefined") {
-                  const theme = localStorage.getItem('portfolio-theme') || 'system';
-                  const root = document.documentElement;
-                  
-                  if (theme === 'system') {
-                    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                    root.classList.add(systemTheme);
-                  } else {
-                    root.classList.add(theme);
-                  }
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
-      <body className="antialiased">
+    <html
+      lang="en"
+      className={`dark ${syne.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="font-body antialiased">
         {children}
       </body>
     </html>
