@@ -1,10 +1,11 @@
 "use client";
 
-import { useReducer, useCallback, useState } from "react";
+import { useReducer, useCallback, useState, useEffect } from "react";
 import { windowReducer, INITIAL_WINDOWS, DESKTOP_ICONS } from "./types";
 import DesktopIcon from "./DesktopIcon";
 import Window from "./Window";
 import Taskbar from "./Taskbar";
+import WelcomeDialog from "./WelcomeDialog";
 import ProjectsWindow from "../windows/ProjectsWindow";
 import AboutWindow from "../windows/AboutWindow";
 import TerminalWindow from "../windows/TerminalWindow";
@@ -12,9 +13,23 @@ import ContactWindow from "../windows/ContactWindow";
 import RecycleBinWindow from "../windows/RecycleBinWindow";
 import ProjectDetailWindow from "../windows/ProjectDetailWindow";
 
+const RIGHT_ICONS = [
+  { id: "github", title: "GitHub", icon: "🐙", href: "https://github.com/ChandlerHardy" },
+  { id: "linkedin", title: "LinkedIn", icon: "💼", href: "https://www.linkedin.com/in/chandler-hardy-80808112b/" },
+];
+
 export default function Desktop() {
   const [windows, dispatch] = useReducer(windowReducer, INITIAL_WINDOWS);
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  // Auto-open Projects.exe after mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch({ type: "OPEN", id: "projects" });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleOpenWindow = useCallback(
     (id: string) => {
@@ -42,7 +57,19 @@ export default function Desktop() {
 
   return (
     <div className="win95-desktop">
-      {/* Desktop Icons */}
+      {/* Desktop wallpaper pattern */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)`,
+          backgroundSize: "16px 16px",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      {/* Left Desktop Icons */}
       <div
         style={{
           position: "absolute",
@@ -63,6 +90,33 @@ export default function Desktop() {
           />
         ))}
       </div>
+
+      {/* Right Desktop Icons */}
+      <div
+        style={{
+          position: "absolute",
+          top: 12,
+          right: 12,
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+          zIndex: 1,
+        }}
+      >
+        {RIGHT_ICONS.map((icon) => (
+          <DesktopIcon
+            key={icon.id}
+            icon={icon.icon}
+            label={icon.title}
+            onDoubleClick={() => window.open(icon.href, "_blank")}
+          />
+        ))}
+      </div>
+
+      {/* Welcome Dialog */}
+      {showWelcome && (
+        <WelcomeDialog onClose={() => setShowWelcome(false)} />
+      )}
 
       {/* Windows */}
       <Window
