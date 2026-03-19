@@ -2,9 +2,6 @@
    chandlerOS — Win95 Design System
    ============================================ */
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
 /* ---- Base ---- */
 .win95-desktop {
   background-color: #008080;
@@ -394,7 +391,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: 32px;
-  font-family: 'VT323', 'Courier New', monospace;
+  font-family: var(--font-vt323), 'Courier New', monospace;
   font-size: 18px;
   color: #aaaaaa;
   line-height: 1.8;

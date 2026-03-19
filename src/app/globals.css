@@ -1,3 +1,5 @@
+@import "../../components/win95/win95.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +13,3 @@ html, body {
   width: 100%;
   background: #008080;
 }
-
-/* Import Win95 design system */
-@import "../../components/win95/win95.css";
