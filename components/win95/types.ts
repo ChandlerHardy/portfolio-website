@@ -17,7 +17,8 @@ export type WindowAction =
   | { type: "MAXIMIZE"; id: string }
   | { type: "RESTORE"; id: string }
   | { type: "FOCUS"; id: string }
-  | { type: "MOVE"; id: string; position: { x: number; y: number } };
+  | { type: "MOVE"; id: string; position: { x: number; y: number } }
+  | { type: "RESIZE"; id: string; size: { width: number; height: number } };
 
 export function windowReducer(
   state: WindowState[],
@@ -60,6 +61,10 @@ export function windowReducer(
       return state.map((w) =>
         w.id === action.id ? { ...w, position: action.position } : w
       );
+    case "RESIZE":
+      return state.map((w) =>
+        w.id === action.id ? { ...w, size: action.size } : w
+      );
     default:
       return state;
   }
@@ -82,8 +87,8 @@ export const INITIAL_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     isMaximized: false,
-    position: { x: 120, y: 40 },
-    size: { width: 640, height: 420 },
+    position: { x: 110, y: 20 },
+    size: { width: 720, height: 520 },
     zIndex: 0,
   },
   {

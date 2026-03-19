@@ -19,7 +19,18 @@ export default function Window({
   statusText,
 }: WindowProps) {
   const windowRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef<{ startX: number; startY: number; originX: number; originY: number } | null>(null);
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+  } | null>(null);
+  const resizeRef = useRef<{
+    startX: number;
+    startY: number;
+    originW: number;
+    originH: number;
+  } | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -29,7 +40,8 @@ export default function Window({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const handleMouseDown = useCallback(
+  // Drag handler
+  const handleDragStart = useCallback(
     (e: React.MouseEvent) => {
       if (isMobile || state.isMaximized) return;
       e.preventDefault();
@@ -43,14 +55,12 @@ export default function Window({
 
       const handleMouseMove = (e: MouseEvent) => {
         if (!dragRef.current) return;
-        const dx = e.clientX - dragRef.current.startX;
-        const dy = e.clientY - dragRef.current.startY;
         dispatch({
           type: "MOVE",
           id: state.id,
           position: {
-            x: dragRef.current.originX + dx,
-            y: dragRef.current.originY + dy,
+            x: dragRef.current.originX + (e.clientX - dragRef.current.startX),
+            y: dragRef.current.originY + (e.clientY - dragRef.current.startY),
           },
         });
       };
@@ -67,17 +77,62 @@ export default function Window({
     [dispatch, state.id, state.position, state.isMaximized, isMobile]
   );
 
+  // Resize handler
+  const handleResizeStart = useCallback(
+    (e: React.MouseEvent) => {
+      if (isMobile || state.isMaximized) return;
+      e.preventDefault();
+      e.stopPropagation();
+      dispatch({ type: "FOCUS", id: state.id });
+      resizeRef.current = {
+        startX: e.clientX,
+        startY: e.clientY,
+        originW: state.size.width,
+        originH: state.size.height,
+      };
+
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!resizeRef.current) return;
+        dispatch({
+          type: "RESIZE",
+          id: state.id,
+          size: {
+            width: Math.max(
+              280,
+              resizeRef.current.originW + (e.clientX - resizeRef.current.startX)
+            ),
+            height: Math.max(
+              200,
+              resizeRef.current.originH + (e.clientY - resizeRef.current.startY)
+            ),
+          },
+        });
+      };
+
+      const handleMouseUp = () => {
+        resizeRef.current = null;
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
+
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+    },
+    [dispatch, state.id, state.size, state.isMaximized, isMobile]
+  );
+
   if (!state.isOpen || state.isMinimized) return null;
 
-  const style: React.CSSProperties = isMobile || state.isMaximized
-    ? {}
-    : {
-        left: state.position.x,
-        top: state.position.y,
-        width: state.size.width,
-        height: state.size.height,
-        zIndex: state.zIndex,
-      };
+  const style: React.CSSProperties =
+    isMobile || state.isMaximized
+      ? {}
+      : {
+          left: state.position.x,
+          top: state.position.y,
+          width: state.size.width,
+          height: state.size.height,
+          zIndex: state.zIndex,
+        };
 
   return (
     <div
@@ -87,7 +142,7 @@ export default function Window({
       onMouseDown={() => dispatch({ type: "FOCUS", id: state.id })}
     >
       {/* Title Bar */}
-      <div className="win95-titlebar" onMouseDown={handleMouseDown}>
+      <div className="win95-titlebar" onMouseDown={handleDragStart}>
         <span className="win95-titlebar-icon">{state.icon}</span>
         <span className="win95-titlebar-text">{state.title}</span>
         <div className="win95-titlebar-buttons">
@@ -125,14 +180,16 @@ export default function Window({
       </div>
 
       {/* Menu Bar */}
-      <div className="win95-menubar">
-        {menuItems.map((item) => (
-          <span key={item}>
-            <u>{item[0]}</u>
-            {item.slice(1)}
-          </span>
-        ))}
-      </div>
+      {menuItems.length > 0 && (
+        <div className="win95-menubar">
+          {menuItems.map((item) => (
+            <span key={item}>
+              <u>{item[0]}</u>
+              {item.slice(1)}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Content */}
       {children}
@@ -142,6 +199,42 @@ export default function Window({
         <div className="win95-statusbar">
           <span className="win95-statusbar-panel">{statusText}</span>
         </div>
+      )}
+
+      {/* Resize Handle (bottom-right corner) */}
+      {!isMobile && !state.isMaximized && (
+        <div
+          onMouseDown={handleResizeStart}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            width: 16,
+            height: 16,
+            cursor: "nwse-resize",
+            zIndex: 10,
+            // Win95-style diagonal grip lines
+            backgroundImage: `linear-gradient(
+              135deg,
+              transparent 30%,
+              #808080 30%,
+              #808080 35%,
+              transparent 35%,
+              transparent 45%,
+              #808080 45%,
+              #808080 50%,
+              transparent 50%,
+              transparent 60%,
+              #808080 60%,
+              #808080 65%,
+              transparent 65%,
+              transparent 75%,
+              #808080 75%,
+              #808080 80%,
+              transparent 80%
+            )`,
+          }}
+        />
       )}
     </div>
   );
