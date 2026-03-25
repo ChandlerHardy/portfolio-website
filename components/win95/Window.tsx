@@ -125,7 +125,7 @@ export default function Window({
 
   const style: React.CSSProperties =
     isMobile || state.isMaximized
-      ? {}
+      ? { zIndex: state.zIndex }
       : {
           left: state.position.x,
           top: state.position.y,
