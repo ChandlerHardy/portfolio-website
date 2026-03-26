@@ -172,7 +172,7 @@ export const projects: Project[] = [
     shortDescription: "Chess training tool that turns Stockfish engine analysis into plain-language explanations of why moves are good or bad — solving the gap between 'the engine says +2.3' and 'here's what you should learn from this position'.",
     description: "Elucidate Chess is a full-stack chess trainer that connects Stockfish engine output to natural language coaching. Built as a Turborepo monorepo on self-managed OCI infrastructure with Docker, nginx, and automated SSL.",
     image: "/projects/elucidate-chess/hero.png",
-    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Stockfish", "Docker"],
+    tags: ["In Progress", "Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Stockfish", "Docker"],
     githubUrl: "https://github.com/ChandlerHardy/elucidate-chess",
     backgroundColor: "#2D4A3E",
 
