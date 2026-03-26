@@ -32,6 +32,74 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "chronicle",
+    title: "Chronicle",
+    shortDescription: "Open-source AI session recorder that gives coding assistants persistent memory — records sessions across Claude Code, Gemini CLI, and Qwen, searchable via a 21-tool MCP server.",
+    description: "Chronicle is a local-first development memory system that records AI coding sessions, links them to git commits, and makes everything searchable through a Model Context Protocol server. 140 tests, multi-provider AI summarization, and database-tracked project management.",
+    image: "/projects/chronicle/hero.png",
+    tags: ["Python", "SQLite", "MCP", "FastMCP", "Claude Code", "Gemini"],
+    githubUrl: "https://github.com/ChandlerHardy/chronicle",
+    backgroundColor: "#1a1a2e",
+
+    overview: "Modern developers use multiple AI coding assistants, but each session starts from scratch with zero memory. Chronicle solves this by creating a searchable, AI-powered memory system — recording full session transcripts, linking them to git commits, and exposing everything through a Model Context Protocol server that AI assistants can query directly.",
+
+    features: [
+      "Full session recording across Claude Code, Gemini CLI, and Qwen with transcript capture",
+      "MCP server with 21 queryable tools — AI assistants can search past sessions directly",
+      "AI-powered summarization via Gemini and Ollama with intelligent chunking for large sessions",
+      "Automatic git commit linking — connects commits to the AI sessions that created them",
+      "Database-tracked project management with milestones, next steps, and roadmap views",
+      "Multi-project organization with automatic repository detection",
+      "Claude Skills marketplace integration with 3 pre-built skills",
+      "Obsidian vault export for knowledge graph visualization",
+      "Full-text search with boolean operators across all sessions and commits",
+      "Cross-platform agent prompts adaptable to Cursor, Windsurf, and other AI tools"
+    ],
+
+    techStack: [
+      {
+        category: "Core",
+        items: ["Python 3.11+", "SQLite", "SQLAlchemy ORM", "Click CLI"]
+      },
+      {
+        category: "MCP Server",
+        items: ["FastMCP framework", "21 tools (query + CRUD)", "Model Context Protocol"]
+      },
+      {
+        category: "AI Integration",
+        items: ["Google Gemini API", "Ollama (local LLM)", "Multi-provider summarization"]
+      },
+      {
+        category: "Testing",
+        items: ["pytest", "140 tests across 8 modules", "Full CRUD coverage"]
+      }
+    ],
+
+    challenges: [
+      {
+        title: "MCP Server Design",
+        description: "Built a 21-tool MCP server that exposes session queries, project management CRUD, and roadmap views — enabling any MCP-compatible AI assistant to query the Chronicle database directly during conversations."
+      },
+      {
+        title: "Large Session Summarization",
+        description: "AI coding sessions can produce massive transcripts. Implemented intelligent chunked summarization that processes sessions in segments, then consolidates into coherent summaries — working across both cloud (Gemini) and local (Ollama) providers."
+      },
+      {
+        title: "Cross-Platform Memory",
+        description: "Designed the system to work across Claude Code, Gemini CLI, and Qwen — recording sessions from any tool and making the combined history searchable from any other tool via MCP."
+      }
+    ],
+
+    outcomes: [
+      "Open-source project that attracted recruiter attention on GitHub",
+      "140 passing tests across 8 test modules with comprehensive CRUD coverage",
+      "Demonstrated 2,700x ROI from real-world usage — past session search saving hours of re-explanation",
+      "Published to Claude Skills marketplace with 3 pre-built workflow skills",
+      "Pioneered the concept of AI session recording as a development tool"
+    ]
+  },
+
+  {
     slug: "crooked-finger",
     title: "Crooked Finger",
     shortDescription: "AI-powered crochet pattern translator that converts between pattern formats and generates custom patterns — routes requests across multiple LLM providers to optimize for cost and quality.",
