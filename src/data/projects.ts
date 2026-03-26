@@ -117,12 +117,11 @@ export const projects: Project[] = [
       "Native iOS app (Swift 6, SwiftUI, MVVM) alongside the web app",
       "Custom pattern generation from natural language descriptions",
       "Multi-model AI routing between Gemini and OpenRouter for cost/quality optimization",
-      "Diagram generation — professional crochet charts rendered server-side",
+      "Multimodal AI support — upload images for pattern help",
       "Conversation history with cross-platform sync",
       "Comprehensive pattern library for organizing templates and active projects",
       "Project management with image uploads and notes",
-      "User authentication with JWT and Argon2 password hashing",
-      "Multimodal AI support — upload images for pattern help"
+      "User authentication with JWT and Argon2 password hashing"
     ],
 
     techStack: [
