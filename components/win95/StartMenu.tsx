@@ -4,7 +4,6 @@ import { DESKTOP_ICONS } from "./types";
 
 interface StartMenuProps {
   onSelect: (id: string) => void;
-  onClose: () => void;
 }
 
 export default function StartMenu({ onSelect }: StartMenuProps) {

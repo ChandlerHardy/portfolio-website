@@ -382,11 +382,8 @@ export default function GameWindow() {
     return () => {
       cancelAnimationFrame(rafRef.current);
       canvas.removeEventListener("keydown", onKey);
-      canvas.removeEventListener("keyup", onKeyUp);
       canvas.removeEventListener("click", onClick);
     };
-
-    function onKeyUp() {} // placeholder for cleanup
   }, [flap, resetGame]);
 
   return (

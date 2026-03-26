@@ -45,7 +45,6 @@ export default function Taskbar({ windows, dispatch, onOpenWindow }: TaskbarProp
               setStartOpen(false);
               onOpenWindow(id);
             }}
-            onClose={() => setStartOpen(false)}
           />
         </>
       )}
