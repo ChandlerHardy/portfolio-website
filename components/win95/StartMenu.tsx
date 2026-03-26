@@ -9,27 +9,30 @@ interface StartMenuProps {
 
 export default function StartMenu({ onSelect }: StartMenuProps) {
   return (
-    <div className="win95-startmenu">
-      <div className="win95-startmenu-sidebar">
-        <span className="win95-startmenu-sidebar-text">chandlerOS</span>
+    <div className="winxp-startmenu">
+      <div className="winxp-startmenu-header">
+        <div className="winxp-startmenu-avatar">👤</div>
+        <span className="winxp-startmenu-username">Chandler Hardy</span>
       </div>
-      <div className="win95-startmenu-items">
+      <div className="winxp-startmenu-items">
         {DESKTOP_ICONS.map((icon) => (
           <button
             key={icon.id}
-            className="win95-startmenu-item"
+            className="winxp-startmenu-item"
             onClick={() => onSelect(icon.id)}
           >
-            <span style={{ fontSize: 18 }}>{icon.icon}</span>
+            <span style={{ fontSize: 20 }}>{icon.icon}</span>
             <span>{icon.title}</span>
           </button>
         ))}
-        <div className="win95-startmenu-divider" />
+      </div>
+      <div className="winxp-startmenu-footer">
+        <div className="winxp-startmenu-divider" />
         <button
-          className="win95-startmenu-item"
+          className="winxp-startmenu-item"
           onClick={() => window.location.reload()}
         >
-          <span style={{ fontSize: 18 }}>🔄</span>
+          <span style={{ fontSize: 20 }}>🔄</span>
           <span>Restart...</span>
         </button>
       </div>

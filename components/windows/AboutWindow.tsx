@@ -4,38 +4,41 @@ export default function AboutWindow() {
   return (
     <div style={{ whiteSpace: "pre-wrap", color: "#000" }}>
       {`===========================================
- ABOUT — Chandler Hardy
+ ABOUT.TXT
 ===========================================
 
-Full-stack developer based in Birmingham, AL.
-Self-taught, 2 years of professional experience.
-Some college CS coursework (C++, web dev).
+I build things from blank terminals.
 
-Currently working at Performance Beef, where
-the platform serves 4,000+ active users across
-40% of the US cattle market. I've shipped 51
-merged MRs into production there — working
-across PHP, Go, MongoDB, and MySQL.
+My day job is shipping production code at
+Performance Beef — a platform that covers
+40% of the US cattle market. PHP, Go, Mongo,
+MySQL, 4,000+ users, the works.
 
-Outside of work, I build full-stack apps from
-scratch: Next.js frontends, FastAPI backends,
-PostgreSQL databases, Docker containers, and
-self-managed infrastructure on Oracle Cloud.
+At night I build my own stuff. Full-stack
+apps from zero: frontends, APIs, databases,
+Docker, infrastructure — all self-hosted on
+a server I manage on Oracle Cloud.
 
-I built Ralph, an autonomous build pipeline
-that shipped a complete 28-story application
-without manual intervention. I believe in
-writing code that other people can maintain
-and building systems that actually ship.
+Some recent highlights:
 
-Looking for remote full-stack roles.
-Let's build something.
+  > Chronicle — an MCP server that gives AI
+    coding tools persistent memory across
+    sessions. Open source, 140 tests.
+
+  > Crooked Finger — deployed AI-powered
+    pattern translator with multi-model
+    routing. Live at crookedfinger.chandlerhardy.com
+
+  > This website — a Win95 desktop. Because
+    portfolios shouldn't look like portfolios.
+
+I like building things that actually work,
+shipping them, and then building the next one.
 
 ---
 Email:    hardych04@gmail.com
 GitHub:   github.com/ChandlerHardy
 LinkedIn: linkedin.com/in/chandler-hardy
-Location: Birmingham, AL
 `}
     </div>
   );

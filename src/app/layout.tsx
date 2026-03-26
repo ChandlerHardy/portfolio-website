@@ -12,7 +12,7 @@ const vt323 = VT323({
 export const metadata: Metadata = {
   title: "chandlerOS — Chandler Hardy",
   description:
-    "Full-stack developer portfolio. 51 merged MRs, 4,000+ users, 40% of the US cattle market. Built with Next.js.",
+    "Full-stack developer portfolio. 50+ merged MRs, 4,000+ users, 40% of the US cattle market. Built with Next.js.",
   openGraph: {
     title: "chandlerOS — Chandler Hardy",
     description:

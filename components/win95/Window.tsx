@@ -137,17 +137,17 @@ export default function Window({
   return (
     <div
       ref={windowRef}
-      className={`win95-window ${state.isMaximized ? "maximized" : ""}`}
+      className={`winxp-window ${state.isMaximized ? "maximized" : ""}`}
       style={style}
       onMouseDown={() => dispatch({ type: "FOCUS", id: state.id })}
     >
       {/* Title Bar */}
-      <div className="win95-titlebar" onMouseDown={handleDragStart}>
-        <span className="win95-titlebar-icon">{state.icon}</span>
-        <span className="win95-titlebar-text">{state.title}</span>
-        <div className="win95-titlebar-buttons">
+      <div className="winxp-titlebar" onMouseDown={handleDragStart}>
+        <span className="winxp-titlebar-icon">{state.icon}</span>
+        <span className="winxp-titlebar-text">{state.title}</span>
+        <div className="winxp-titlebar-buttons">
           <button
-            className="win95-titlebar-btn"
+            className="winxp-titlebar-btn minimize"
             onClick={(e) => {
               e.stopPropagation();
               dispatch({ type: "MINIMIZE", id: state.id });
@@ -157,7 +157,7 @@ export default function Window({
             _
           </button>
           <button
-            className="win95-titlebar-btn"
+            className="winxp-titlebar-btn maximize"
             onClick={(e) => {
               e.stopPropagation();
               dispatch({ type: "MAXIMIZE", id: state.id });
@@ -167,7 +167,7 @@ export default function Window({
             □
           </button>
           <button
-            className="win95-titlebar-btn"
+            className="winxp-titlebar-btn close"
             onClick={(e) => {
               e.stopPropagation();
               dispatch({ type: "CLOSE", id: state.id });
@@ -181,7 +181,7 @@ export default function Window({
 
       {/* Menu Bar */}
       {menuItems.length > 0 && (
-        <div className="win95-menubar">
+        <div className="winxp-menubar">
           {menuItems.map((item) => (
             <span key={item}>
               <u>{item[0]}</u>
@@ -196,12 +196,12 @@ export default function Window({
 
       {/* Status Bar */}
       {statusText && (
-        <div className="win95-statusbar">
-          <span className="win95-statusbar-panel">{statusText}</span>
+        <div className="winxp-statusbar">
+          <span className="winxp-statusbar-panel">{statusText}</span>
         </div>
       )}
 
-      {/* Resize Handle (bottom-right corner) */}
+      {/* Resize Handle */}
       {!isMobile && !state.isMaximized && (
         <div
           onMouseDown={handleResizeStart}
@@ -213,26 +213,9 @@ export default function Window({
             height: 16,
             cursor: "nwse-resize",
             zIndex: 10,
-            // Win95-style diagonal grip lines
-            backgroundImage: `linear-gradient(
-              135deg,
-              transparent 30%,
-              #808080 30%,
-              #808080 35%,
-              transparent 35%,
-              transparent 45%,
-              #808080 45%,
-              #808080 50%,
-              transparent 50%,
-              transparent 60%,
-              #808080 60%,
-              #808080 65%,
-              transparent 65%,
-              transparent 75%,
-              #808080 75%,
-              #808080 80%,
-              transparent 80%
-            )`,
+            backgroundImage: `radial-gradient(circle, #aca899 1.5px, transparent 1.5px)`,
+            backgroundSize: "4px 4px",
+            backgroundPosition: "2px 2px",
           }}
         />
       )}

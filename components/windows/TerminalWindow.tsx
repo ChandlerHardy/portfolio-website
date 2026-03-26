@@ -21,36 +21,30 @@ const HELP_TEXT = `Available commands:
   sudo <cmd>    Try it and see`;
 
 const WHOAMI = `Chandler Hardy — Full-Stack Developer
-Birmingham, AL | 2 YOE | Self-taught
+Birmingham, AL
 Currently @ Performance Beef (4,000+ users, 40% US cattle market)`;
 
 const STATS = ` ┌──────────────┬────────────────────┐
  │ Metric       │ Value              │
  ├──────────────┼────────────────────┤
- │ Merged MRs   │ 51                 │
+ │ Merged MRs   │ 50+                │
  │ Active Users │ 4,000+             │
  │ Market Share │ 40% US cattle      │
- │ Projects     │ 3 shipped          │
- │ Experience   │ 2 years            │
+ │ Projects     │ 4 shipped          │
  │ Location     │ Birmingham, AL     │
  └──────────────┴────────────────────┘`;
 
 const ABOUT_TXT = `Chandler Hardy — Full-Stack Developer
 
-Self-taught, 2 years of professional experience.
-Some college CS coursework (C++, web dev).
-
 Currently at Performance Beef, where the platform
 serves 4,000+ active users across 40% of the US
-cattle market. 51 merged MRs into production —
+cattle market. 50+ merged MRs into production —
 working across PHP, Go, MongoDB, and MySQL.
 
 Outside work: Next.js, FastAPI, PostgreSQL, Docker,
-self-managed infra on Oracle Cloud. Built Ralph, an
-autonomous pipeline that shipped 28 user stories
-without manual intervention.
-
-Looking for remote full-stack roles.`;
+self-managed infra on Oracle Cloud. Built Chronicle,
+an open-source MCP server that gives AI coding tools
+persistent memory.`;
 
 const PHILOSOPHY_TXT = `Build systems that ship.
 Write code others can maintain.
@@ -64,10 +58,10 @@ const NEOFETCH = `        ████████████████
   ██   ██   ██████   ██   ██     Shell:   portfolio.exe
   ██   ██   ██  ██   ██   ██     Uptime:  2 years
   ██   ██   ██████   ██   ██     Pkgs:    Next.js, FastAPI, Go
-   ██   ██          ██   ██      CPU:     51 merged MRs
+   ██   ██          ██   ██      CPU:     50+ merged MRs
     ██    ██████████    ██        Memory:  4,000+ users
       ██              ██          Disk:    4 shipped projects
-        ████████████████          Theme:   Win95 [Teal]`;
+        ████████████████          Theme:   WinXP [Luna Blue]`;
 
 const PROJECTS: Record<string, { url: string; desc: string }> = {
   "crooked-finger": {
@@ -98,7 +92,11 @@ const INITIAL_LINES: TerminalLine[] = [
   { type: "output", text: 'Type "help" for available commands.\n', color: "#888" },
 ];
 
-export default function TerminalWindow() {
+interface TerminalWindowProps {
+  onCrash?: () => void;
+}
+
+export default function TerminalWindow({ onCrash }: TerminalWindowProps = {}) {
   const [lines, setLines] = useState<TerminalLine[]>(INITIAL_LINES);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
@@ -106,10 +104,13 @@ export default function TerminalWindow() {
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Auto-scroll: find the scrollable parent (.winxp-content) and scroll it
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    const el = scrollRef.current;
+    if (!el) return;
+    // The scrollable container is the parent .winxp-content div
+    const scrollable = el.closest(".winxp-content") || el;
+    scrollable.scrollTop = scrollable.scrollHeight;
   }, [lines]);
 
   const addOutput = useCallback((text: string, color?: string) => {
@@ -196,11 +197,10 @@ export default function TerminalWindow() {
             addOutput(
               JSON.stringify(
                 {
-                  merged_mrs: 51,
+                  merged_mrs: "50+",
                   active_users: "4,000+",
                   market_share: "40% US cattle",
                   projects_shipped: 4,
-                  experience_years: 2,
                   location: "Birmingham, AL",
                 },
                 null,
@@ -279,6 +279,12 @@ export default function TerminalWindow() {
           break;
         }
 
+        case "crash":
+        case "bsod":
+          addOutput("FATAL EXCEPTION — initiating blue screen...", "#f00");
+          setTimeout(() => onCrash?.(), 800);
+          break;
+
         default:
           addOutput(
             `'${cmd}' is not recognized as an internal or external command.\nType "help" for available commands.`
@@ -313,10 +319,41 @@ export default function TerminalWindow() {
       }
     } else if (e.key === "Tab") {
       e.preventDefault();
-      // Basic tab completion
-      const commands = ["help", "whoami", "ls", "cat", "open", "stats", "neofetch", "clear", "history", "ping", "cowsay"];
-      const match = commands.find((c) => c.startsWith(input.toLowerCase()));
-      if (match) setInput(match);
+      const parts = input.split(/\s+/);
+      const commands = ["help", "whoami", "ls", "cat", "open", "stats", "neofetch", "clear", "history", "ping", "cowsay", "pwd", "date", "echo", "sudo", "exit"];
+
+      if (parts.length <= 1) {
+        // Complete command name
+        const partial = parts[0].toLowerCase();
+        const matches = commands.filter((c) => c.startsWith(partial));
+        if (matches.length === 1) {
+          setInput(matches[0] + " ");
+        } else if (matches.length > 1) {
+          addOutput(matches.join("  "));
+          setLines((prev) => [...prev, { type: "input", text: `C:\\chandler> ${input}` }]);
+        }
+      } else {
+        // Complete arguments based on command
+        const cmd = parts[0].toLowerCase();
+        const partial = parts.slice(1).join(" ").toLowerCase();
+        let candidates: string[] = [];
+
+        if (cmd === "cat" || cmd === "type") {
+          candidates = ["about.txt", "stats.json", "philosophy.txt"];
+        } else if (cmd === "ls" || cmd === "dir") {
+          candidates = ["projects", "skills", "links"];
+        } else if (cmd === "open") {
+          candidates = Object.keys(PROJECTS);
+        }
+
+        const matches = candidates.filter((c) => c.startsWith(partial));
+        if (matches.length === 1) {
+          setInput(`${cmd} ${matches[0]}`);
+        } else if (matches.length > 1) {
+          addOutput(matches.join("  "));
+          setLines((prev) => [...prev, { type: "input", text: `C:\\chandler> ${input}` }]);
+        }
+      }
     }
   };
 

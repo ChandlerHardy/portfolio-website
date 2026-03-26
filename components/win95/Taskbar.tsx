@@ -50,21 +50,21 @@ export default function Taskbar({ windows, dispatch, onOpenWindow }: TaskbarProp
         </>
       )}
 
-      <div className="win95-taskbar">
+      <div className="winxp-taskbar">
         <button
-          className={`win95-start-btn ${startOpen ? "active" : ""}`}
+          className={`winxp-start-btn ${startOpen ? "active" : ""}`}
           onClick={() => setStartOpen(!startOpen)}
         >
-          <div className="win95-start-logo" />
-          Start
+          <div className="winxp-start-logo" />
+          start
         </button>
 
-        <div className="win95-taskbar-divider" />
+        <div className="winxp-taskbar-divider" />
 
         {openWindows.map((w) => (
           <button
             key={w.id}
-            className={`win95-taskbar-btn ${!w.isMinimized ? "active" : ""}`}
+            className={`winxp-taskbar-btn ${!w.isMinimized ? "active" : ""}`}
             onClick={() => {
               if (w.isMinimized) {
                 dispatch({ type: "RESTORE", id: w.id });
@@ -78,7 +78,7 @@ export default function Taskbar({ windows, dispatch, onOpenWindow }: TaskbarProp
           </button>
         ))}
 
-        <div className="win95-systray">
+        <div className="winxp-systray">
           <span>🔊</span>
           <span>{time}</span>
         </div>

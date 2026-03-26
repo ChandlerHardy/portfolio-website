@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky gradient -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e5799"/>
+      <stop offset="30%" stop-color="#3d8bd5"/>
+      <stop offset="55%" stop-color="#7db9e8"/>
+      <stop offset="75%" stop-color="#a3d4f7"/>
+      <stop offset="100%" stop-color="#c1e3fc"/>
+    </linearGradient>
+    <!-- Cloud filter -->
+    <filter id="cloud-blur">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <!-- Hill gradients -->
+    <linearGradient id="hill-far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5daa3b"/>
+      <stop offset="100%" stop-color="#3d8a22"/>
+    </linearGradient>
+    <linearGradient id="hill-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4caf50"/>
+      <stop offset="100%" stop-color="#388e3c"/>
+    </linearGradient>
+    <linearGradient id="hill-near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#66bb6a"/>
+      <stop offset="100%" stop-color="#43a047"/>
+    </linearGradient>
+    <linearGradient id="hill-front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#81c784"/>
+      <stop offset="100%" stop-color="#4caf50"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- Clouds -->
+  <g opacity="0.85">
+    <ellipse cx="300" cy="180" rx="120" ry="40" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="350" cy="170" rx="80" ry="35" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="250" cy="185" rx="70" ry="30" fill="white" filter="url(#cloud-blur)"/>
+  </g>
+  <g opacity="0.7">
+    <ellipse cx="900" cy="140" rx="140" ry="45" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="960" cy="130" rx="90" ry="40" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="840" cy="145" rx="80" ry="32" fill="white" filter="url(#cloud-blur)"/>
+  </g>
+  <g opacity="0.6">
+    <ellipse cx="1500" cy="200" rx="100" ry="35" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="1540" cy="190" rx="70" ry="30" fill="white" filter="url(#cloud-blur)"/>
+  </g>
+  <g opacity="0.5">
+    <ellipse cx="600" cy="250" rx="90" ry="28" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="1200" cy="100" rx="110" ry="38" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="1250" cy="90" rx="80" ry="32" fill="white" filter="url(#cloud-blur)"/>
+  </g>
+  <g opacity="0.4">
+    <ellipse cx="1700" cy="120" rx="95" ry="30" fill="white" filter="url(#cloud-blur)"/>
+    <ellipse cx="150" cy="280" rx="75" ry="25" fill="white" filter="url(#cloud-blur)"/>
+  </g>
+
+  <!-- Far hills -->
+  <path d="M-100 650 Q200 480 500 550 Q700 490 960 520 Q1200 460 1400 510 Q1600 480 1920 540 L1920 1080 L-100 1080 Z" fill="url(#hill-far)"/>
+
+  <!-- Mid hills -->
+  <path d="M-100 700 Q150 580 400 640 Q600 560 800 620 Q1000 570 1200 600 Q1500 540 1700 590 Q1850 570 2020 620 L2020 1080 L-100 1080 Z" fill="url(#hill-mid)"/>
+
+  <!-- Near hills -->
+  <path d="M-100 780 Q200 680 500 730 Q700 670 900 720 Q1100 690 1300 710 Q1500 680 1700 720 Q1850 700 2020 740 L2020 1080 L-100 1080 Z" fill="url(#hill-near)"/>
+
+  <!-- Front ground -->
+  <path d="M-100 850 Q300 780 600 820 Q900 790 1200 810 Q1500 790 1920 830 L1920 1080 L-100 1080 Z" fill="url(#hill-front)"/>
+</svg>

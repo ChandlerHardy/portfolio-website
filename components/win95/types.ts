@@ -71,15 +71,28 @@ export function windowReducer(
 }
 
 export const DESKTOP_ICONS = [
+  { id: "home", title: "README.txt", icon: "📋" },
   { id: "projects", title: "Projects.exe", icon: "📁" },
   { id: "about", title: "About.txt", icon: "📝" },
   { id: "terminal", title: "Terminal.exe", icon: "💻" },
   { id: "contact", title: "Contact.exe", icon: "✉️" },
-  { id: "resume", title: "Resume.pdf", icon: "📄", isDownload: true },
+  { id: "resume", title: "Resume.pdf", icon: "📄" },
+  { id: "game", title: "FlappyDev.exe", icon: "🐤" },
   { id: "recyclebin", title: "Recycle Bin", icon: "🗑️" },
 ] as const;
 
 export const INITIAL_WINDOWS: WindowState[] = [
+  {
+    id: "home",
+    title: "README.txt",
+    icon: "📋",
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    position: { x: 120, y: 20 },
+    size: { width: 740, height: 540 },
+    zIndex: 0,
+  },
   {
     id: "projects",
     title: "Projects.exe",
@@ -133,6 +146,28 @@ export const INITIAL_WINDOWS: WindowState[] = [
     isMaximized: false,
     position: { x: 240, y: 50 },
     size: { width: 460, height: 300 },
+    zIndex: 0,
+  },
+  {
+    id: "game",
+    title: "FlappyDev.exe",
+    icon: "🐤",
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    position: { x: 200, y: 20 },
+    size: { width: 360, height: 540 },
+    zIndex: 0,
+  },
+  {
+    id: "resume",
+    title: "Resume.pdf",
+    icon: "📄",
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    position: { x: 200, y: 40 },
+    size: { width: 620, height: 520 },
     zIndex: 0,
   },
   {

@@ -4,12 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset for Win95 desktop — no scroll on body */
+/* Reset for XP desktop — no scroll on body */
 html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100%;
   width: 100%;
-  background: #008080;
+  background: #3a6ea5;
 }

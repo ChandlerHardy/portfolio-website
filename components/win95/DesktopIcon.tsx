@@ -9,7 +9,7 @@ interface DesktopIconProps {
 export default function DesktopIcon({ icon, label, onDoubleClick }: DesktopIconProps) {
   return (
     <div
-      className="win95-icon"
+      className="winxp-icon"
       onDoubleClick={onDoubleClick}
       onClick={() => {
         // Single tap on mobile
@@ -22,8 +22,8 @@ export default function DesktopIcon({ icon, label, onDoubleClick }: DesktopIconP
         if (e.key === "Enter") onDoubleClick();
       }}
     >
-      <div className="win95-icon-image">{icon}</div>
-      <span className="win95-icon-label">{label}</span>
+      <div className="winxp-icon-image">{icon}</div>
+      <span className="winxp-icon-label">{label}</span>
     </div>
   );
 }
