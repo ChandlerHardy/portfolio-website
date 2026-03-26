@@ -250,7 +250,7 @@ export const projects: Project[] = [
     description: "GreenLine is a full-stack lawn care business platform built end-to-end by the Ralph autonomous build system. It demonstrates what's possible when a well-designed AI pipeline handles the full development lifecycle.",
     image: "/projects/greenline/hero.png",
     tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "Autonomous Build"],
-    githubUrl: "https://github.com/ChandlerHardy/greenline",
+    githubUrl: "",
     backgroundColor: "#2A5C3F",
 
     overview: "GreenLine is a complete lawn care business platform — customer management, job scheduling, invoicing, and route optimization — built entirely by Ralph, an autonomous AI build pipeline. The project served as the proof-of-concept that validated Ralph's ability to ship a full product from spec to deployed application without manual coding.",
