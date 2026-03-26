@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Chandler Hardy - Portfolio",
-  description: "Full Stack Developer Portfolio showcasing modern web applications",
+  title: "chandlerOS — Chandler Hardy",
+  description:
+    "Full-stack developer portfolio. 50+ merged MRs, 4,000+ users, 40% of the US cattle market. Built with Next.js.",
+  openGraph: {
+    title: "chandlerOS — Chandler Hardy",
+    description:
+      "Full-stack developer portfolio. Currently at Performance Beef.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -12,31 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (typeof Storage !== "undefined") {
-                  const theme = localStorage.getItem('portfolio-theme') || 'system';
-                  const root = document.documentElement;
-                  
-                  if (theme === 'system') {
-                    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                    root.classList.add(systemTheme);
-                  } else {
-                    root.classList.add(theme);
-                  }
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
-      <body className="antialiased">
-        {children}
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

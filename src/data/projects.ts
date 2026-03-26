@@ -32,33 +32,106 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "crooked-finger",
-    title: "Crooked Finger",
-    shortDescription: "AI-powered crochet pattern translator that converts between pattern formats and generates custom patterns — routes requests across multiple LLM providers to optimize for cost and quality.",
-    description: "Crooked Finger is a deployed full-stack application that helps crochet and knitting enthusiasts translate complex pattern notation, manage their projects, and get AI-powered assistance. End-to-end self-managed deployment on Oracle Cloud with Docker, nginx, and Let's Encrypt SSL.",
-    image: "/projects/crooked-finger/hero.png",
-    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "OCI"],
-    liveUrl: "https://crookedfinger.chandlerhardy.com",
-    githubUrl: "https://github.com/ChandlerHardy/crooked-finger",
-    backgroundColor: "#A47764",
+    slug: "chronicle",
+    title: "Chronicle",
+    shortDescription: "Open-source AI session recorder that gives coding assistants persistent memory — records sessions across Claude Code, Gemini CLI, and Qwen, searchable via a 21-tool MCP server.",
+    description: "Chronicle is a local-first development memory system that records AI coding sessions, links them to git commits, and makes everything searchable through a Model Context Protocol server. 140 tests, multi-provider AI summarization, and database-tracked project management.",
+    image: "/projects/chronicle/hero.png",
+    tags: ["Python", "SQLite", "MCP", "FastMCP", "Claude Code", "Gemini"],
+    githubUrl: "https://github.com/ChandlerHardy/chronicle",
+    backgroundColor: "#1a1a2e",
 
-    overview: "Crooked Finger bridges the gap between traditional craft patterns and modern technology. It converts between crochet pattern formats, generates custom patterns on demand, and routes AI requests across Gemini and OpenRouter to balance quality and cost. Fully self-hosted on Oracle Cloud with automated SSL and a GraphQL API.",
+    overview: "Modern developers use multiple AI coding assistants, but each session starts from scratch with zero memory. Chronicle solves this by creating a searchable, AI-powered memory system — recording full session transcripts, linking them to git commits, and exposing everything through a Model Context Protocol server that AI assistants can query directly.",
 
     features: [
-      "AI-powered pattern translation — converts abbreviations to plain-language instructions",
-      "Custom pattern generation from natural language descriptions",
-      "Multi-model AI routing between Gemini and OpenRouter for cost/quality optimization",
-      "Conversation history with cross-platform sync",
-      "Comprehensive pattern library for organizing templates and active projects",
-      "Project management with image uploads and notes",
-      "User authentication with JWT and Argon2 password hashing",
-      "Multimodal AI support — upload images for pattern help"
+      "Full session recording across Claude Code, Gemini CLI, and Qwen with transcript capture",
+      "MCP server with 21 queryable tools — AI assistants can search past sessions directly",
+      "AI-powered summarization via Gemini and Ollama with intelligent chunking for large sessions",
+      "Automatic git commit linking — connects commits to the AI sessions that created them",
+      "Database-tracked project management with milestones, next steps, and roadmap views",
+      "Multi-project organization with automatic repository detection",
+      "Claude Skills marketplace integration with 3 pre-built skills",
+      "Obsidian vault export for knowledge graph visualization",
+      "Full-text search with boolean operators across all sessions and commits",
+      "Cross-platform agent prompts adaptable to Cursor, Windsurf, and other AI tools"
     ],
 
     techStack: [
       {
-        category: "Frontend",
+        category: "Core",
+        items: ["Python 3.11+", "SQLite", "SQLAlchemy ORM", "Click CLI"]
+      },
+      {
+        category: "MCP Server",
+        items: ["FastMCP framework", "21 tools (query + CRUD)", "Model Context Protocol"]
+      },
+      {
+        category: "AI Integration",
+        items: ["Google Gemini API", "Ollama (local LLM)", "Multi-provider summarization"]
+      },
+      {
+        category: "Testing",
+        items: ["pytest", "140 tests across 8 modules", "Full CRUD coverage"]
+      }
+    ],
+
+    challenges: [
+      {
+        title: "MCP Server Design",
+        description: "Built a 21-tool MCP server that exposes session queries, project management CRUD, and roadmap views — enabling any MCP-compatible AI assistant to query the Chronicle database directly during conversations."
+      },
+      {
+        title: "Large Session Summarization",
+        description: "AI coding sessions can produce massive transcripts. Implemented intelligent chunked summarization that processes sessions in segments, then consolidates into coherent summaries — working across both cloud (Gemini) and local (Ollama) providers."
+      },
+      {
+        title: "Cross-Platform Memory",
+        description: "Designed the system to work across Claude Code, Gemini CLI, and Qwen — recording sessions from any tool and making the combined history searchable from any other tool via MCP."
+      }
+    ],
+
+    outcomes: [
+      "Open-source project that attracted recruiter attention on GitHub",
+      "140 passing tests across 8 test modules with comprehensive CRUD coverage",
+      "Demonstrated 2,700x ROI from real-world usage — past session search saving hours of re-explanation",
+      "Published to Claude Skills marketplace with 3 pre-built workflow skills",
+      "Pioneered the concept of AI session recording as a development tool"
+    ]
+  },
+
+  {
+    slug: "crooked-finger",
+    title: "Crooked Finger",
+    shortDescription: "AI-powered crochet pattern translator with a deployed web app and native iOS app — routes requests across multiple LLM providers to optimize for cost and quality.",
+    description: "Crooked Finger is a deployed cross-platform application (web + native iOS) that helps crochet enthusiasts translate complex pattern notation, manage projects, and get AI-powered assistance. End-to-end self-managed deployment on Oracle Cloud with Docker, nginx, and Let's Encrypt SSL.",
+    image: "/projects/crooked-finger/hero.png",
+    tags: ["Next.js", "Swift", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "OCI"],
+    liveUrl: "https://crookedfinger.chandlerhardy.com",
+    githubUrl: "https://github.com/ChandlerHardy/crooked-finger",
+    backgroundColor: "#A47764",
+
+    overview: "Crooked Finger bridges the gap between traditional craft patterns and modern technology. It converts between crochet pattern formats, generates custom patterns on demand, and routes AI requests across Gemini and OpenRouter to balance quality and cost. Ships as both a Next.js web app and a native SwiftUI iOS app, sharing a GraphQL API backend fully self-hosted on Oracle Cloud.",
+
+    features: [
+      "AI-powered pattern translation — converts abbreviations to plain-language instructions",
+      "Native iOS app (Swift 6, SwiftUI, MVVM) alongside the web app",
+      "Custom pattern generation from natural language descriptions",
+      "Multi-model AI routing between Gemini and OpenRouter for cost/quality optimization",
+      "Multimodal AI support — upload images for pattern help",
+      "Conversation history with cross-platform sync",
+      "Comprehensive pattern library for organizing templates and active projects",
+      "Project management with image uploads and notes",
+      "User authentication with JWT and Argon2 password hashing"
+    ],
+
+    techStack: [
+      {
+        category: "Web Frontend",
         items: ["Next.js 15", "TypeScript", "Tailwind CSS", "Apollo GraphQL Client"]
+      },
+      {
+        category: "iOS App",
+        items: ["Swift 6", "SwiftUI", "MVVM + @Observable", "Apollo iOS", "Kingfisher"]
       },
       {
         category: "Backend",
@@ -86,15 +159,19 @@ export const projects: Project[] = [
       {
         title: "Pattern Complexity",
         description: "Designed AI prompts specifically for craft pattern understanding, enabling accurate translation of complex crochet and knitting notation across multiple international format conventions."
+      },
+      {
+        title: "Cross-Platform Native iOS App",
+        description: "Built a full native iOS companion app in Swift 6 and SwiftUI, sharing the same GraphQL backend. Implemented MVVM architecture with @Observable, Apollo iOS for GraphQL, and cross-platform data sync between web and mobile."
       }
     ],
 
     outcomes: [
       "Deployed and live at crookedfinger.chandlerhardy.com with real users",
-      "Achieved full-stack end-to-end ownership: frontend, backend, infrastructure, and AI integration",
+      "Shipped both a web app and native iOS app against the same GraphQL API",
+      "Achieved full-stack end-to-end ownership: web frontend, iOS app, backend, infrastructure, and AI integration",
       "Successfully integrated multiple AI providers with smart routing to optimize cost and quality",
-      "Built robust authentication system with JWT and secure password hashing",
-      "Implemented comprehensive project and pattern management system"
+      "Built robust authentication system with JWT and secure password hashing"
     ]
   },
 
@@ -104,7 +181,7 @@ export const projects: Project[] = [
     shortDescription: "Chess training tool that turns Stockfish engine analysis into plain-language explanations of why moves are good or bad — solving the gap between 'the engine says +2.3' and 'here's what you should learn from this position'.",
     description: "Elucidate Chess is a full-stack chess trainer that connects Stockfish engine output to natural language coaching. Built as a Turborepo monorepo on self-managed OCI infrastructure with Docker, nginx, and automated SSL.",
     image: "/projects/elucidate-chess/hero.png",
-    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Stockfish", "Docker"],
+    tags: ["In Progress", "Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Stockfish", "Docker"],
     githubUrl: "https://github.com/ChandlerHardy/elucidate-chess",
     backgroundColor: "#2D4A3E",
 
@@ -228,72 +305,6 @@ export const projects: Project[] = [
       "Validated the Ralph autonomous build pipeline as capable of end-to-end product development",
       "Demonstrated that a well-structured spec + autonomous pipeline can replace weeks of manual development",
       "Produced production-quality code that follows consistent patterns throughout the codebase"
-    ]
-  },
-
-  {
-    slug: "ralph",
-    title: "Ralph",
-    shortDescription: "Autonomous build system that takes a product spec, decomposes it into testable user stories, and implements each one — used to ship a complete 28-story lawn care platform without manual intervention.",
-    description: "Ralph is a reusable autonomous build pipeline that orchestrates Claude Code across machines via Tailscale, with n8n monitoring, Discord notifications, and remote SSH execution. It turns a product spec into a shipped application.",
-    image: "/projects/ralph/hero.png",
-    tags: ["Bash", "n8n", "Claude Code", "Tailscale", "OCI", "Automation"],
-    githubUrl: "https://github.com/ChandlerHardy/ralph",
-    backgroundColor: "#1A1A2E",
-
-    overview: "Ralph solves the 'last mile' problem of AI-assisted development: getting from a product idea to a shipped application without manually writing code. It takes a product spec, uses an LLM to decompose it into testable user stories, then autonomously implements each story — running acceptance criteria, iterating on failures, and moving to the next story only when the current one passes.",
-
-    features: [
-      "Automated product spec to user story decomposition via LLM",
-      "Autonomous story-by-story implementation with acceptance criteria verification",
-      "Cross-machine orchestration via Tailscale mesh network",
-      "n8n workflow monitoring with real-time status tracking",
-      "Discord notifications for build progress and failures",
-      "Remote SSH execution from OCI orchestration server",
-      "Git integration with automatic commits per completed story",
-      "Reusable pipeline — used across multiple projects"
-    ],
-
-    techStack: [
-      {
-        category: "Core",
-        items: ["Bash", "Claude Code (AI engine)", "Git"]
-      },
-      {
-        category: "Orchestration",
-        items: ["n8n workflow automation", "Remote SSH execution", "Tailscale mesh network"]
-      },
-      {
-        category: "Notifications",
-        items: ["Discord webhooks", "Build status reporting"]
-      },
-      {
-        category: "Infrastructure",
-        items: ["Oracle Cloud Infrastructure (OCI)", "Multi-machine coordination"]
-      }
-    ],
-
-    challenges: [
-      {
-        title: "Reliable Cross-Machine Execution",
-        description: "SSH-based remote execution can fail in unexpected ways. Built retry logic, timeout handling, and heartbeat monitoring via n8n so the pipeline recovers from transient failures without human intervention."
-      },
-      {
-        title: "Story Acceptance Criteria Verification",
-        description: "Determining when a user story is 'done' autonomously is hard. Implemented a verification step where Claude Code reviews its own output against the acceptance criteria and either marks it complete or identifies what's missing."
-      },
-      {
-        title: "Pipeline Reusability",
-        description: "Designed Ralph to be project-agnostic — any product spec can be fed in and the pipeline adapts. Used it successfully on GreenLine (lawn care), Elucidate Chess, and internal tooling projects."
-      }
-    ],
-
-    outcomes: [
-      "Successfully shipped GreenLine — a complete 28-story lawn care platform — without manual coding",
-      "Reduced time from product spec to working application from weeks to hours",
-      "Reused the pipeline across multiple projects, validating its generality",
-      "Demonstrated that autonomous AI pipelines can maintain code quality across large feature sets",
-      "Built and deployed on self-managed OCI infrastructure with full observability"
     ]
   }
 ];
