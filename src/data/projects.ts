@@ -102,20 +102,22 @@ export const projects: Project[] = [
   {
     slug: "crooked-finger",
     title: "Crooked Finger",
-    shortDescription: "AI-powered crochet pattern translator that converts between pattern formats and generates custom patterns — routes requests across multiple LLM providers to optimize for cost and quality.",
-    description: "Crooked Finger is a deployed full-stack application that helps crochet and knitting enthusiasts translate complex pattern notation, manage their projects, and get AI-powered assistance. End-to-end self-managed deployment on Oracle Cloud with Docker, nginx, and Let's Encrypt SSL.",
+    shortDescription: "AI-powered crochet pattern translator with a deployed web app and native iOS app — routes requests across multiple LLM providers to optimize for cost and quality.",
+    description: "Crooked Finger is a deployed cross-platform application (web + native iOS) that helps crochet enthusiasts translate complex pattern notation, manage projects, and get AI-powered assistance. End-to-end self-managed deployment on Oracle Cloud with Docker, nginx, and Let's Encrypt SSL.",
     image: "/projects/crooked-finger/hero.png",
-    tags: ["Next.js", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "OCI"],
+    tags: ["Next.js", "Swift", "FastAPI", "GraphQL", "PostgreSQL", "Docker", "OCI"],
     liveUrl: "https://crookedfinger.chandlerhardy.com",
     githubUrl: "https://github.com/ChandlerHardy/crooked-finger",
     backgroundColor: "#A47764",
 
-    overview: "Crooked Finger bridges the gap between traditional craft patterns and modern technology. It converts between crochet pattern formats, generates custom patterns on demand, and routes AI requests across Gemini and OpenRouter to balance quality and cost. Fully self-hosted on Oracle Cloud with automated SSL and a GraphQL API.",
+    overview: "Crooked Finger bridges the gap between traditional craft patterns and modern technology. It converts between crochet pattern formats, generates custom patterns on demand, and routes AI requests across Gemini and OpenRouter to balance quality and cost. Ships as both a Next.js web app and a native SwiftUI iOS app, sharing a GraphQL API backend fully self-hosted on Oracle Cloud.",
 
     features: [
       "AI-powered pattern translation — converts abbreviations to plain-language instructions",
+      "Native iOS app (Swift 6, SwiftUI, MVVM) alongside the web app",
       "Custom pattern generation from natural language descriptions",
       "Multi-model AI routing between Gemini and OpenRouter for cost/quality optimization",
+      "Diagram generation — professional crochet charts rendered server-side",
       "Conversation history with cross-platform sync",
       "Comprehensive pattern library for organizing templates and active projects",
       "Project management with image uploads and notes",
@@ -125,8 +127,12 @@ export const projects: Project[] = [
 
     techStack: [
       {
-        category: "Frontend",
+        category: "Web Frontend",
         items: ["Next.js 15", "TypeScript", "Tailwind CSS", "Apollo GraphQL Client"]
+      },
+      {
+        category: "iOS App",
+        items: ["Swift 6", "SwiftUI", "MVVM + @Observable", "Apollo iOS", "Kingfisher"]
       },
       {
         category: "Backend",
@@ -154,15 +160,19 @@ export const projects: Project[] = [
       {
         title: "Pattern Complexity",
         description: "Designed AI prompts specifically for craft pattern understanding, enabling accurate translation of complex crochet and knitting notation across multiple international format conventions."
+      },
+      {
+        title: "Cross-Platform Native iOS App",
+        description: "Built a full native iOS companion app in Swift 6 and SwiftUI, sharing the same GraphQL backend. Implemented MVVM architecture with @Observable, Apollo iOS for GraphQL, and cross-platform data sync between web and mobile."
       }
     ],
 
     outcomes: [
       "Deployed and live at crookedfinger.chandlerhardy.com with real users",
-      "Achieved full-stack end-to-end ownership: frontend, backend, infrastructure, and AI integration",
+      "Shipped both a web app and native iOS app against the same GraphQL API",
+      "Achieved full-stack end-to-end ownership: web frontend, iOS app, backend, infrastructure, and AI integration",
       "Successfully integrated multiple AI providers with smart routing to optimize cost and quality",
-      "Built robust authentication system with JWT and secure password hashing",
-      "Implemented comprehensive project and pattern management system"
+      "Built robust authentication system with JWT and secure password hashing"
     ]
   },
 
