@@ -29,17 +29,17 @@ Some recent highlights:
     pattern translator with multi-model
     routing. Live at crookedfinger.chandlerhardy.com
 
-  > This website — a Win95 desktop. Because
+  > This website — a WinXP desktop. Because
     portfolios shouldn't look like portfolios.
 
 I like building things that actually work,
 shipping them, and then building the next one.
 
----
-Email:    hardych04@gmail.com
-GitHub:   github.com/ChandlerHardy
-LinkedIn: linkedin.com/in/chandler-hardy
-`}
+---`}
+      {"\n"}
+      {"Email:    "}<a href="mailto:hardych04@gmail.com" style={{ color: "#003c97" }}>hardych04@gmail.com</a>{"\n"}
+      {"GitHub:   "}<a href="https://github.com/ChandlerHardy" target="_blank" rel="noopener noreferrer" style={{ color: "#003c97" }}>github.com/ChandlerHardy</a>{"\n"}
+      {"LinkedIn: "}<a href="https://www.linkedin.com/in/chandler-hardy-80808112b/" target="_blank" rel="noopener noreferrer" style={{ color: "#003c97" }}>linkedin.com/in/chandler-hardy</a>{"\n"}
     </div>
   );
 }
