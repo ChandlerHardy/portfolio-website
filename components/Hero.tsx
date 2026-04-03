@@ -1,5 +1,5 @@
 import { ArrowRight, Download } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import Image from "next/image";
 import { motion } from "motion/react";
 import TypewriterText from "./TypewriterText";
 import EnhancedButton from "./EnhancedButton";
@@ -107,9 +107,12 @@ export default function Hero() {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 to-accent overflow-hidden relative">
-                  <ImageWithFallback
-                    src="/PLA-Headshot.jpg"
-                    alt="Alex Chen - Creative Designer & Developer"
+                  <Image
+                    src="/PLA-Headshot.webp"
+                    alt="Chandler Hardy - Creative Designer & Developer"
+                    width={1200}
+                    height={1200}
+                    priority
                     className="w-full h-full object-cover"
                   />
                   
