@@ -20,7 +20,6 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   images: {
     remotePatterns: [
       {
@@ -29,7 +28,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.chandlerhardy.com",
+        hostname: "**.chandlerhardy.com",
       },
     ],
   },
