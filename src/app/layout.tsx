@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "chandlerOS — Chandler Hardy",
   description:
     "Full-stack developer portfolio. 50+ merged MRs, 4,000+ users, 40% of the US cattle market. Built with Next.js.",
+  manifest: "/manifest.json",
   openGraph: {
     title: "chandlerOS — Chandler Hardy",
     description:
