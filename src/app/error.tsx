@@ -1,6 +1,6 @@
 "use client";
 
-import WinXpDialog, { winXpButtonStyle } from "../../../../components/WinXpDialog";
+import WinXpDialog, { winXpButtonStyle } from "../../components/WinXpDialog";
 
 export default function Error({
   reset,
@@ -13,7 +13,7 @@ export default function Error({
       title="Error"
       icon="❌"
       message="Something went wrong"
-      detail="An unexpected error occurred while loading this project."
+      detail="An unexpected error occurred."
     >
       <button onClick={reset} style={winXpButtonStyle}>
         Retry
