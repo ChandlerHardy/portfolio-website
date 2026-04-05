@@ -20,13 +20,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: project.description,
     openGraph: {
       title: `${project.title} — chandlerOS`,
-      description: project.shortDescription,
+      description: project.shortDescription || project.description,
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: `${project.title} — chandlerOS`,
-      description: project.shortDescription,
+      description: project.shortDescription || project.description,
     },
   };
 }
