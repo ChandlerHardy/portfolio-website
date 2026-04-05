@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Project } from "../../../data/projects";
+import { tealBg, windowFrame, titleBar, titleText, winXpButtonStyle } from "../../../../components/WinXpDialog";
 import "../../../../components/win95/win95.css";
 
 export default function ProjectDetailClient({ project }: { project: Project }) {
@@ -10,18 +11,18 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
   return (
     <div
       style={{
-        background: "#008080",
-        minHeight: "100vh",
-        fontFamily: "'MS Sans Serif', Tahoma, sans-serif",
-        fontSize: 12,
+        ...tealBg,
+        display: "block",
+        alignItems: undefined,
+        justifyContent: undefined,
       }}
     >
       {/* Full-screen window */}
       <div
         style={{
-          background: "#c0c0c0",
-          border: "2px solid",
-          borderColor: "#ffffff #808080 #808080 #ffffff",
+          ...windowFrame,
+          width: undefined,
+          boxShadow: undefined,
           margin: 0,
           minHeight: "100vh",
           display: "flex",
@@ -31,37 +32,24 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
         {/* Title bar */}
         <div
           style={{
-            height: 28,
-            background: "linear-gradient(90deg, #000080, #1084d0)",
-            display: "flex",
-            alignItems: "center",
-            padding: "0 6px",
-            gap: 6,
+            ...titleBar,
             flexShrink: 0,
           }}
         >
           <span style={{ fontSize: 16 }}>📁</span>
           <span
-            style={{
-              color: "white",
-              fontWeight: "bold",
-              fontSize: 12,
-              flex: 1,
-            }}
+            style={titleText}
           >
             {project.title} — chandlerOS
           </span>
           <button
             onClick={() => router.push("/")}
             style={{
+              ...winXpButtonStyle,
               width: 20,
               height: 18,
-              background: "#c0c0c0",
-              border: "2px solid",
-              borderColor: "#ffffff #808080 #808080 #ffffff",
-              cursor: "pointer",
+              padding: 0,
               fontSize: 11,
-              fontWeight: "bold",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -87,12 +75,10 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
           <button
             onClick={() => router.push("/")}
             style={{
-              background: "#c0c0c0",
-              border: "2px solid",
-              borderColor: "#ffffff #808080 #808080 #ffffff",
+              ...winXpButtonStyle,
               padding: "2px 12px",
-              cursor: "pointer",
               fontSize: 11,
+              fontWeight: "normal",
             }}
           >
             ← Back to Desktop
@@ -103,14 +89,10 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                background: "#c0c0c0",
-                border: "2px solid",
-                borderColor: "#ffffff #808080 #808080 #ffffff",
+                ...winXpButtonStyle,
                 padding: "2px 12px",
-                cursor: "pointer",
                 fontSize: 11,
-                textDecoration: "none",
-                color: "#000",
+                fontWeight: "normal",
               }}
             >
               🌐 Live Site
@@ -122,14 +104,10 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                background: "#c0c0c0",
-                border: "2px solid",
-                borderColor: "#ffffff #808080 #808080 #ffffff",
+                ...winXpButtonStyle,
                 padding: "2px 12px",
-                cursor: "pointer",
                 fontSize: 11,
-                textDecoration: "none",
-                color: "#000",
+                fontWeight: "normal",
               }}
             >
               📂 Source

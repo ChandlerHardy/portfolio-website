@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-const tealBg = {
+export const tealBg = {
   background: "#008080",
   minHeight: "100vh",
   fontFamily: "'MS Sans Serif', Tahoma, sans-serif",
@@ -10,7 +10,7 @@ const tealBg = {
   justifyContent: "center",
 } as const;
 
-const windowFrame = {
+export const windowFrame = {
   background: "#c0c0c0",
   border: "2px solid",
   borderColor: "#ffffff #808080 #808080 #ffffff",
@@ -18,7 +18,7 @@ const windowFrame = {
   boxShadow: "4px 4px 0 rgba(0,0,0,0.3)",
 } as const;
 
-const titleBar = {
+export const titleBar = {
   height: 28,
   background: "linear-gradient(90deg, #000080, #1084d0)",
   display: "flex",
@@ -27,7 +27,7 @@ const titleBar = {
   gap: 6,
 } as const;
 
-const titleText = {
+export const titleText = {
   color: "white",
   fontWeight: "bold",
   fontSize: 12,

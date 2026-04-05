@@ -3,11 +3,13 @@
 import WinXpDialog, { winXpButtonStyle } from "../../components/WinXpDialog";
 
 export default function Error({
+  error: _error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  void _error;
   return (
     <WinXpDialog
       title="Error"
