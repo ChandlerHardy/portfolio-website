@@ -1,16 +1,14 @@
 "use client";
 
-import { projects } from "../../src/data/projects";
+import { getFeaturedProjects } from "../../src/data/projects";
 
 interface HomeWindowProps {
   onOpenProject: (slug: string) => void;
   onOpenWindow: (id: string) => void;
 }
 
-const FEATURED_SLUGS = ["chronicle", "crooked-finger", "elucidate-chess"];
-
 export default function HomeWindow({ onOpenProject, onOpenWindow }: HomeWindowProps) {
-  const featured = FEATURED_SLUGS.map((s) => projects.find((p) => p.slug === s)!);
+  const featured = getFeaturedProjects();
 
   return (
     <div style={{ fontFamily: "'Trebuchet MS', Tahoma, sans-serif", color: "#000" }}>

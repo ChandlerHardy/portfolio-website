@@ -309,6 +309,13 @@ export const projects: Project[] = [
   }
 ];
 
+/** Number of projects shown on the home screen. */
+export const FEATURED_COUNT = 3;
+
+export function getFeaturedProjects(): Project[] {
+  return projects.slice(0, FEATURED_COUNT);
+}
+
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find(p => p.slug === slug);
 }
