@@ -6,6 +6,16 @@ export const metadata: Metadata = {
   description:
     "Full-stack developer portfolio. 50+ merged MRs, 4,000+ users, 40% of the US cattle market. Built with Next.js.",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "chandlerOS — Chandler Hardy",
     description:
