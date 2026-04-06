@@ -53,7 +53,11 @@ export default function Error({
         <br />
 
         <p>UNEXPECTED_RUNTIME_EXCEPTION</p>
-        <p>{error.digest ? `Error reference: ${error.digest}` : "STACK_TRACE_UNAVAILABLE"}</p>
+        <p>
+          {error.digest
+            ? `Error reference: ${error.digest}`
+            : "STACK_TRACE_UNAVAILABLE"}
+        </p>
 
         <br />
 
@@ -62,21 +66,38 @@ export default function Error({
 
         <br />
 
-        <button
-          onClick={reset}
-          style={{
-            background: "#aaa",
-            color: "#0000AA",
-            border: "none",
-            padding: "4px 16px",
-            fontFamily: "'Courier New', monospace",
-            fontSize: 14,
-            fontWeight: "bold",
-            cursor: "pointer",
-          }}
-        >
-          Press to reboot
-        </button>
+        <div style={{ display: "flex", gap: 12 }}>
+          <button
+            onClick={reset}
+            style={{
+              background: "#aaa",
+              color: "#0000AA",
+              border: "none",
+              padding: "4px 16px",
+              fontFamily: "'Courier New', monospace",
+              fontSize: 14,
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Press to retry
+          </button>
+          <button
+            onClick={() => (window.location.href = "/")}
+            style={{
+              background: "#aaa",
+              color: "#0000AA",
+              border: "none",
+              padding: "4px 16px",
+              fontFamily: "'Courier New', monospace",
+              fontSize: 14,
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Reboot to Desktop
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NotFound() {
+export default function ProjectNotFound() {
   return (
     <div
       style={{
@@ -10,7 +10,8 @@ export default function NotFound() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        fontFamily:
+          "'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         fontSize: 11,
       }}
     >
@@ -37,7 +38,7 @@ export default function NotFound() {
             gap: 6,
           }}
         >
-          <span style={{ fontSize: 16 }}>⚠️</span>
+          <span style={{ fontSize: 16 }}>📁</span>
           <span
             style={{
               color: "white",
@@ -47,7 +48,7 @@ export default function NotFound() {
               textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)",
             }}
           >
-            chandlerOS — Error
+            chandlerOS — Project Not Found
           </span>
           <Link
             href="/"
@@ -73,18 +74,27 @@ export default function NotFound() {
         </div>
 
         {/* Content */}
-        <div style={{ padding: "20px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}>
-          <span style={{ fontSize: 32, flexShrink: 0 }}>❌</span>
+        <div
+          style={{
+            padding: "20px 24px",
+            display: "flex",
+            gap: 16,
+            alignItems: "flex-start",
+          }}
+        >
+          <span style={{ fontSize: 32, flexShrink: 0 }}>📂</span>
           <div>
-            <p style={{ margin: "0 0 12px", fontWeight: "bold", fontSize: 12 }}>
-              404 — File Not Found
+            <p
+              style={{ margin: "0 0 12px", fontWeight: "bold", fontSize: 12 }}
+            >
+              Project Not Found
             </p>
             <p style={{ margin: "0 0 8px" }}>
-              The page you requested does not exist on this system.
+              The requested project does not exist in the portfolio.
             </p>
             <p style={{ margin: 0, color: "#555" }}>
-              chandlerOS cannot locate the specified path. It may have been moved, deleted, or never
-              existed.
+              It may have been removed, renamed, or the URL was entered
+              incorrectly. Return to the desktop to browse available projects.
             </p>
           </div>
         </div>

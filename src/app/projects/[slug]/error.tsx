@@ -1,6 +1,19 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 
-export default function NotFound() {
+export default function ProjectError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
   return (
     <div
       style={{
@@ -10,7 +23,8 @@ export default function NotFound() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        fontFamily:
+          "'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         fontSize: 11,
       }}
     >
@@ -20,7 +34,7 @@ export default function NotFound() {
           border: "1px solid #0054e3",
           borderRadius: "8px 8px 0 0",
           boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.35)",
-          width: 420,
+          width: 460,
           maxWidth: "90vw",
         }}
       >
@@ -47,7 +61,7 @@ export default function NotFound() {
               textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)",
             }}
           >
-            chandlerOS — Error
+            chandlerOS — Application Error
           </span>
           <Link
             href="/"
@@ -73,18 +87,28 @@ export default function NotFound() {
         </div>
 
         {/* Content */}
-        <div style={{ padding: "20px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+        <div
+          style={{
+            padding: "20px 24px",
+            display: "flex",
+            gap: 16,
+            alignItems: "flex-start",
+          }}
+        >
           <span style={{ fontSize: 32, flexShrink: 0 }}>❌</span>
           <div>
-            <p style={{ margin: "0 0 12px", fontWeight: "bold", fontSize: 12 }}>
-              404 — File Not Found
+            <p
+              style={{ margin: "0 0 12px", fontWeight: "bold", fontSize: 12 }}
+            >
+              PORTFOLIO.EXE has encountered an error
             </p>
             <p style={{ margin: "0 0 8px" }}>
-              The page you requested does not exist on this system.
+              An unexpected error occurred while loading this project.
             </p>
             <p style={{ margin: 0, color: "#555" }}>
-              chandlerOS cannot locate the specified path. It may have been moved, deleted, or never
-              existed.
+              {error.digest
+                ? `Error reference: ${error.digest}`
+                : "The application can attempt to recover, or you can return to the desktop."}
             </p>
           </div>
         </div>
@@ -99,6 +123,22 @@ export default function NotFound() {
             borderTop: "1px solid #d6d2c2",
           }}
         >
+          <button
+            onClick={reset}
+            style={{
+              padding: "4px 24px",
+              background: "linear-gradient(180deg, #fff 0%, #ece9d8 100%)",
+              border: "1px solid #aca899",
+              borderRadius: 3,
+              fontSize: 11,
+              cursor: "pointer",
+              color: "#000",
+              fontFamily: "'Trebuchet MS', sans-serif",
+              fontWeight: "bold",
+            }}
+          >
+            Retry
+          </button>
           <Link
             href="/"
             style={{
@@ -111,10 +151,9 @@ export default function NotFound() {
               textDecoration: "none",
               color: "#000",
               fontFamily: "'Trebuchet MS', sans-serif",
-              fontWeight: "bold",
             }}
           >
-            OK
+            Back to Desktop
           </Link>
         </div>
       </div>
