@@ -1,0 +1,76 @@
+{
+  "project": "portfolio-website",
+  "findings": [
+    {
+      "title": "Terminal PROJECTS map is out of sync with projects.ts — Chronicle missing",
+      "category": "quick-win",
+      "effort": "15min",
+      "impact": "medium",
+      "files": [
+        "components/windows/TerminalWindow.tsx",
+        "src/data/projects.ts"
+      ],
+      "what": "TerminalWindow.tsx hardcodes its own PROJECTS object (lines 66-79) with only 3 projects: crooked-finger, elucidate-chess, greenline. But projects.ts has 4 projects — Chronicle is missing. Running 'open chronicle' or 'ls projects' in the terminal won't show it. Import from projects.ts instead of maintaining a separate copy, or at minimum add Chronicle to the terminal's PROJECTS map.",
+      "why": "Chronicle is Chandler's open-source project that attracted recruiter attention — exactly the kind of thing a hiring manager exploring the terminal should discover. The terminal is a power-user path that rewards exploration; having it show stale data undermines that experience."
+    },
+    {
+      "title": "BootScreen setTimeout calls lack cleanup — memory leak on fast navigation",
+      "category": "quick-win",
+      "effort": "10min",
+      "impact": "low",
+      "files": [
+        "components/win95/BootScreen.tsx"
+      ],
+      "what": "BootScreen.tsx line 13-15 fires two setTimeout calls (2200ms and 2700ms) inside useEffect but never returns a cleanup function. If the component unmounts before those timers fire (e.g., fast refresh in dev, or if a user somehow navigates away), the callbacks still execute — calling setIsDone and onComplete on an unmounted component. Add a cleanup function that clears both timeouts.",
+      "why": "React strict mode in dev will double-fire the effect, causing the boot animation to complete twice as fast. In production it's harmless but it's a clean code fix that takes 2 minutes."
+    },
+    {
+      "title": "ProjectDetailWindow never renders hero images or screenshots",
+      "category": "quick-win",
+      "effort": "30min",
+      "impact": "high",
+      "files": [
+        "components/windows/ProjectDetailWindow.tsx",
+        "src/data/projects.ts"
+      ],
+      "what": "ProjectDetailWindow renders title, description, tags, overview, features, tech stack, challenges, and outcomes — but never uses project.image (hero) or project.screenshots. Every project in projects.ts has an image field (e.g., '/projects/chronicle/hero.png'), and the Project interface even has a screenshots array. Add the hero image at the top of the detail view and render screenshots if present. Style as Win95 image viewer frames with sunken borders.",
+      "why": "Project detail pages are text walls right now. A hiring manager double-clicking into a project sees paragraphs but no visual evidence of the work. Images are the fastest way to communicate 'this is a real, shipped product' — and the data structure already supports them."
+    },
+    {
+      "title": "Double-click titlebar to maximize/restore window",
+      "category": "quick-win",
+      "effort": "15min",
+      "impact": "medium",
+      "files": [
+        "components/win95/Window.tsx"
+      ],
+      "what": "In real Windows, double-clicking a titlebar toggles maximize/restore. Window.tsx's titlebar div (line 145) only has onMouseDown for drag — add an onDoubleClick handler that dispatches MAXIMIZE action. Need to distinguish single-click drag from double-click: use a click counter with a short timeout, or simply add onDoubleClick to the titlebar div (React handles the distinction natively).",
+      "why": "Anyone who's used Windows will instinctively double-click the titlebar. When it doesn't work, the OS metaphor breaks slightly. This is a 5-line fix that makes the entire experience feel more polished and real."
+    },
+    {
+      "title": "Right-click context menu on the desktop background",
+      "category": "feature",
+      "effort": "2hr",
+      "impact": "high",
+      "files": [
+        "components/win95/Desktop.tsx",
+        "components/win95/ContextMenu.tsx (new)"
+      ],
+      "what": "Add a right-click context menu when clicking the desktop background, mirroring the real Windows XP experience. Menu items: 'Refresh' (brief screen flicker animation), 'Arrange Icons' (no-op or resets icon positions), 'New > Folder' (joke: 'Nice try'), 'Properties' (opens an About chandlerOS dialog showing build info — Next.js version, deploy date, total lines of code). Suppress the native browser context menu on the desktop area only.",
+      "why": "Right-clicking is the most universal 'can I interact with this?' gesture on a desktop OS. Every visitor will try it within 30 seconds. Currently nothing happens — a missed opportunity to delight. The 'Properties' dialog is a natural place to sneak in technical credibility (framework versions, deploy pipeline) without being self-congratulatory."
+    },
+    {
+      "title": "Add a 'View Source' easter egg to the About window's Help menu",
+      "category": "feature",
+      "effort": "1.5hr",
+      "impact": "medium",
+      "files": [
+        "components/win95/Window.tsx",
+        "components/win95/Desktop.tsx",
+        "components/windows/AboutWindow.tsx"
+      ],
+      "what": "The About.txt window has menu items ['File', 'Edit', 'Format', 'View', 'Help'] but they're purely decorative (no click handlers). Make the Help menu functional with two items: 'About chandlerOS' (opens a classic Win95-style About dialog showing version, built with Next.js 15 + React 19, and a tiny scrolling credits marquee) and 'View Source' (links to the portfolio GitHub repo). This requires making the Window component's menuItems clickable with dropdown support — start with just the About window's Help menu as a proof of concept.",
+      "why": "Recruiters and technical evaluators will click the menus to see if they work. Right now the underlined first letter (like _F_ile) promises interactivity that doesn't exist — that's worse than having no menus at all. Even one working menu (Help > About) transforms the perception from 'static mockup' to 'this actually works'. The View Source link is a natural funnel to the GitHub repo."
+    }
+  ]
+}
