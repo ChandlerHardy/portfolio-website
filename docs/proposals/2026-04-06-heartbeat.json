@@ -1,0 +1,68 @@
+{
+  "project": "portfolio-website",
+  "findings": [
+    {
+      "title": "Missing og-image.png causes broken social previews",
+      "category": "quick-win",
+      "effort": "20min",
+      "impact": "high",
+      "files": ["public/og-image.png", "src/app/layout.tsx"],
+      "what": "layout.tsx references https://chandlerhardy.com/og-image.png in both openGraph and twitter metadata, but no og-image.png exists in public/. Generate a 1200x630 OG image (chandlerOS branding with the WinXP aesthetic — blue gradient, 'chandlerOS' title, tagline) and place it in public/.",
+      "why": "Every LinkedIn/Twitter/Discord share of chandlerhardy.com currently shows a broken image. This was added in the OG metadata PR but the actual image file was never created. High-visibility bug for a portfolio site where link sharing is the primary distribution channel."
+    },
+    {
+      "title": "GreenLine 'Source Code' link points to empty string",
+      "category": "quick-win",
+      "effort": "10min",
+      "impact": "medium",
+      "files": ["src/data/projects.ts", "components/windows/ProjectDetailWindow.tsx"],
+      "what": "GreenLine's githubUrl is an empty string (''), but ProjectDetailWindow unconditionally renders a '📂 Source Code' link for every project. This creates a broken <a href=''> that navigates to the current page. Either hide the Source Code button when githubUrl is empty/falsy (like the liveUrl check already does), or set a valid URL.",
+      "why": "Clicking 'Source Code' on the GreenLine project detail reloads the page — confusing for a recruiter reviewing projects. The liveUrl already has a guard (project.liveUrl && project.liveUrl !== '#') but githubUrl doesn't."
+    },
+    {
+      "title": "TerminalWindow has cyclomatic complexity 96 — extract command handlers",
+      "category": "tech-debt",
+      "effort": "1hr",
+      "impact": "medium",
+      "files": ["components/windows/TerminalWindow.tsx"],
+      "what": "The processCommand callback is a single 170-line switch statement with 15+ cases, all inline. Extract each command handler into a Record<string, (args: string) => string> map. Move the static data (PROJECTS, SKILLS, WHOAMI, etc.) to a separate constants file or co-locate with the handler map.",
+      "why": "At cyclomatic complexity 96 (highest in the repo by 2.5x), this function is the #1 hotspot. Adding new terminal commands requires editing a massive switch block. A handler map would make commands self-documenting and let new commands be added without touching the core function."
+    },
+    {
+      "title": "Add keyboard shortcuts for power users (Alt+1 opens Projects, etc.)",
+      "category": "feature",
+      "effort": "45min",
+      "impact": "medium",
+      "files": ["components/win95/Desktop.tsx", "components/win95/types.ts"],
+      "what": "Add global keyboard shortcuts: Alt+1 through Alt+8 to open desktop windows in order (matching DESKTOP_ICONS array), Escape to close the focused window, Alt+F4 to close focused window. The Konami code listener already demonstrates the pattern — extend it with a secondary keydown handler that checks for Alt+digit combos.",
+      "why": "The chandlerOS metaphor invites exploration but all interaction is mouse-only. Real OS power users expect keyboard shortcuts. This deepens the 'the portfolio IS the demo' concept — showing Chandler thinks about UX details. Also makes the site more accessible."
+    },
+    {
+      "title": "Add a 'Skills.exe' window with interactive tech stack visualization",
+      "category": "feature",
+      "effort": "2hr",
+      "impact": "high",
+      "files": ["components/windows/SkillsWindow.tsx", "components/win95/Desktop.tsx", "components/win95/types.ts"],
+      "what": "Create a new SkillsWindow that displays Chandler's tech stack as an interactive Windows Explorer-style tree view (expandable folders: Frontend, Backend, Database, Infra, AI). Each skill shows an icon, proficiency indicator (years/projects), and clicking a skill highlights which projects use it. Add a 'Skills.exe' desktop icon and wire it into the window system.",
+      "why": "Skills data already exists in TerminalWindow (the SKILLS constant) but is only accessible via terminal commands. Recruiters want to quickly scan tech competencies without learning CLI commands. A visual skills browser would be the most natural 'window' in the OS metaphor and directly serves the primary user (hiring managers evaluating capabilities)."
+    },
+    {
+      "title": "Make Start Menu functional with organized navigation",
+      "category": "feature",
+      "effort": "2hr",
+      "impact": "high",
+      "files": ["components/win95/StartMenu.tsx", "components/win95/Taskbar.tsx"],
+      "what": "The Start Menu component exists but currently just lists desktop icons in a flat list. Redesign it as a proper WinXP Start Menu: left column with user avatar + 'Chandler Hardy' header, pinned items (Resume, Terminal, Contact), 'All Programs' flyout with project launchers, and bottom row with 'Log Off' (redirect to LinkedIn) and 'Shut Down' (trigger BSOD easter egg). Include 'Recently Opened' section that tracks which windows the user has visited this session.",
+      "why": "The Start Menu is the centerpiece interaction of the WinXP metaphor — it's where every real Windows user starts. Currently it's a basic flat list that undersells the concept. A properly structured Start Menu would immediately signal 'this person shipped a complete, polished interaction' to any visitor. It's also the natural home for resume download, contact info, and external links — reducing reliance on knowing to double-click desktop icons."
+    },
+    {
+      "title": "Add window snap zones (drag to edge to snap half-screen)",
+      "category": "feature",
+      "effort": "1.5hr",
+      "impact": "medium",
+      "files": ["components/win95/Window.tsx"],
+      "what": "When dragging a window to the left or right edge of the viewport, show a translucent snap preview and snap the window to fill that half of the screen on drop. Dragging to the top edge maximizes. This mirrors Windows 7+ Aero Snap behavior. The drag handler in Window.tsx already tracks mouse position — add edge detection (within 20px of viewport edge) during mousemove, show a CSS overlay preview, and on mouseup dispatch MOVE+RESIZE to snap position.",
+      "why": "Multiple windows is core to the OS metaphor, but currently users can only manually drag/resize to arrange them. Snap zones make multi-window workflows natural (e.g., Projects on left, project detail on right) and demonstrate attention to UX polish. This is a feature real users expect from window managers."
+    }
+  ]
+}
