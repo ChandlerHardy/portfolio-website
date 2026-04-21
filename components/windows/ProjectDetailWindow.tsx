@@ -96,23 +96,25 @@ export default function ProjectDetailWindow({ slug, onBack }: ProjectDetailWindo
             🌐 Live Site
           </a>
         )}
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            background: "#c0c0c0",
-            border: "2px solid",
-            borderColor: "#ffffff #808080 #808080 #ffffff",
-            padding: "4px 12px",
-            cursor: "pointer",
-            fontSize: 11,
-            textDecoration: "none",
-            color: "#000",
-          }}
-        >
-          📂 Source Code
-        </a>
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: "#c0c0c0",
+              border: "2px solid",
+              borderColor: "#ffffff #808080 #808080 #ffffff",
+              padding: "4px 12px",
+              cursor: "pointer",
+              fontSize: 11,
+              textDecoration: "none",
+              color: "#000",
+            }}
+          >
+            📂 Source Code
+          </a>
+        )}
       </div>
 
       {/* Overview */}
